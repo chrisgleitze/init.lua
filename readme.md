@@ -1,3 +1,5 @@
 # new neovim config
 
-starting over from scratch. stay tuned.
+Starting over from scratch. Stay tuned.
+
+You find my old neovim config [in this repo](https://github.com/chrisgleitze/nvim).
