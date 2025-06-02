@@ -23,7 +23,6 @@ return {
             function()
                 require("fzf-lua").builtin()
             end,
-
             desc = "[F]ind [B]uiltin FZF",
         },
         {
@@ -77,5 +76,19 @@ return {
             end,
             desc = "[/] Live grep the current buffer",
         },
+	{
+            "<leader>gs",
+            function()
+                require("fzf-lua").git_status()
+            end,
+            desc = "",
+        },
+	{
+            "<leader>gc",
+            function()
+                require("fzf-lua").git_commits()
+            end,
+            desc = "Find git commits",
+        }
   }
 }
