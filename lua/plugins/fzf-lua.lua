@@ -23,7 +23,7 @@ return {
             desc="Find in neovim configuration"
         },
 	{
-            "<leader>fb",
+            "<leader>bf",
             function() require("fzf-lua").builtin()
             end,
             desc = "[F]ind [B]uiltin FZF",
@@ -60,7 +60,7 @@ return {
             desc = "[F]ind [O]ld Files",
         },
         {
-            "<leader>bf",
+            "<leader>fb",
             function() require("fzf-lua").buffers()
             end,
             desc = "[,] Find existing buffers",
