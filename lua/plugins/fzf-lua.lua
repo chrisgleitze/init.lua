@@ -2,6 +2,10 @@ return {
   "ibhagwan/fzf-lua",
   lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  defaults = {
+        formatter = "path.dirname_first", -- show greyed-out directory before filename
+        no_header = true,
+      },
   keys = {
 	{ 
             "<leader><leader>",
@@ -9,7 +13,7 @@ return {
             desc="Find Files in project directory"
         },
 	{ 
-            "<leader>fg",
+            "<leader>/",
             function() require('fzf-lua').live_grep() end,
             desc="Find by grepping in project directory"
         },
@@ -70,7 +74,7 @@ return {
             desc = "[,] Find existing buffers",
         },
         {
-            "<leader>/",
+            "<leader>fg",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
