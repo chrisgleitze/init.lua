@@ -1,0 +1,23 @@
+return {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+	user_default_options = {
+		tailwind = true,
+		css = true,
+		names = true,
+		mode = "background",
+	},
+        filetypes = {
+		'css',
+		'scss',
+		'html',
+		'javascript',
+		'typescript',
+                'json',
+                'jsonc',
+                'lua',
+                'yaml',
+        },
+    },
+}
