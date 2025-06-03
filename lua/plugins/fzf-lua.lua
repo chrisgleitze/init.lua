@@ -24,73 +24,62 @@ return {
         },
 	{
             "<leader>fb",
-            function()
-                require("fzf-lua").builtin()
+            function() require("fzf-lua").builtin()
             end,
             desc = "[F]ind [B]uiltin FZF",
         },
         {
             "<leader>fw",
-            function()
-                require("fzf-lua").grep_cword()
+            function() require("fzf-lua").grep_cword()
             end,
             desc = "[F]ind current [W]ord",
         },
 	{
             "<leader>fW",
-            function()
-                require("fzf-lua").grep_cWORD()
+            function() require("fzf-lua").grep_cWORD()
             end,
             desc = "[F]ind current [W]ORD",
         },
 	{
             "<leader>fd",
-            function()
-                require("fzf-lua").diagnostics_document()
+            function() require("fzf-lua").diagnostics_document()
             end,
             desc = "[F]ind [D]iagnostics",
         },
 	{
             "<leader>fr",
-            function()
-
-                require("fzf-lua").resume()
+            function() require("fzf-lua").resume()
             end,
             desc = "[F]ind [R]esume",
 
         },
         {
             "<leader>fo",
-            function()
-                require("fzf-lua").oldfiles()
+            function() require("fzf-lua").oldfiles()
             end,
             desc = "[F]ind [O]ld Files",
         },
         {
             "<leader>bf",
-            function()
-                require("fzf-lua").buffers()
+            function() require("fzf-lua").buffers()
             end,
             desc = "[,] Find existing buffers",
         },
         {
             "<leader>fg",
-            function()
-                require("fzf-lua").lgrep_curbuf()
+            function() require("fzf-lua").lgrep_curbuf()
             end,
             desc = "[/] Live grep the current buffer",
         },
 	{
             "<leader>gs",
-            function()
-                require("fzf-lua").git_status()
+            function() require("fzf-lua").git_status()
             end,
             desc = "",
         },
 	{
             "<leader>gc",
-            function()
-                require("fzf-lua").git_commits()
+            function() require("fzf-lua").git_commits()
             end,
             desc = "Find git commits",
         }
