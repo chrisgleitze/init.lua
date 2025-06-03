@@ -1,8 +1,10 @@
 {
-  "fzf-lua": { "branch": "main", "commit": "a768d39d44a7e69c04ee980efa8e0925a19b3c2b" },
+  "fluoromachine.nvim": { "branch": "main", "commit": "d638ea221b4c6636978f49c1987d10ff2733c23d" },
+  "fzf-lua": { "branch": "main", "commit": "6d1d81a5c7936d82a47a41a521958e482e499fde" },
   "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazygit.nvim": { "branch": "main", "commit": "b9eae3badab982e71abab96d3ee1d258f0c07961" },
+  "lualine.nvim": { "branch": "master", "commit": "0c6cca9f2c63dadeb9225c45bc92bb95a151d4af" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "f481de16a0eb59c985abac8985e3f2e2f75b4875" },
   "nui.nvim": { "branch": "main", "commit": "7cd18e73cfbd70e1546931b7268b3eebaeff9391" },
   "nvim-tmux-navigation": { "branch": "main", "commit": "4898c98702954439233fdaf764c39636681e2861" },
