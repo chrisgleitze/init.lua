@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- write buffer
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
+vim.keymap.set("n", "<leader>W", "<cmd>w<CR>")
 
 -- delete buffer
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
