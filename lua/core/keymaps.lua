@@ -9,6 +9,9 @@ vim.keymap.set("n", "<leader>W", "<cmd>w<CR>")
 -- delete buffer
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
 
+-- source file
+vim.keymap.set("n", "<leader>S", "<cmd>source<CR>")
+
 --jump up and down a page and center cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
