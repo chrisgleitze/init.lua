@@ -3,6 +3,12 @@ vim.g.mapleader = " "
 -- exit buffer back to netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- write buffer
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
+
+-- delete buffer
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
+
 --jump up and down a page and center cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
