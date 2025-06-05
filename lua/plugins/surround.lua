@@ -2,8 +2,7 @@ return {
   "echasnovski/mini.surround",
   recommended = true,
   version = false,
-  lazy = false,
-  -- keys = function(_, keys)
+  event = { "BufReadPre", "BufNewFile" },
   opts = {
     mappings = {
       add = "ys", -- Add surrounding in Normal and Visual modes
