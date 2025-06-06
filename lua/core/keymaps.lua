@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>W", "<cmd>w<CR>")
 
 -- delete buffer
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>")
+vim.keymap.set("n", "<leader>db", "<cmd>bdelete<CR>")
 
 -- source file
 vim.keymap.set("n", "<leader>S", "<cmd>source<CR>")

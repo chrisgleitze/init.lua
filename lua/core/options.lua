@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 -- hidden buffers are not displayed but loaded in memory
 vim.opt.hidden = true
 
@@ -15,19 +13,14 @@ vim.opt.undofile = true
 
 vim.opt.signcolumn = "yes"
 
+vim.opt.scrolloff = 10
+
 -- highlight search, incremental search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.scrolloff = 10
 
-vim.opt.guicursor = { "n-v-ve-o-r-c-cr-sm:block-blinkon175", "i-ci:ver25-blinkon175" }
+vim.diagnostic.enable(true)
 
--- cursorline not highlighted
-vim.api.nvim_create_autocmd("ColorScheme", {
-  command = [[highlight CursorLine guibg=NONE cterm=underline]],
-})
+vim.opt.cursorline = true
 
-vim.diagnostic.enable(false)
-
--- disable animations of snacks.nvim
-vim.g.snacks_animate = false
+vim.opt.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
