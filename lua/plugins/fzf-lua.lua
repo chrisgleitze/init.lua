@@ -1,77 +1,102 @@
 return {
-  "ibhagwan/fzf-lua",
-  lazy = false,
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  defaults = {
+    "ibhagwan/fzf-lua",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    defaults = {
         formatter = "path.dirname_first", -- show greyed-out directory before filename
         no_header = true,
-      },
-  keys = {
-	{ 
+    },
+    keys = {
+        {
             "<leader><leader>",
-            function() require('fzf-lua').files() end,
-            desc = "Find Files in project directory"
+            function()
+                require("fzf-lua").files()
+            end,
+            desc = "Find Files in project directory",
         },
-	{ 
+        {
             "<leader>/",
-            function() require('fzf-lua').live_grep() end,
-            desc = "Find by grepping in project directory"
+            function()
+                require("fzf-lua").live_grep()
+            end,
+            desc = "Find by grepping in project directory",
         },
-	{ 
+        {
             "<leader>fc",
-            function() require('fzf-lua').files({cwd=vim.fn.stdpath("config")}) end,
-            desc = "Find in neovim configuration"
+            function()
+                require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = "Find in neovim configuration",
         },
-	{
+        {
             "<leader>bf",
-            function() require("fzf-lua").builtin() end,
-            desc = "Find Builtin FZF"
+            function()
+                require("fzf-lua").builtin()
+            end,
+            desc = "Find Builtin FZF",
         },
         {
             "<leader>fw",
-            function() require("fzf-lua").grep_cword() end,
+            function()
+                require("fzf-lua").grep_cword()
+            end,
             desc = "[F]ind current [W]ord",
         },
-	{
+        {
             "<leader>fW",
-            function() require("fzf-lua").grep_cWORD() end,
+            function()
+                require("fzf-lua").grep_cWORD()
+            end,
             desc = "[F]ind current [W]ORD",
         },
-	{
+        {
             "<leader>fd",
-            function() require("fzf-lua").diagnostics_document() end,
+            function()
+                require("fzf-lua").diagnostics_document()
+            end,
             desc = "[F]ind [D]iagnostics",
         },
-	{
+        {
             "<leader>fr",
-            function() require("fzf-lua").resume() end,
+            function()
+                require("fzf-lua").resume()
+            end,
             desc = "[F]ind [R]esume",
-
         },
         {
             "<leader>fo",
-            function() require("fzf-lua").oldfiles() end,
+            function()
+                require("fzf-lua").oldfiles()
+            end,
             desc = "[F]ind [O]ld Files",
         },
         {
             "<leader>fb",
-            function() require("fzf-lua").buffers() end,
+            function()
+                require("fzf-lua").buffers()
+            end,
             desc = "[,] Find existing buffers",
         },
         {
             "<leader>fg",
-            function() require("fzf-lua").lgrep_curbuf() end,
+            function()
+                require("fzf-lua").lgrep_curbuf()
+            end,
             desc = "[/] Live grep the current buffer",
         },
-	{
+        {
             "<leader>gs",
-            function() require("fzf-lua").git_status() end,
+            function()
+                require("fzf-lua").git_status()
+            end,
             desc = "",
         },
-	{
+        {
             "<leader>gc",
-            function() require("fzf-lua").git_commits() end,
+            function()
+                require("fzf-lua").git_commits()
+            end,
             desc = "Find git commits",
-        }
-  }
+        },
+    },
 }
