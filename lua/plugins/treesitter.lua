@@ -4,6 +4,8 @@ return {
     branch = "main",
     build = ":TSUpdate",
     opts = {
+        auto_install = true,
+        sync_install = true,
         ensure_installed = {
             "bash",
             "c",
