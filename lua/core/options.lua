@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 -- hidden buffers are not displayed but loaded in memory
 vim.opt.hidden = true
 

@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 -- exit buffer back to netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
