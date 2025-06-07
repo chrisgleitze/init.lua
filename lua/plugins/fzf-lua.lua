@@ -2,10 +2,26 @@ return {
     "ibhagwan/fzf-lua",
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    defaults = {
-        formatter = "path.dirname_first", -- show greyed-out directory before filename
-        no_header = true,
-    },
+    config = function()
+        require("fzf-lua").setup({
+            fzf_opts = {
+                ["--no-scrollbar"] = false,
+                ["--cycle"] = true,
+                ["--ansi"] = true,
+                ["--height"] = "100%",
+                ["--highlight-line"] = true,
+            },
+            winopts = {
+                preview = {
+                    layout = "vertical",
+                    -- default = "bat",
+                },
+            },
+            defaults = {
+                formatter = "path.dirname_first", -- show greyed-out directory before filename
+            },
+        })
+    end,
     keys = {
         {
             "<leader><leader>",
@@ -29,13 +45,6 @@ return {
             desc = "Find in neovim configuration",
         },
         {
-            "<leader>bf",
-            function()
-                require("fzf-lua").builtin()
-            end,
-            desc = "Find Builtin FZF",
-        },
-        {
             "<leader>fw",
             function()
                 require("fzf-lua").grep_cword()
@@ -57,13 +66,6 @@ return {
             desc = "[F]ind [D]iagnostics",
         },
         {
-            "<leader>fr",
-            function()
-                require("fzf-lua").resume()
-            end,
-            desc = "[F]ind [R]esume",
-        },
-        {
             "<leader>fo",
             function()
                 require("fzf-lua").oldfiles()
@@ -78,7 +80,7 @@ return {
             desc = "[,] Find existing buffers",
         },
         {
-            "<leader>fg",
+            "<leader>fbg",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
