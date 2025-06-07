@@ -89,7 +89,7 @@ return {
             function()
                 require("fzf-lua").git_status()
             end,
-            desc = "",
+            desc = "Find git status",
         },
         {
             "<leader>gc",
@@ -97,6 +97,20 @@ return {
                 require("fzf-lua").git_commits()
             end,
             desc = "Find git commits",
+        },
+        {
+            "<leader>gbl",
+            function()
+                require("fzf-lua").git_blame()
+            end,
+            desc = "Find git blame",
+        },
+        {
+            "<leader>gbr",
+            function()
+                require("fzf-lua").git_branches()
+            end,
+            desc = "Find git branches",
         },
     },
 }
