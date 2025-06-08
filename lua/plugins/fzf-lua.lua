@@ -23,7 +23,7 @@ return {
             },
             keymap = {
                 fzf = {
-                    -- some keys don't work, see this issue:
+                    -- some keys don't work, likely due to this issue:
                     -- https://github.com/LazyVim/LazyVim/discussions/4029
                     -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
                     ["ctrl-k"] = "up",
