@@ -4,6 +4,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("fzf-lua").setup({
+            fzf_colors = true,
             fzf_opts = {
                 ["--no-scrollbar"] = false,
                 ["--cycle"] = true,
@@ -19,6 +20,20 @@ return {
             },
             defaults = {
                 formatter = "path.dirname_first", -- show greyed-out directory before filename
+            },
+            keymap = {
+                fzf = {
+                    -- some keys don't work, see this issue:
+                    -- https://github.com/LazyVim/LazyVim/discussions/4029
+                    -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
+                    ["ctrl-k"] = "up",
+                    ["ctrl-j"] = "down",
+                    ["ctrl-f"] = "preview-page-up",
+                    ["ctrl-b"] = "preview-page-down",
+                    ["ctrl-u"] = "half-page-up", -- in list of search results
+                    ["ctrl-d"] = "half-page-down", -- in list of search results
+                    ["ctrl-q"] = "abort",
+                },
             },
         })
     end,
