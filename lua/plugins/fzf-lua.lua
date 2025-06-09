@@ -28,8 +28,8 @@ return {
                     -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
                     ["ctrl-k"] = "up",
                     ["ctrl-j"] = "down",
-                    ["ctrl-f"] = "preview-page-up",
-                    ["ctrl-b"] = "preview-page-down",
+                    ["ctrl-b"] = "preview-page-up",
+                    ["ctrl-f"] = "preview-page-down",
                     ["ctrl-u"] = "half-page-up", -- in list of search results
                     ["ctrl-d"] = "half-page-down", -- in list of search results
                     ["ctrl-q"] = "abort",
@@ -92,14 +92,14 @@ return {
             function()
                 require("fzf-lua").buffers()
             end,
-            desc = "[,] Find existing buffers",
+            desc = "Find existing buffers",
         },
         {
             "<leader>fbg",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
-            desc = "[/] Live grep the current buffer",
+            desc = "Live grep the current buffer",
         },
         {
             "<leader>gs",
