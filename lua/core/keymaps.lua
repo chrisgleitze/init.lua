@@ -2,13 +2,19 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- write buffer
-vim.keymap.set("n", "<leader>W", "<cmd>w<CR>")
+vim.keymap.set("n", "<leader>W", function()
+    vim.cmd("w")
+    print("file written")
+end, { desc = "Write file" })
 
 -- delete buffer
 vim.keymap.set("n", "<leader>db", "<cmd>bdelete<CR>")
 
 -- source file
-vim.keymap.set("n", "<leader>S", "<cmd>source<CR>")
+vim.keymap.set("n", "<leader><leader>x", function()
+    vim.cmd("source %")
+    print("executed current file")
+end, { desc = "Execute the current file" })
 
 --jump up and down a page and center cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -36,3 +42,5 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- make Y behave like C and D - copy text until end of line
 vim.keymap.set("n", "Y", "y$")
+
+vim.keymap.set("n", "<leader>ed", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
