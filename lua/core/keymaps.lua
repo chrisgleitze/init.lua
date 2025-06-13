@@ -2,7 +2,7 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- write buffer
-vim.keymap.set("n", "<leader>W", function()
+vim.keymap.set("n", "<leader><leader>w", function()
     vim.cmd("w")
     print("file written")
 end, { desc = "Write file" })
