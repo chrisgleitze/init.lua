@@ -57,14 +57,14 @@ return {
             function()
                 require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
             end,
-            desc = "Find in neovim configuration",
+            desc = "[F]ind in neovim [c]onfiguration",
         },
         {
             "<leader>fw",
             function()
                 require("fzf-lua").grep_cword()
             end,
-            desc = "[F]ind current [W]ord",
+            desc = "[F]ind current [w]ord",
         },
         {
             "<leader>fW",
@@ -78,21 +78,21 @@ return {
             function()
                 require("fzf-lua").diagnostics_document()
             end,
-            desc = "[F]ind [D]iagnostics",
+            desc = "[F]ind [d]iagnostics",
         },
         {
             "<leader>fo",
             function()
                 require("fzf-lua").oldfiles()
             end,
-            desc = "[F]ind [O]ld Files",
+            desc = "[F]ind [o]ld Files",
         },
         {
             "<leader>fb",
             function()
                 require("fzf-lua").buffers()
             end,
-            desc = "Find existing buffers",
+            desc = "[F]ind existing [b]uffers",
         },
         {
             "<leader>fbg",
