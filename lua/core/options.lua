@@ -23,6 +23,6 @@ vim.opt.incsearch = true
 
 vim.diagnostic.enable(true)
 
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
