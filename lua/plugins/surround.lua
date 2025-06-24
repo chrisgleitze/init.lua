@@ -7,13 +7,12 @@ return {
         mappings = {
             add = "ys", -- Add surrounding in Normal and Visual modes
             delete = "ds", -- Delete surrounding
-            find = "", -- Find surrounding (disabled)
-            find_left = "", -- Find surrounding to the left (disabled)
-            highlight = "", -- Highlight surrounding (disabled)
+            find = "yf", -- Find surrounding
+            find_left = "yF", -- Find surrounding to the left
+            highlight = "yh", -- Highlight surrounding
             replace = "cs", -- Replace surrounding
             update_n_lines = "", -- Update `n_lines` (disabled)
             suffix_last = "", -- Disabled
-
             suffix_next = "", -- Disabled
         },
         search_method = "cover_or_next",
