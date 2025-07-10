@@ -9,6 +9,7 @@ return {
         ensure_installed = {
             "bash",
             "c",
+            "comment",
             "elixir",
             "html",
             "javascript",
