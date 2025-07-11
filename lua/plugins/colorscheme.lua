@@ -1,4 +1,18 @@
 return {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require("rose-pine").setup({
+            dark_variant = "main",
+            styles = {
+                italic = false,
+            },
+        })
+
+        vim.cmd("colorscheme rose-pine")
+    end,
 
     -- "projekt0n/github-nvim-theme",
     -- name = "github-theme",
@@ -14,35 +28,6 @@ return {
     -- config = function()
     --     vim.cmd("gruvbox")
     -- end,
-
-    -- "rose-pine/neovim",
-    -- lazy = false,
-    -- priority = 1000,
-    -- config = function()
-    --     require("rose-pine").setup({
-    --         disable_background = true,
-    --         styles = {
-    --             italic = false,
-    --         },
-    --     })
-    --
-    --     vim.cmd.colorscheme("rose-pine")
-    -- end,
-
-    "rose-pine/neovim",
-    name = "rose-pine",
-    lazy = false,
-    priority = 1000,
-    config = function()
-        -- require("rose-pine").setup({
-        --     disable_background = true,
-        --     styles = {
-        --         italic = false,
-        --     },
-        -- })
-
-        vim.cmd.colorscheme("rose-pine")
-    end,
 
     -- "folke/tokyonight.nvim",
     -- lazy = false,
