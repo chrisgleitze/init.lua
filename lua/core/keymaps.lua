@@ -43,7 +43,25 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- make Y behave like C and D - copy text until end of line
 vim.keymap.set("n", "Y", "y$")
 
--- show diagnostics
+-- show diagnostic for line under cursor
 vim.keymap.set("n", "<leader>vd", function()
     vim.diagnostic.open_float(nil, { border = "rounded" })
 end)
+
+-- disable and enable diagnostics in current buffer
+local function hide_diagnostics()
+    vim.diagnostic.config({ -- https://neovim.io/doc/user/diagnostic.html
+        virtual_text = false,
+        signs = false,
+        underline = false,
+    })
+end
+local function show_diagnostics()
+    vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+    })
+end
+vim.keymap.set("n", "<leader>hd", hide_diagnostics)
+vim.keymap.set("n", "<leader>sd", show_diagnostics)
