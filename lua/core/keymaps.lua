@@ -44,6 +44,6 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "Y", "y$")
 
 -- show diagnostics
-vim.keymap.set("n", "<leader>de", function()
+vim.keymap.set("n", "<leader>vd", function()
     vim.diagnostic.open_float(nil, { border = "rounded" })
-end, { buffer = bufnr, desc = "Show diagnostics in a floating window" })
+end)
