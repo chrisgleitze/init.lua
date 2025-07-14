@@ -11,7 +11,7 @@ return {
             },
         })
 
-        vim.cmd("colorscheme rose-pine")
+        vim.cmd("colorscheme rose-pine-main")
     end,
 
     -- "projekt0n/github-nvim-theme",
