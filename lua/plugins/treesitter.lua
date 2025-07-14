@@ -11,6 +11,7 @@ return {
             "c",
             "comment",
             "elixir",
+            "go",
             "html",
             "javascript",
             "json",
