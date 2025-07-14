@@ -50,9 +50,9 @@ end)
 
 -- disable and enable diagnostics in current buffer
 local function hide_diagnostics()
-    vim.diagnostic.config({ -- https://neovim.io/doc/user/diagnostic.html
+    vim.diagnostic.config({
         virtual_text = false,
-        signs = false,
+        signs = true,
         underline = false,
     })
 end
@@ -63,5 +63,5 @@ local function show_diagnostics()
         underline = true,
     })
 end
-vim.keymap.set("n", "<leader>hd", hide_diagnostics)
-vim.keymap.set("n", "<leader>sd", show_diagnostics)
+vim.keymap.set("n", "<leader>dh", hide_diagnostics)
+vim.keymap.set("n", "<leader>ds", show_diagnostics)
