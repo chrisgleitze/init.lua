@@ -43,6 +43,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- make Y behave like C and D - copy text until end of line
 vim.keymap.set("n", "Y", "y$")
 
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>")
+
 -- show diagnostic for line under cursor
 vim.keymap.set("n", "<leader>vd", function()
     vim.diagnostic.open_float(nil, { border = "rounded" })
