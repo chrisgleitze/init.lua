@@ -29,8 +29,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- move lines up or down in normal, insert, and visual modes
-vim.keymap.set("n", "<C-j>", ":m .+1<CR>==")
-vim.keymap.set("n", "<C-k>", ":m .-2<CR>==")
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")
 vim.keymap.set("i", "<C-j>", "<Esc>:m .+1<CR>==gi")
 vim.keymap.set("i", "<C-k>", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
