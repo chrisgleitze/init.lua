@@ -93,6 +93,7 @@ return {
                 require("fzf-lua").buffers()
             end,
             desc = "[F]ind existing [b]uffers",
+            -- delete buffer in search results with C-x
         },
         {
             "<leader>fbg",
