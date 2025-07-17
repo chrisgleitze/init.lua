@@ -7,14 +7,18 @@ vim.keymap.set("n", "<leader>W", function()
     print("file written")
 end, { desc = "Write file" })
 
--- delete buffer
-vim.keymap.set("n", "<leader>db", "<cmd>bdelete<CR>")
-
 -- source file
 vim.keymap.set("n", "<leader>S", function()
     vim.cmd("source %")
     print("executed current file")
 end, { desc = "Execute the current file" })
+
+vim.keymap.set("n", "<leader>Q", function()
+    vim.cmd("wqa!")
+end)
+
+-- delete buffer
+vim.keymap.set("n", "<leader>db", "<cmd>bdelete<CR>")
 
 --jump up and down a page and center cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
