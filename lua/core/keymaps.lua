@@ -10,9 +10,10 @@ end, { desc = "Write file" })
 -- source file
 vim.keymap.set("n", "<leader>S", function()
     vim.cmd("source %")
-    print("executed current file")
+    print("sourced file")
 end, { desc = "Execute the current file" })
 
+-- quit nvim
 vim.keymap.set("n", "<leader>Q", function()
     vim.cmd("wqa!")
 end)
