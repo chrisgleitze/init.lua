@@ -1,5 +1,5 @@
 # new neovim config
 
-Starting over from scratch. Stay tuned.
+This is my new neovim config I built myself from the ground up.
 
 You find my old neovim config [in this repo](https://github.com/chrisgleitze/nvim).
