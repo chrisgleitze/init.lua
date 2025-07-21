@@ -1,6 +1,3 @@
--- exit buffer back to netrw
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-
 -- write buffer
 vim.keymap.set("n", "<leader>W", function()
     vim.cmd("w")
