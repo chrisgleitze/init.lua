@@ -4,7 +4,6 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     lazy = true,
-    -- cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
         { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
         { "<leader>gB", "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>" },
@@ -19,10 +18,10 @@ return {
     },
     config = function()
         local actions = require("diffview.actions")
-
         require("diffview").setup({
             enhanced_diff_hl = true,
             use_icons = true,
+            show_help_hints = true,
             icons = {
                 folder_closed = "",
                 folder_open = "",
