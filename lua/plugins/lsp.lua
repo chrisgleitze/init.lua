@@ -129,6 +129,61 @@ return {
                     "typescriptreact",
                 },
             })
+
+            -- show diagnostic for line under cursor
+            vim.keymap.set("n", "<leader>vd", function()
+                vim.diagnostic.open_float(nil, { border = "rounded" })
+            end)
+            vim.keymap.set("n", "[d", function()
+                vim.diagnostic.jump({ float = { border = "rounded" }, count = -1 })
+            end)
+            vim.keymap.set("n", "]d", function()
+                vim.diagnostic.jump({ float = { border = "rounded" }, count = 1 })
+            end)
+
+            -- disable and enable diagnostics in current buffer
+            local function hide_diagnostics()
+                vim.diagnostic.config({
+                    virtual_text = false,
+                    signs = true,
+                    underline = false,
+                })
+            end
+            local function show_diagnostics()
+                vim.diagnostic.config({
+                    virtual_text = true,
+                    signs = true,
+                    underline = true,
+                })
+            end
+            vim.keymap.set("n", "<leader>dh", hide_diagnostics)
+            vim.keymap.set("n", "<leader>ds", show_diagnostics)
+
+            -- diagnostic visuals
+            vim.diagnostic.config({
+                virtual_text = {
+                    enabled = true,
+                    prefix = function(diagnostic)
+                        if diagnostic.severity == vim.diagnostic.severity.ERROR then
+                            return "🭰× "
+                        elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+                            return "🭰▲ "
+                        else
+                            return "🭰• "
+                        end
+                    end,
+                    suffix = "🭵",
+                },
+                underline = true,
+                signs = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = " ×",
+                        [vim.diagnostic.severity.WARN] = " ▲",
+                        [vim.diagnostic.severity.HINT] = " •",
+                        [vim.diagnostic.severity.INFO] = " •",
+                    },
+                },
+            })
         end,
     },
 }
