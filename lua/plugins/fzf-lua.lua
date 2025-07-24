@@ -32,7 +32,7 @@ return {
                     ["ctrl-f"] = "preview-page-down",
                     ["ctrl-u"] = "half-page-up", -- in list of search results
                     ["ctrl-d"] = "half-page-down", -- in list of search results
-                    ["ctrl-q"] = "abort",
+                    ["ctrl-c"] = "abort",
                 },
             },
         })
@@ -51,6 +51,13 @@ return {
                 require("fzf-lua").live_grep()
             end,
             desc = "Find by grepping in project directory",
+        },
+        {
+            "<leader>fr",
+            function()
+                require("fzf-lua").resume()
+            end,
+            desc = "Resume search",
         },
         {
             "<leader>fs",
