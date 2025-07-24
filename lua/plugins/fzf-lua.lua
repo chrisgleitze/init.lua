@@ -53,11 +53,19 @@ return {
             desc = "Find by grepping in project directory",
         },
         {
-            "<leader>fc",
+            "<leader>fs",
             function()
-                require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+                require("fzf-lua").lgrep_curbuf()
             end,
-            desc = "[F]ind in neovim [c]onfiguration",
+            desc = "[F]ind (grep) in current buffer",
+        },
+        {
+            "<leader>fu",
+            function()
+                require("fzf-lua").buffers()
+            end,
+            desc = "[F]ind open b[u]ffers",
+            -- delete buffer in search results with C-x
         },
         {
             "<leader>fw",
@@ -81,54 +89,46 @@ return {
             desc = "[F]ind [d]iagnostics",
         },
         {
-            "<leader>fo",
+            "<leader>fld",
             function()
                 require("fzf-lua").oldfiles()
             end,
             desc = "[F]ind [o]ld Files",
         },
         {
-            "<leader>fb",
-            function()
-                require("fzf-lua").buffers()
-            end,
-            desc = "[F]ind existing [b]uffers",
-            -- delete buffer in search results with C-x
-        },
-        {
-            "<leader>fbg",
-            function()
-                require("fzf-lua").lgrep_curbuf()
-            end,
-            desc = "Live grep the current buffer",
-        },
-        {
             "<leader>gs",
             function()
                 require("fzf-lua").git_status()
             end,
-            desc = "Find git status",
+            desc = "Find [g]it [s]tatus",
         },
         {
             "<leader>gc",
             function()
                 require("fzf-lua").git_commits()
             end,
-            desc = "Find git commits",
+            desc = "Find [g]it [c]ommits",
         },
         {
             "<leader>gbl",
             function()
                 require("fzf-lua").git_blame()
             end,
-            desc = "Find git blame",
+            desc = "Find [g]it [bl]ame",
         },
         {
             "<leader>gbr",
             function()
                 require("fzf-lua").git_branches()
             end,
-            desc = "Find git branches",
+            desc = "Find [g]it [br]anches",
+        },
+        {
+            "<leader>fig",
+            function()
+                require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = "Find in neovim con[fig]uration",
         },
     },
 }
