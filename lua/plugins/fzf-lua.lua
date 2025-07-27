@@ -13,6 +13,9 @@ return {
                 ["--highlight-line"] = true,
             },
             winopts = {
+                -- fullscreen = "true",
+                height = 0.90,
+                width = 0.80,
                 preview = {
                     layout = "vertical",
                     -- default = "bat",
@@ -23,7 +26,7 @@ return {
             },
             keymap = {
                 fzf = {
-                    -- some keys don't work, likely due to this issue:
+                    -- couldn't make the Alt key work, likely due to this issue:
                     -- https://github.com/LazyVim/LazyVim/discussions/4029
                     -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
                     ["ctrl-k"] = "up",
@@ -38,6 +41,7 @@ return {
         })
     end,
     keys = {
+        -- Alt-h toggles hidden files in search results on/off
         {
             "<leader><leader>",
             function()
@@ -57,7 +61,7 @@ return {
             function()
                 require("fzf-lua").resume()
             end,
-            desc = "Resume search",
+            desc = "[Find] in [r]esumed search",
         },
         {
             "<leader>fs",
@@ -96,7 +100,7 @@ return {
             desc = "[F]ind [d]iagnostics",
         },
         {
-            "<leader>fld",
+            "<leader>fo",
             function()
                 require("fzf-lua").oldfiles()
             end,

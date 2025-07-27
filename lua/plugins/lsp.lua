@@ -33,7 +33,9 @@ return {
                     "cssls",
                     "html",
                     "emmet_ls",
+                    "intelephense",
                     "lua_ls",
+                    "phpactor",
                     "ts_ls",
                     "tailwindcss",
                 },
@@ -124,9 +126,11 @@ return {
                     "javascript",
                     "javascriptreact",
                     "less",
+                    "php",
                     "sass",
                     "scss",
                     "typescriptreact",
+                    "vue",
                 },
             })
 
