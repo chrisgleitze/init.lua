@@ -5,11 +5,11 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         mappings = {
-            add = "ys", -- Add surrounding in Normal and Visual modes
+            add = "ys", -- Add surrounding in Normal and Visual modes (see below)
             delete = "ds", -- Delete surrounding
-            find = "yf", -- Find surrounding
-            find_left = "yF", -- Find surrounding to the left
-            highlight = "yh", -- Highlight surrounding
+            find = "", -- Find surrounding
+            find_left = "", -- Find surrounding to the left
+            highlight = "", -- Highlight surrounding
             replace = "cs", -- Replace surrounding
             update_n_lines = "", -- Update `n_lines` (disabled)
             suffix_last = "", -- Disabled
@@ -21,7 +21,7 @@ return {
         require("mini.surround").setup(opts)
 
         -- Remap adding surrounding to Visual mode selection
-        vim.keymap.del("x", "ys")
+        -- vim.keymap.del("x", "ys")
         vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
         -- Make special mapping for "add surrounding for line"
