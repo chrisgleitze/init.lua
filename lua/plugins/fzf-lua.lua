@@ -135,6 +135,14 @@ return {
             desc = "Find [g]it [br]anches",
         },
         {
+            -- browse Neovim help manual
+            "<leader>vh",
+            function()
+                require("fzf-lua").helptags()
+            end,
+            desc = "",
+        },
+        {
             "<leader>fig",
             function()
                 require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
