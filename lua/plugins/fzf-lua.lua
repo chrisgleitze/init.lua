@@ -135,12 +135,11 @@ return {
             desc = "Find [g]it [br]anches",
         },
         {
-            -- browse Neovim help manual
             "<leader>vh",
             function()
                 require("fzf-lua").helptags()
             end,
-            desc = "",
+            desc = "Search in Neovim help manual",
         },
         {
             "<leader>fig",
