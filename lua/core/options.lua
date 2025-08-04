@@ -1,4 +1,6 @@
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- hidden buffers are not displayed but loaded in memory
 vim.opt.hidden = true

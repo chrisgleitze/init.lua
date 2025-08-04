@@ -5,7 +5,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         mappings = {
-            add = "ys", -- Add surrounding in Normal and Visual modes (see below)
+            add = "", -- Add surrounding in Normal and Visual modes (see below)
             delete = "ds", -- Delete surrounding
             find = "", -- Find surrounding
             find_left = "", -- Find surrounding to the left
@@ -25,6 +25,6 @@ return {
         vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
         -- Make special mapping for "add surrounding for line"
-        vim.keymap.set("n", "yss", "ys_", { remap = true })
+        -- vim.keymap.set("n", "yss", "ys_", { remap = true })
     end,
 }
