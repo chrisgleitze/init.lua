@@ -47,35 +47,35 @@ return {
             function()
                 require("fzf-lua").files()
             end,
-            desc = "Find Files in project directory",
+            desc = "find files in project directory",
         },
         {
             "<leader>/",
             function()
                 require("fzf-lua").live_grep()
             end,
-            desc = "Find by grepping in project directory",
+            desc = "find by grepping in project directory",
         },
         {
             "<leader>fr",
             function()
                 require("fzf-lua").resume()
             end,
-            desc = "[Find] in [r]esumed search",
+            desc = "[f]ind in [r]esumed search",
         },
         {
             "<leader>fs",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
-            desc = "[F]ind (grep) in current buffer",
+            desc = "[f]ind (grep) in current buffer",
         },
         {
             "<leader>fu",
             function()
                 require("fzf-lua").buffers()
             end,
-            desc = "[F]ind open b[u]ffers",
+            desc = "[f]ind open b[u]ffers",
             -- delete buffer in search results with C-x
         },
         {
@@ -83,70 +83,70 @@ return {
             function()
                 require("fzf-lua").grep_cword()
             end,
-            desc = "[F]ind current [w]ord",
+            desc = "[f]ind current [w]ord",
         },
         {
             "<leader>fW",
             function()
                 require("fzf-lua").grep_cWORD()
             end,
-            desc = "[F]ind current [W]ORD",
+            desc = "[f]ind current [W]ORD",
         },
         {
             "<leader>fd",
             function()
                 require("fzf-lua").diagnostics_document()
             end,
-            desc = "[F]ind [d]iagnostics",
+            desc = "[f]ind [d]iagnostics",
         },
         {
             "<leader>fo",
             function()
                 require("fzf-lua").oldfiles()
             end,
-            desc = "[F]ind [o]ld Files",
+            desc = "[f]ind [o]ld files",
         },
         {
             "<leader>gs",
             function()
                 require("fzf-lua").git_status()
             end,
-            desc = "Find [g]it [s]tatus",
+            desc = "find [g]it [s]tatus",
         },
         {
             "<leader>gc",
             function()
                 require("fzf-lua").git_commits()
             end,
-            desc = "Find [g]it [c]ommits",
+            desc = "find [g]it [c]ommits",
         },
         {
             "<leader>gbl",
             function()
                 require("fzf-lua").git_blame()
             end,
-            desc = "Find [g]it [bl]ame",
+            desc = "find [g]it [bl]ame",
         },
         {
             "<leader>gbr",
             function()
                 require("fzf-lua").git_branches()
             end,
-            desc = "Find [g]it [br]anches",
+            desc = "find [g]it [br]anches",
         },
         {
             "<leader>vh",
             function()
                 require("fzf-lua").helptags()
             end,
-            desc = "Search in Neovim help manual",
+            desc = "search in Neovim help manual",
         },
         {
             "<leader>fig",
             function()
                 require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
             end,
-            desc = "Find in neovim con[fig]uration",
+            desc = "find in neovim con[fig]uration",
         },
     },
 }
