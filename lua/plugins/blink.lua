@@ -13,6 +13,7 @@ return {
     },
     opts = {
         completion = {
+            ghost_text = { enabled = true },
             menu = {
                 draw = {
                     treesitter = { "lsp" },
