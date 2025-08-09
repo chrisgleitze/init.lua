@@ -14,6 +14,9 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.undofile = true
+-- location for shada, persistent undo etc.
+-- changed from .local/share to .local/state
+vim.opt.undodir = "~/.local/state/nvim/undo/"
 
 vim.opt.signcolumn = "yes"
 
@@ -27,4 +30,5 @@ vim.diagnostic.enable(true)
 
 vim.opt.cursorline = false
 
+-- vim.opt.guicursor = ""
 vim.opt.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
