@@ -16,7 +16,7 @@ vim.opt.backup = false
 vim.opt.undofile = true
 -- location for shada, persistent undo etc.
 -- changed from .local/share to .local/state
-vim.opt.undodir = "~/.local/state/nvim/undo/"
+-- vim.opt.undodir = "~/.local/state/nvim/undo/"
 
 vim.opt.signcolumn = "yes"
 
