@@ -55,6 +55,7 @@ return {
                 },
             },
             keymaps = {
+                -- close all the various diffviews with q in normal mode
                 view = {
                     { "n", "q", actions.close },
                 },
