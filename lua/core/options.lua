@@ -1,13 +1,17 @@
-vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
+-- set space leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- hidden buffers are not displayed but loaded in memory
 vim.opt.hidden = true
 
--- set absolute number for current line, relative numbers for all other lines
+-- set absolute [nu]mber for current line, [r]elative [nu]mbers for all other lines
 vim.opt.nu = true
 vim.opt.rnu = true
+
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- creation of swapfiles and backup files
 vim.opt.swapfile = false
