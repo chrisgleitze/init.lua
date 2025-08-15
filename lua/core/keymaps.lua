@@ -1,3 +1,6 @@
+-- open Lazy.nvim plugin manager
+vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>")
+
 -- write buffer
 vim.keymap.set("n", "<leader>W", function()
     vim.cmd("w")
@@ -7,7 +10,7 @@ end, { desc = "Write file" })
 -- source file
 vim.keymap.set("n", "<leader>S", function()
     vim.cmd("source %")
-    print("sourced file")
+    print("file sourced")
 end, { desc = "Execute the current file" })
 
 -- quit nvim
@@ -43,6 +46,3 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- make Y behave like C and D - copy text until end of line
 vim.keymap.set("n", "Y", "y$")
-
--- open Lazy.nvim plugin manager
-vim.keymap.set("n", "<leader>L", "<cmd>Lazy<CR>")
