@@ -5,10 +5,10 @@ return {
     },
     lazy = true,
     keys = {
-        -- [g]it [h]istory of current file
-        { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
         -- open diffview
         { "<leader>V", "<cmd>DiffviewOpen<cr>" },
+        -- [g]it [h]istory of current file
+        { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
     },
     config = function()
         local actions = require("diffview.actions")
