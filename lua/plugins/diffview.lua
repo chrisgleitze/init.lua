@@ -5,9 +5,9 @@ return {
     },
     lazy = true,
     keys = {
-        -- [g]it [h]istory of current file, close with q (see below)
+        -- [g]it [h]istory of current file
         { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
-        -- open diffview, close with q
+        -- open diffview
         { "<leader>V", "<cmd>DiffviewOpen<cr>" },
     },
     config = function()
