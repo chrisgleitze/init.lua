@@ -42,6 +42,7 @@ return {
     end,
     keys = {
         -- Alt-h toggles hidden files in search results on/off
+        -- vim.keymap.set("n", "<leader><leader>", fzf.files),
         {
             "<leader><leader>",
             function()
@@ -54,7 +55,21 @@ return {
             function()
                 require("fzf-lua").live_grep()
             end,
-            desc = "find by grepping in project directory",
+            desc = "(not fuzzy) find by grepping in project directory",
+        },
+        {
+            "<leader>fp",
+            function()
+                require("fzf-lua").grep()
+            end,
+            desc = "fuzzy find by using ripgrep in project directory",
+        },
+        {
+            "<leader>fc",
+            function()
+                require("fzf-lua").lgrep_curbuf()
+            end,
+            desc = "[f]ind (grep) in [c]urrent buffer",
         },
         {
             "<leader>fr",
@@ -62,13 +77,6 @@ return {
                 require("fzf-lua").resume()
             end,
             desc = "[f]ind in [r]esumed search",
-        },
-        {
-            "<leader>fs",
-            function()
-                require("fzf-lua").lgrep_curbuf()
-            end,
-            desc = "[f]ind (grep) in current buffer",
         },
         {
             "<leader>fu",
@@ -107,6 +115,13 @@ return {
             desc = "[f]ind [o]ld files",
         },
         {
+            "<leader>fa",
+            function()
+                require("fzf-lua").autocmds()
+            end,
+            desc = "[f]ind [o]ld files",
+        },
+        {
             "<leader>gs",
             function()
                 require("fzf-lua").git_status()
@@ -133,6 +148,13 @@ return {
                 require("fzf-lua").git_branches()
             end,
             desc = "find [g]it [br]anches",
+        },
+        {
+            "<leader>fv",
+            function()
+                require("fzf-lua").nvim_options()
+            end,
+            desc = "[f]ind [o]ld files",
         },
         {
             "<leader>vh",
