@@ -5,16 +5,10 @@ return {
     },
     lazy = true,
     keys = {
-        -- [g]it [h]istory of current file
+        -- [g]it [h]istory of current file, close with q (see below)
         { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
-        -- open and close diff[v]iew
-        vim.keymap.set("n", "<leader>V", function()
-            if next(require("diffview.lib").views) == nil then
-                vim.cmd("DiffviewOpen")
-            else
-                vim.cmd("DiffviewClose")
-            end
-        end),
+        -- open diffview, close with q
+        { "<leader>V", "<cmd>DiffviewOpen<cr>" },
     },
     config = function()
         local actions = require("diffview.actions")
