@@ -41,9 +41,8 @@ return {
         })
     end,
     keys = {
-        -- Alt-h toggles hidden files in search results on/off
-        -- vim.keymap.set("n", "<leader><leader>", fzf.files),
         {
+            -- Alt-h toggles hidden files in search results on/off
             "<leader><leader>",
             function()
                 require("fzf-lua").files()
