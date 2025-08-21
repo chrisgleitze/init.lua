@@ -5,13 +5,13 @@ vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>")
 vim.keymap.set("n", "<leader>W", function()
     vim.cmd("w")
     print("file written")
-end, { desc = "Write file" })
+end)
 
 -- source file
 vim.keymap.set("n", "<leader>S", function()
     vim.cmd("source %")
     print("file sourced")
-end, { desc = "Execute the current file" })
+end)
 
 -- quit nvim
 vim.keymap.set("n", "<leader>Q", function()
