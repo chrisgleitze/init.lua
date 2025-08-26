@@ -41,9 +41,11 @@ return {
                 },
             })
 
+            -- install tools not included in Mason
             mason_tool_installer.setup({
                 ensure_installed = {
                     "eslint_d", -- JavaScript linter
+                    "phpstan", -- PHP code analysis tool
                     "prettier", -- Prettier formatter
                     "stylua", -- Lua formatter
                 },
@@ -81,13 +83,39 @@ return {
 
             lspconfig.html.setup({
                 capabilities = capabilities,
-                on_attach = on_attach,
+                -- on_attach = on_attach,
                 filetypes = { "html" },
+            })
+
+            lspconfig.cssls.setup({
+                capabilities = capabilities,
+                -- on_attach = on_attach,
+                cmd = { "vscode-css-language-server", "--stdio" },
+                init_options = {
+                    provideFormatter = true,
+                },
+                root_markers = { "package.json", ".git" },
+                settings = {
+                    css = {
+                        validate = true,
+                    },
+                    less = {
+                        validate = true,
+                    },
+                    scss = {
+                        validate = true,
+                    },
+                },
+                filetypes = {
+                    "css",
+                    "scss",
+                    "less",
+                },
             })
 
             lspconfig.tailwindcss.setup({
                 capabilities = capabilities,
-                on_attach = on_attach,
+                -- on_attach = on_attach,
                 cmd = { "tailwindcss-language-server", "--stdio" },
                 filetypes = {
                     "html",
@@ -97,19 +125,22 @@ return {
                     "javascriptreact",
                     "typescript",
                     "typescriptreact",
+                    "vue",
+                    "svelte",
                 },
             })
 
             lspconfig.ts_ls.setup({
                 capabilities = capabilities,
-                on_attach = on_attach,
+                -- on_attach = on_attach,
                 init_options = {
                     enable = true,
                     lint = true,
                 },
                 cmd = { "typescript-language-server", "--stdio" },
                 filetypes = {
-                    -- "javascript",
+                    "vue",
+                    "javascript",
                     "typescript",
                     "javascriptreact",
                     "javascript.jsx",
@@ -120,18 +151,41 @@ return {
 
             lspconfig.emmet_ls.setup({
                 capabilities = capabilities,
+                -- on_attach = on_attach,
+                cmd = { "emmet-ls", "--stdio" },
                 filetypes = {
+                    "astro",
                     "css",
+                    "eruby",
                     "html",
-                    "javascript",
+                    "htmlangular",
+                    "htmldjango",
                     "javascriptreact",
                     "less",
-                    "php",
+                    "pug",
                     "sass",
                     "scss",
+                    "svelte",
+                    "templ",
                     "typescriptreact",
                     "vue",
                 },
+            })
+
+            lspconfig.phpactor.setup({
+                capabilities = capabilities,
+                cmd = { "phpactor", "language-server" },
+                filetypes = {
+                    "php",
+                    -- "blade",
+                },
+                -- worspace_require = "true",
+                -- root_markers = { ".git", "composer.json", ".phpactor.json", ".phpactor.yml" },
+                root_markers = { "composer.json", ".git" },
+                -- init_options = {
+                --     ["language_server_phpstan.enabled"] = true,
+                --     -- ["language_server_psalm.enabled"] = true,
+                -- },
             })
 
             -- show diagnostic for line under cursor
@@ -188,6 +242,15 @@ return {
                     },
                 },
             })
+        end,
+    },
+
+    -- turns TypeScript erros into plain English
+    {
+        "dmmulroy/ts-error-translator.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("ts-error-translator").setup()
         end,
     },
 }

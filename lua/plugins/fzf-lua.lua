@@ -22,7 +22,8 @@ return {
                 },
             },
             defaults = {
-                formatter = "path.dirname_first", -- show greyed-out directory before filename
+                -- show greyed-out directory before filename
+                formatter = "path.dirname_first",
             },
             keymap = {
                 fzf = {
@@ -41,6 +42,9 @@ return {
         })
     end,
     keys = {
+        -- { "<leader><leader>", "<cmd>FzfLua files<cr>", desc = "find files" },
+        -- { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "(not fuzzy) grepping" },
+        -- { "<leader>fp", "<cmd>FzfLua grep<cr>", desc = "fuzzy find (rg)" },
         {
             -- Alt-h toggles hidden files in search results on/off
             "<leader><leader>",
