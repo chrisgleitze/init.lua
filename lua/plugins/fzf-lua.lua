@@ -164,7 +164,7 @@ return {
             function()
                 require("fzf-lua").helptags()
             end,
-            desc = "search in Neovim help manual",
+            desc = "[v]iew/search Neovim [h]elp",
         },
         {
             "<leader>fig",
