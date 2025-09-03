@@ -20,8 +20,7 @@ vim.o.virtualedit = "block" -- allow going past the end of line in visual block 
 
 -- UI ==========================
 vim.o.cursorline = false -- no visual cursor line
--- vim.o.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
-vim.o.list = true -- show helpful character indicators
+vim.o.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
 vim.o.signcolumn = "yes" -- always show signcolumn
 vim.o.splitbelow = true -- horizontal splits will be below
 vim.o.splitright = true -- vertical splits will be to the right
