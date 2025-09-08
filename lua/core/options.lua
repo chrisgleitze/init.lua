@@ -1,5 +1,6 @@
 -- General =====================
 vim.g.mapleader = " " -- set space key as leader key
+vim.g.mapllocalleader = " " -- set space key as local leader key
 vim.o.backup = false -- don't store backup
 vim.o.hidden = true -- load hidden buffers in memory
 vim.o.mouse = "a" -- enable mouse
