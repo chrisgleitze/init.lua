@@ -4,13 +4,19 @@ vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>")
 -- write buffer
 vim.keymap.set("n", "<leader>W", function()
     vim.cmd("w")
-    print("file written")
+    print("buffer saved")
 end)
 
--- source file
+-- write buffer without formatting; noa for noautocmd
+vim.keymap.set("n", "<leader>Wn", function()
+    vim.cmd("noa w")
+    print("buffer saved without formatting")
+end)
+
+-- source buffer
 vim.keymap.set("n", "<leader>S", function()
     vim.cmd("source %")
-    print("file sourced")
+    print("buffer sourced")
 end)
 
 -- quit nvim
