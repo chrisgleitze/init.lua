@@ -5,8 +5,13 @@ return {
         vim.keymap.set("n", "<leader>zz", function()
             require("zen-mode").setup({
                 window = {
-                    width = 90,
-                    options = {},
+                    backdrop = 0,
+                    height = 0.95,
+                    width = 0.6,
+                    options = {
+                        signcolumn = "no",
+                        cursorline = true,
+                    },
                 },
             })
             require("zen-mode").toggle()
@@ -18,8 +23,13 @@ return {
         vim.keymap.set("n", "<leader>zZ", function()
             require("zen-mode").setup({
                 window = {
-                    width = 80,
-                    options = {},
+                    backdrop = 0,
+                    height = 0.9,
+                    width = 0.6,
+                    options = {
+                        signcolumn = "no",
+                        cursorline = true,
+                    },
                 },
             })
             require("zen-mode").toggle()
