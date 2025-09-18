@@ -1,6 +1,8 @@
 -- General =====================
 vim.g.mapleader = " " -- set space key as leader key
 vim.g.mapllocalleader = " " -- set space key as local leader key
+vim.g.loaded_netrw = 1 -- disable netrw
+vim.g.loaded_netrwPlugin = 1 -- disable netrw
 vim.o.backup = false -- don't store backup
 vim.o.hidden = true -- load hidden buffers in memory
 vim.o.mouse = "a" -- enable mouse
@@ -21,8 +23,8 @@ vim.o.virtualedit = "block" -- allow going past the end of line in visual block 
 
 -- UI ==========================
 vim.o.cursorline = false -- no visual cursor line
-vim.o.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
+-- vim.o.guicursor = "n-v-ve-o-r-c-cr-sm:block-blinkwait175,i-ci:ver25-blinkwait175"
+vim.o.cmdheight = 1 -- more space in the neovim command line to display messages
 vim.o.signcolumn = "yes" -- always show signcolumn
 vim.o.splitbelow = true -- horizontal splits will be below
 vim.o.splitright = true -- vertical splits will be to the right
-vim.o.wrap = false -- display long lines as just one line

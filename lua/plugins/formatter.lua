@@ -10,6 +10,7 @@ return {
             css = { "prettier" },
             html = { "prettier" },
             json = { "prettier" },
+            jsonc = { "prettier" },
             javascript = { "prettierd", "prettier", stop_after_first = true },
             javascriptreact = { "prettier" },
             less = { "prettier" },
@@ -23,8 +24,7 @@ return {
             yaml = { "prettier" },
         },
         formatters = {
-            -- ["clangd"] = {
-            clangd = {
+            ["clangd"] = {
                 prepend_args = { "-style=file", "-fallback-style=LLVM" },
             },
         },

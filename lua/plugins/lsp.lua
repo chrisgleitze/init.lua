@@ -1,3 +1,4 @@
+-- LSP
 return {
     {
         "williamboman/mason.nvim",
@@ -30,27 +31,43 @@ return {
             mason_lspconfig.setup({
                 -- list of servers for mason to install
                 ensure_installed = {
+                    "bashls",
                     "cssls",
-                    "html",
+                    "clangd",
                     "emmet_ls",
+                    "html",
                     "intelephense",
                     "lua_ls",
                     "phpactor",
+                    "rust_analyzer",
                     "ts_ls",
                     "tailwindcss",
+                },
+                automatic_enable = {
+                    -- it's possible that LSPs are loaded twice into the buffer by default
+                    -- due to recent changes to mason-lspconfig;
+                    -- exclude the redundancies here, so only the lsp-configs below are loaded
+                    exclude = {
+                        "bashls",
+                        "clangd",
+                        "phpactor",
+                    },
                 },
             })
 
             -- install tools not included in Mason
             mason_tool_installer.setup({
                 ensure_installed = {
+                    "bash-language-server",
                     "eslint_d", -- JavaScript linter
                     "phpstan", -- PHP code analysis tool
                     "prettier", -- Prettier formatter
+                    "shfmt", -- Shell formatter
                     "stylua", -- Lua formatter
                 },
                 auto_update = false,
                 run_on_start = true,
+                start_delay = 0,
                 integrations = {
                     ["mason-lspconfig"] = true,
                     ["mason-null-ls"] = true,
@@ -81,77 +98,65 @@ return {
             -- enable autocompletion, assigned to every lsp server config
             local capabilities = cmp_nvim_lsp.default_capabilities()
 
-            lspconfig.html.setup({
+            -- enabled for all lsp configs
+            vim.lsp.config("*", {
                 capabilities = capabilities,
-                -- on_attach = on_attach,
-                filetypes = { "html" },
+            })
+
+            lspconfig.bashls.setup({
+                cmd = { "bash-language-server", "start" },
+                filetypes = { "bash", "sh" },
+                root_markers = { ".git" },
             })
 
             lspconfig.cssls.setup({
-                capabilities = capabilities,
-                -- on_attach = on_attach,
-                cmd = { "vscode-css-language-server", "--stdio" },
-                init_options = {
-                    provideFormatter = true,
-                },
-                root_markers = { "package.json", ".git" },
-                settings = {
-                    css = {
-                        validate = true,
-                    },
-                    less = {
-                        validate = true,
-                    },
-                    scss = {
-                        validate = true,
-                    },
+                cmd = {
+                    "vscode-css-language-server",
+                    "--stdio",
                 },
                 filetypes = {
                     "css",
                     "scss",
                     "less",
                 },
-            })
-
-            lspconfig.tailwindcss.setup({
-                capabilities = capabilities,
-                -- on_attach = on_attach,
-                cmd = { "tailwindcss-language-server", "--stdio" },
-                filetypes = {
-                    "html",
-                    "css",
-                    "scss",
-                    "javascript",
-                    "javascriptreact",
-                    "typescript",
-                    "typescriptreact",
-                    "vue",
-                    "svelte",
-                },
-            })
-
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities,
-                -- on_attach = on_attach,
                 init_options = {
-                    enable = true,
-                    lint = true,
+                    provideFormatter = true, -- needed to enable formatting capabilities
                 },
-                cmd = { "typescript-language-server", "--stdio" },
-                filetypes = {
-                    "vue",
-                    "javascript",
-                    "typescript",
-                    "javascriptreact",
-                    "javascript.jsx",
-                    "typescriptreact",
-                    "typescript.tsx",
+                root_markers = {
+                    "package.json",
+                    ".git",
+                },
+                settings = {
+                    css = { validate = true },
+                    scss = { validate = true },
+                    less = { validate = true },
+                },
+            })
+
+            lspconfig.clangd.setup({
+                capabilities = {
+                    textDocument = {
+                        completion = {
+                            completionItem = {
+                                snippetSupport = true,
+                            },
+                        },
+                    },
+                },
+                cmd = { "clangd" },
+                filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+                root_markers = {
+                    ".clangd",
+                    ".clang-tidy",
+                    ".clang-format",
+                    "compile_commands.json",
+                    "compile_flags.txt",
+                    "configure.ac", -- AutoTools
+                    ".git",
                 },
             })
 
             lspconfig.emmet_ls.setup({
-                capabilities = capabilities,
-                -- on_attach = on_attach,
                 cmd = { "emmet-ls", "--stdio" },
                 filetypes = {
                     "astro",
@@ -170,22 +175,96 @@ return {
                     "typescriptreact",
                     "vue",
                 },
+                root_markers = { ".git" },
+            })
+
+            lspconfig.html.setup({
+                cmd = { "vscode-html-language-server", "--stdio" },
+                filetypes = { "html", "templ" },
+                init_options = {
+                    provideFormatter = true,
+                    embeddedLanguages = { css = true, javascript = true },
+                    configurationSection = { "html", "css", "javascript" },
+                },
+                root_markers = { "package.json", ".git" },
             })
 
             lspconfig.phpactor.setup({
-                capabilities = capabilities,
                 cmd = { "phpactor", "language-server" },
                 filetypes = {
                     "php",
-                    -- "blade",
                 },
-                -- worspace_require = "true",
-                -- root_markers = { ".git", "composer.json", ".phpactor.json", ".phpactor.yml" },
-                root_markers = { "composer.json", ".git" },
+                root_markers = { ".git", "composer.json", ".phpactor.json", ".phpactor.yml" },
+                workspace_required = true,
                 -- init_options = {
                 --     ["language_server_phpstan.enabled"] = true,
                 --     -- ["language_server_psalm.enabled"] = true,
                 -- },
+            })
+
+            lspconfig.tailwindcss.setup({
+                cmd = { "tailwindcss-language-server", "--stdio" },
+                filetypes = {
+                    "css",
+                    "sass",
+                    "scss",
+                    "less",
+                    "html",
+                    "htmlangular",
+                    "javascript",
+                    "javascriptreact",
+                    "markdown",
+                    "mdx",
+                    "php",
+                    "svelte",
+                    "typescript",
+                    "typescriptreact",
+                    "vue",
+                },
+                root_markers = {
+                    -- Generic
+                    "tailwind.config.js",
+                    "tailwind.config.cjs",
+                    "tailwind.config.mjs",
+                    "tailwind.config.ts",
+                    "postcss.config.js",
+                    "postcss.config.cjs",
+                    "postcss.config.mjs",
+                    "postcss.config.ts",
+                    -- Django
+                    "theme/static_src/tailwind.config.js",
+                    "theme/static_src/tailwind.config.cjs",
+                    "theme/static_src/tailwind.config.mjs",
+                    "theme/static_src/tailwind.config.ts",
+                    "theme/static_src/postcss.config.js",
+                    -- Fallback for tailwind v4, where tailwind.config.* is not required anymore
+                    ".git",
+                },
+            })
+
+            lspconfig.ts_ls.setup({
+                cmd = { "typescript-language-server", "--stdio" },
+                init_options = {
+                    enable = true,
+                    lint = true,
+                },
+                filetypes = {
+                    "vue",
+                    "javascript",
+                    "typescript",
+                    "javascriptreact",
+                    "javascript.jsx",
+                    "typescriptreact",
+                    "typescript.tsx",
+                },
+                root_markers = {
+                    "package-lock.json",
+                    "yarn.lock",
+                    "pnpm-lock.yaml",
+                    "bun.lockb",
+                    "bun.lock",
+                    "deno.lock",
+                },
             })
 
             -- show diagnostic for line under cursor
