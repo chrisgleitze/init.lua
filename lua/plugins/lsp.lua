@@ -87,7 +87,7 @@ return {
         },
         config = function()
             -- import lspconfig plugin
-            local lspconfig = require("lspconfig")
+            -- local lspconfig = require("lspconfig")
 
             -- import mason_lspconfig plugin
             -- local mason_lspconfig = require("mason-lspconfig")
@@ -103,13 +103,13 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.bashls.setup({
+            vim.lsp.config(bashls, {
                 cmd = { "bash-language-server", "start" },
                 filetypes = { "bash", "sh" },
                 root_markers = { ".git" },
             })
 
-            lspconfig.cssls.setup({
+            vim.lsp.config(cssls, {
                 cmd = {
                     "vscode-css-language-server",
                     "--stdio",
@@ -133,7 +133,7 @@ return {
                 },
             })
 
-            lspconfig.clangd.setup({
+            vim.lsp.config(bashls, {
                 capabilities = {
                     textDocument = {
                         completion = {
@@ -156,7 +156,7 @@ return {
                 },
             })
 
-            lspconfig.emmet_ls.setup({
+            vim.lsp.config(emmet_ls, {
                 cmd = { "emmet-ls", "--stdio" },
                 filetypes = {
                     "astro",
@@ -178,7 +178,7 @@ return {
                 root_markers = { ".git" },
             })
 
-            lspconfig.html.setup({
+            vim.lsp.config(html, {
                 cmd = { "vscode-html-language-server", "--stdio" },
                 filetypes = { "html", "templ" },
                 init_options = {
@@ -189,7 +189,7 @@ return {
                 root_markers = { "package.json", ".git" },
             })
 
-            lspconfig.phpactor.setup({
+            vim.lsp.config(phpactor, {
                 cmd = { "phpactor", "language-server" },
                 filetypes = {
                     "php",
@@ -202,7 +202,7 @@ return {
                 -- },
             })
 
-            lspconfig.tailwindcss.setup({
+            vim.lsp.config(tailwindcss, {
                 cmd = { "tailwindcss-language-server", "--stdio" },
                 filetypes = {
                     "css",
@@ -242,7 +242,7 @@ return {
                 },
             })
 
-            lspconfig.ts_ls.setup({
+            vim.lsp.config(ts_ls, {
                 cmd = { "typescript-language-server", "--stdio" },
                 init_options = {
                     enable = true,
