@@ -110,6 +110,17 @@ return {
                 vim.diagnostic.jump({ float = { border = "rounded" }, count = 1 })
             end)
 
+            -- enable lsp servers
+            vim.lsp.enable("bashls")
+            vim.lsp.enable("clangd")
+            vim.lsp.enable("cssls")
+            vim.lsp.enable("emmet_ls")
+            vim.lsp.enable("html")
+            vim.lsp.enable("jsonls")
+            vim.lsp.enable("phpactor")
+            vim.lsp.enable("tailwindcss")
+            vim.lsp.enable("ts_ls")
+
             -- disable and enable diagnostics in current buffer
             local function hide_diagnostics()
                 vim.diagnostic.config({
