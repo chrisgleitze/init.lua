@@ -37,7 +37,6 @@ return {
                     "emmet_ls",
                     "html",
                     "intelephense",
-                    "jsonls",
                     "lua_ls",
                     "phpactor",
                     "rust_analyzer",
@@ -160,7 +159,6 @@ return {
             vim.lsp.enable("cssls")
             vim.lsp.enable("emmet_ls")
             vim.lsp.enable("html")
-            vim.lsp.enable("jsonls")
             vim.lsp.enable("phpactor")
             vim.lsp.enable("tailwindcss")
             vim.lsp.enable("ts_ls")
