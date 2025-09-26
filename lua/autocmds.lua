@@ -21,10 +21,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- highlight yanked text
-vim.cmd([[
-augroup highlight_yank
-autocmd!
-au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=40})
-augroup END
-]])
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight effect for yanked text",
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 })
+    end,
+})

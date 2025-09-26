@@ -1,10 +1,7 @@
--- TODO
--- https://github.com/piersolenski/import.nvim
-
 -- leader key
 vim.g.mapleader = " "
 
--- disable built in stuff I don't use
+-- disable built-in stuff I don't use
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_matchit = 1
@@ -19,7 +16,7 @@ vim.g.loaded_tohtml = 1
 vim.g.loaded_tutor = 1
 vim.g.loaded_zipPlugin = 1
 
--- Bootstrap lazy.nvim
+-- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
