@@ -1,3 +1,6 @@
+-- Debian/Ubuntu:
+-- mac: brew install lua-language-server
+
 ---@type vim.lsp.Config
 return {
     cmd = { "lua-language-server" },

@@ -19,8 +19,9 @@ o.ttimeoutlen = 10
 o.autoindent = true -- use auto indent
 o.incsearch = true -- incremental search
 o.hlsearch = true -- highlight search
-o.shiftwidth = 4 -- use this number of spaces for indentation
+o.expandtab = true -- tab key inserts space characters
 o.tabstop = 4 -- insert 2 spaces for a tab
+o.shiftwidth = 4 -- use this number of spaces for indentation
 o.virtualedit = "block" -- allow going past the end of line in visual block mode
 
 -- UI ==========================

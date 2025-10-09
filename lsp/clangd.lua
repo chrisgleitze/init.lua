@@ -1,3 +1,6 @@
+-- Debian/Ubuntu: sudo apt-get install clangd-20 (check latest version)
+-- Mac: brew install llvm
+
 ---@type vim.lsp.Config
 return {
     cmd = { "clangd" },

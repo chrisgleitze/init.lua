@@ -1,14 +1,3 @@
-vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("cg/big_files", { clear = true }),
-    desc = "Disable features in big files",
-    pattern = "bigfile",
-    callback = function(args)
-        vim.schedule(function()
-            vim.bo[args.buf].syntax = vim.filetype.match({ buf = args.buf }) or ""
-        end)
-    end,
-})
-
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = vim.api.nvim_create_augroup("cg/last_location", { clear = true }),
     desc = "Go to the last location when opening a buffer",
@@ -26,5 +15,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 })
+    end,
+})
+
+-- config for built-in undotree plugin
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "nvim-undotree",
+    callback = function()
+        vim.cmd.wincmd("H")
+        vim.api.nvim_win_set_width(0, 40)
     end,
 })

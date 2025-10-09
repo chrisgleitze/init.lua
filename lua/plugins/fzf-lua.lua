@@ -14,12 +14,10 @@ return {
                 ["--highlight-line"] = true,
             },
             winopts = {
-                -- fullscreen = "true",
                 height = 0.90,
                 width = 0.80,
                 preview = {
                     layout = "vertical",
-                    -- default = "bat",
                 },
             },
             defaults = {
@@ -43,9 +41,6 @@ return {
         })
     end,
     keys = {
-        -- { "<leader><leader>", "<cmd>FzfLua files<cr>", desc = "find files" },
-        -- { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "(not fuzzy) grepping" },
-        -- { "<leader>fp", "<cmd>FzfLua grep<cr>", desc = "fuzzy find (rg)" },
         {
             -- Alt-h toggles hidden files in search results on/off
             "<leader><leader>",

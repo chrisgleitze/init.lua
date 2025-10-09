@@ -1,6 +1,14 @@
--- Mason, package manager for LSPs, linters, formatters etc.
 return {
     {
+        -- turns TypeScript erros into plain English
+        "dmmulroy/ts-error-translator.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            require("ts-error-translator").setup()
+        end,
+    },
+    {
+        -- Mason, package manager for LSPs, linters, formatters etc.
         "williamboman/mason.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
@@ -74,15 +82,6 @@ return {
                     ["mason-nvim-dap"] = true,
                 },
             })
-        end,
-    },
-
-    -- turns TypeScript erros into plain English
-    {
-        "dmmulroy/ts-error-translator.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("ts-error-translator").setup()
         end,
     },
 }

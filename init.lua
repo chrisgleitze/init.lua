@@ -1,20 +1,30 @@
+local g = vim.g
+
 -- leader key
-vim.g.mapleader = " "
+g.mapleader = " "
 
 -- disable built-in stuff I don't use
-vim.g.loaded_2html_plugin = 1
-vim.g.loaded_gzip = 1
-vim.g.loaded_matchit = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwFileHandlers = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
-vim.g.loaded_rplugin = 1
-vim.g.loaded_spellfile_plugin = 1
-vim.g.loaded_tarPlugi = 1
-vim.g.loaded_tohtml = 1
-vim.g.loaded_tutor = 1
-vim.g.loaded_zipPlugin = 1
+g.loaded_2html_plugin = 1
+g.loaded_gzip = 1
+g.loaded_logiPat = 1
+g.loaded_matchit = 1
+g.loaded_matchparen = 1
+g.loaded_netrw = 1
+g.loaded_netrwFileHandlers = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
+g.loaded_rplugin = 1
+g.loaded_spec = 1
+g.loaded_spellfile_plugin = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_tohtml = 1
+g.loaded_tutor = 1
+g.loaded_tutor_mode_plugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -54,13 +64,13 @@ require("lazy").setup({
     },
     -- enable or disable luarocks
     rocks = {
-        enabled = true,
+        enabled = false,
     },
     change_detection = { notify = false },
 })
 
 -- load general settings and more
 require("settings")
-require("autocmds")
 require("keymaps")
+require("autocmds")
 require("lsp")
