@@ -19,15 +19,11 @@ return {
                     draw = {
                         treesitter = { "lsp" },
                     },
-                    -- border = "rounded",
                 },
                 documentation = {
                     auto_show = true,
                     -- show documentation immediately
                     auto_show_delay_ms = 0,
-                    window = {
-                        border = "rounded",
-                    },
                 },
             },
             sources = {
