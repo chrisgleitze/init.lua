@@ -31,4 +31,4 @@ o.cmdheight = 1 -- more space in the neovim command line to display messages
 o.signcolumn = "yes" -- always show signcolumn
 o.splitbelow = true -- horizontal splits will be below
 o.splitright = true -- vertical splits will be to the right
-o.winborder = "single" -- border style for completion popup menu
+o.winborder = "single" -- global border style for all popup menus

@@ -22,8 +22,7 @@ return {
                 },
                 documentation = {
                     auto_show = true,
-                    -- show documentation immediately
-                    auto_show_delay_ms = 0,
+                    auto_show_delay_ms = 0, -- show documentation immediately
                 },
             },
             sources = {
