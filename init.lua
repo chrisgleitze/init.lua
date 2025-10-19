@@ -74,3 +74,6 @@ require("settings")
 require("keymaps")
 require("autocmds")
 require("lsp")
+
+-- load built-in Undotree
+vim.cmd.packadd("nvim.undotree")
