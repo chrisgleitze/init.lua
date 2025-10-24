@@ -9,7 +9,7 @@ return {
                     height = 0.95,
                     width = 0.6,
                     options = {
-                        signcolumn = "no",
+                        -- signcolumn = "no",
                         cursorline = true,
                     },
                 },

@@ -118,7 +118,7 @@ return {
             function()
                 require("fzf-lua").autocmds()
             end,
-            desc = "[f]ind [o]ld files",
+            desc = "[f]ind [a]utocommands",
         },
         {
             "<leader>gs",
