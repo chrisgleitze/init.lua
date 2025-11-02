@@ -12,8 +12,7 @@ return {
             diagnostics = {
                 globals = { "vim" },
             },
-            -- using stylua for formatting.
-            format = { enable = false },
+            format = { enable = false }, -- use stylua via conform.nvim instead
             hint = {
                 enable = true,
                 arrayIndex = "Disable",

@@ -24,7 +24,7 @@ end)
 map("n", "Y", "yg_")
 
 -- delete buffer
-map("n", "<leader>db", "<cmd>bdelete<CR>")
+map("n", "<leader>DB", "<cmd>bdelete<cr>")
 
 --jump up and down a page and center cursor
 map("n", "<C-d>", "<C-d>zz")

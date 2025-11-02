@@ -19,11 +19,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- config for built-in undotree plugin
-vim.cmd.packadd("nvim.undotree") -- load on startup
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "nvim-undotree",
-    callback = function()
-        vim.cmd.wincmd("H")
-        vim.api.nvim_win_set_width(0, 40)
-    end,
-})
+-- vim.cmd.packadd("nvim.undotree") -- load on startup
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "nvim-undotree",
+--     callback = function()
+--         vim.cmd.wincmd("H")
+--         vim.api.nvim_win_set_width(0, 40)
+--     end,
+-- })
