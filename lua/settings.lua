@@ -9,6 +9,7 @@ o.rnu = true -- [r]elative [nu]mbers for all other lines
 o.scrolloff = 10 -- always leave this number of lines above and below the cursor
 o.swapfile = false -- don't create swapfile
 o.undofile = true -- enable persistent undo
+o.linebreak = true -- break words, not letters at end of line
 
 -- update times and timeouts; important for performance
 o.updatetime = 300
