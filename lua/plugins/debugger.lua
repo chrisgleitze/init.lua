@@ -14,6 +14,6 @@ return {
         map("n", "<leader>dc", dap.continue, { desc = "Debug: Continue" })
         map("n", "<leader>do", dap.step_over, { desc = "Debug: Step Over" })
         map("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
-        map("n", "<leader>dt", dap.step_out, { desc = "Debug: Step Out" })
+        map("n", "<leader>du", dap.step_out, { desc = "Debug: Step Out" })
     end,
 }

@@ -10,14 +10,17 @@ return {
 
         local set = vim.keymap.set
 
+        set("n", "<leader>A", function()
+            harpoon:list():prepend()
+        end)
         set("n", "<leader>a", function()
-            harpoon:list():add() -- add file to harpoon
+            harpoon:list():add()
         end)
         set("n", "<C-e>", function()
-            harpoon.ui:toggle_quick_menu(harpoon:list()) -- toggle menu
+            harpoon.ui:toggle_quick_menu(harpoon:list())
         end)
 
-        -- Switch to harpooned file 1-4
+        -- switch to harpooned file 1-4
         set("n", "<leader>q", function()
             harpoon:list():select(1)
         end)
@@ -45,7 +48,7 @@ return {
             harpoon:list():replace_at(4)
         end)
 
-        -- Toggle previous & next buffers stored within Harpoon list
+        -- toggle previous & next buffers stored within Harpoon list
         -- set("n", "<C-S-P>", function() harpoon:list():prev() end)
         -- set("n", "<C-S-N>", function() harpoon:list():next() end)
     end,
