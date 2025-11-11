@@ -21,8 +21,7 @@ return {
                 },
             },
             defaults = {
-                -- show greyed-out directory before filename
-                formatter = "path.dirname_first",
+                formatter = "path.dirname_first", -- show greyed-out directory before filename
             },
             keymap = {
                 fzf = {
