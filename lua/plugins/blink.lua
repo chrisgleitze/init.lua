@@ -16,8 +16,14 @@ return {
             completion = {
                 ghost_text = { enabled = true },
                 menu = {
+                    scrollbar = false,
                     draw = {
                         treesitter = { "lsp" },
+                        gap = 2,
+                        columns = {
+                            { "kind_icon", "kind", gap = 1 },
+                            { "label", "label_description", gap = 1 },
+                        },
                     },
                 },
                 documentation = {

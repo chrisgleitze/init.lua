@@ -58,7 +58,7 @@ return {
             dv.close()
         end
 
-        -- Lua config
+        -- Lua config, plugin: one-small-step-for-vimkind
         dap.configurations["lua"] = {
             {
                 type = "nlua",
