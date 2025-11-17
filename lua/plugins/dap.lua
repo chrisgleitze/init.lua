@@ -32,16 +32,16 @@ return {
         dap.set_log_level("DEBUG")
         local map = vim.keymap.set
 
-        map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-        map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>", { desc = "Debug: Toggle Breakpoint" })
+        map("n", "<leader>db", dap.toggle_breakpoint)
+        map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>")
         map("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end, { desc = "Debug: Set Conditional Breakpoint" })
-        map("n", "<leader>dc", dap.continue, { desc = "Debug: Continue" })
-        map("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
-        map("n", "<leader>do", dap.step_over, { desc = "Debug: Step Over" })
-        map("n", "<leader>da", dap.step_back, { desc = "Debug: Step Back" })
-        map("n", "<leader>du", dap.step_out, { desc = "Debug: Step Out" })
+        end)
+        map("n", "<leader>dc", dap.continue)
+        map("n", "<leader>di", dap.step_into)
+        map("n", "<leader>do", dap.step_over)
+        map("n", "<leader>da", dap.step_back)
+        map("n", "<leader>du", dap.step_out)
 
         -- opens UI when starting a new debug session
         local dv = require("dap-view")
