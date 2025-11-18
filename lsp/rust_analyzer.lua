@@ -1,3 +1,5 @@
+-- install: rustup component add rust-src
+
 ---@type vim.lsp.Config
 return {
     cmd = { "rust-analyzer" },

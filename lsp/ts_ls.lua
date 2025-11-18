@@ -1,3 +1,6 @@
+-- installs both typescript and ts_ls:
+-- npm install -g typescript typescript-language-server
+
 ---@type vim.lsp.Config
 return {
     cmd = { "typescript-language-server", "--stdio" },

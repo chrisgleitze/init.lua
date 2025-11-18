@@ -33,15 +33,15 @@ return {
         local map = vim.keymap.set
 
         map("n", "<leader>db", dap.toggle_breakpoint)
-        map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>")
-        map("n", "<leader>B", function()
-            dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end)
         map("n", "<leader>dc", dap.continue)
         map("n", "<leader>di", dap.step_into)
         map("n", "<leader>do", dap.step_over)
         map("n", "<leader>da", dap.step_back)
         map("n", "<leader>du", dap.step_out)
+        map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>")
+        map("n", "<leader>B", function()
+            dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+        end)
 
         -- opens UI when starting a new debug session
         local dv = require("dap-view")
