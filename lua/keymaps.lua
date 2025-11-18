@@ -20,6 +20,11 @@ map("n", "<leader>Q", function()
     vim.cmd("wqa!")
 end)
 
+-- restart nvim
+map("n", "<leader>R", function()
+    vim.cmd("restart")
+end)
+
 -- make Y behave like C and D - copy text until end of line
 map("n", "Y", "yg_")
 
