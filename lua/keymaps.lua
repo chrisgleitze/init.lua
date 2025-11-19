@@ -25,6 +25,11 @@ map("n", "<leader>R", function()
     vim.cmd("restart")
 end)
 
+-- open Mason
+map("n", "<leader>M", function()
+    vim.cmd("Mason")
+end)
+
 -- make Y behave like C and D - copy text until end of line
 map("n", "Y", "yg_")
 

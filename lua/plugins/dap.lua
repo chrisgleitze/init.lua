@@ -8,9 +8,8 @@ return {
             ---@type dapview.Config
             opts = {},
         },
-        -- Lua adapter
         {
-            "jbyuki/one-small-step-for-vimkind",
+            "jbyuki/one-small-step-for-vimkind", -- Lua adapter
             keys = {
                 {
                     "<leader>dl",
@@ -21,8 +20,8 @@ return {
                 },
             },
         },
-        -- adds virtual text in debugging session
         {
+            -- adds virtual text in debugging session
             "theHamsta/nvim-dap-virtual-text",
             opts = { virt_text_pos = "eol" },
         },
@@ -38,6 +37,7 @@ return {
         map("n", "<leader>do", dap.step_over)
         map("n", "<leader>da", dap.step_back)
         map("n", "<leader>du", dap.step_out)
+        map("n", "<leader>dr", dap.restart)
         map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>")
         map("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
@@ -59,6 +59,9 @@ return {
         end
 
         -- Lua config, plugin: one-small-step-for-vimkind
+        dap.adapters.nlua = function(callback, config)
+            callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+        end
         dap.configurations["lua"] = {
             {
                 type = "nlua",
@@ -66,19 +69,24 @@ return {
                 name = "Attach to running Neovim instance",
             },
         }
-        dap.adapters.nlua = function(callback, config)
-            callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
-        end
 
         -- C, C++, Rust config
-        -- LLDB debugger, part of the LLVM project
+        -- github.com/vadimcn/codelldb
         dap.adapters.codelldb = {
-            type = "server",
-            host = "localhost",
-            port = "${port}",
-            executable = {
-                command = "codelldb",
-                args = { "--port", "${port}" },
+            type = "executable",
+            command = "codelldb",
+        }
+        local dap = require("dap")
+        dap.configurations.cpp = {
+            {
+                name = "Launch file",
+                type = "codelldb",
+                request = "launch",
+                program = function()
+                    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                end,
+                cwd = "${workspaceFolder}",
+                stopOnEntry = false,
             },
         }
     end,
