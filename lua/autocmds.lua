@@ -1,4 +1,6 @@
-vim.api.nvim_create_autocmd("BufReadPost", {
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("BufReadPost", {
     group = vim.api.nvim_create_augroup("cg/last_location", { clear = true }),
     desc = "Go to the last location when opening a buffer",
     callback = function(args)
@@ -10,17 +12,26 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("cg/whitespace", {}),
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
+
+autocmd("TextYankPost", {
     desc = "Highlight effect for yanked text",
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 40 })
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = 40,
+        })
     end,
 })
 
 -- config for built-in undotree plugin
 vim.cmd.packadd("nvim.undotree") -- load plugin on startup
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
     pattern = "nvim-undotree",
     callback = function()
         vim.cmd.wincmd("H")
