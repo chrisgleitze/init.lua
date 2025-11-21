@@ -16,6 +16,7 @@ return {
             completion = {
                 ghost_text = { enabled = true },
                 menu = {
+                    border = "none",
                     scrollbar = false,
                     draw = {
                         treesitter = { "lsp" },
@@ -27,7 +28,7 @@ return {
                     },
                 },
                 documentation = {
-                    auto_show = true,
+                    auto_show = false,
                     auto_show_delay_ms = 0, -- show documentation immediately
                 },
             },
