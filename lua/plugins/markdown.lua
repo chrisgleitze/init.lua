@@ -5,12 +5,12 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
+        link = {
+            enabled = false,
+        },
         keymaps = {
-            vim.keymap.set("n", "<leader>Me", function()
-                require("render-markdown").buf_enable()
-            end),
             vim.keymap.set("n", "<leader>Md", function()
-                require("render-markdown").buf_disable()
+                require("render-markdown").buf_toggle()
             end),
         },
     },
