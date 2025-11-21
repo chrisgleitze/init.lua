@@ -1,14 +1,26 @@
 -- LSP
 local M = {}
+local map = vim.keymap.set
+-- local opts = { buffer = e.buf, silent = true }
+
+map("n", "gd", vim.lsp.buf.definition)
+map("n", "K", vim.lsp.buf.hover)
+map("n", "<leader>vws", vim.lsp.buf.workspace_symbol)
+map("n", "<leader>vca", vim.lsp.buf.code_action)
+map("n", "<leader>vrr", vim.lsp.buf.references)
+map("n", "<leader>vrn", vim.lsp.buf.rename)
+map("n", "<leader>vsh", vim.lsp.buf.signature_help)
+map("i", "ctrl-s", vim.lsp.buf.signature_help)
+-- %s/\s\+$//e
 
 -- diagnostic keymaps
-vim.keymap.set("n", "<leader>vd", function()
+map("n", "<leader>vd", function()
     vim.diagnostic.open_float(nil, { border = "rounded" })
 end)
-vim.keymap.set("n", "[d", function()
+map("n", "[d", function()
     vim.diagnostic.jump({ float = { border = "rounded" }, count = -1 })
 end)
-vim.keymap.set("n", "]d", function()
+map("n", "]d", function()
     vim.diagnostic.jump({ float = { border = "rounded" }, count = 1 })
 end)
 
@@ -38,8 +50,8 @@ local function show_diagnostics()
         underline = true,
     })
 end
-vim.keymap.set("n", "<leader>dh", hide_diagnostics)
-vim.keymap.set("n", "<leader>ds", show_diagnostics)
+map("n", "<leader>dh", hide_diagnostics)
+map("n", "<leader>ds", show_diagnostics)
 
 -- diagnostic visuals
 vim.diagnostic.config({
