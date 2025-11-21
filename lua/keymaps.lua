@@ -26,7 +26,7 @@ map("n", "<leader>R", function()
 end)
 
 -- open Mason
-map("n", "<leader>M", function()
+map("n", "<leader>Ma", function()
     vim.cmd("Mason")
 end)
 
