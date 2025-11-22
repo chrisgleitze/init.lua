@@ -36,6 +36,9 @@ map("n", "Y", "yg_")
 -- delete buffer
 map("n", "<leader>DB", "<cmd>bdelete<cr>")
 
+-- join lines, cursor doesn't move
+map("n", "J", "mzJ`z")
+
 --jump up and down a page and center cursor
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
