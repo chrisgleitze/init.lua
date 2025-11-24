@@ -58,7 +58,8 @@ return {
             dv.close()
         end
 
-        -- Lua config, plugin: one-small-step-for-vimkind
+        -- Lua
+        -- plugin: one-small-step-for-vimkind
         dap.adapters.nlua = function(callback, config)
             callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
         end
@@ -70,7 +71,7 @@ return {
             },
         }
 
-        -- C, C++, Rust config
+        -- C, C++, Rust
         -- github.com/vadimcn/codelldb
         dap.adapters.codelldb = {
             type = "executable",
@@ -86,6 +87,28 @@ return {
                 end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = false,
+            },
+        }
+
+        -- JavaScript
+        -- github.com/microsoft/vscode-js-debug
+        require("dap").adapters["pwa-node"] = {
+            -- dap.adapters.pwa-node = {
+            type = "server",
+            host = "localhost",
+            port = "${port}",
+            executable = {
+                command = "node",
+                args = { "home/chris/js-debug/src/dapDebugServer.js", "${port}" },
+            },
+        }
+        dap.configurations.javascript = {
+            {
+                type = "pwa-node",
+                request = "launch",
+                name = "Launch file",
+                program = "${file}",
+                cwd = "${workspaceFolder}",
             },
         }
     end,
