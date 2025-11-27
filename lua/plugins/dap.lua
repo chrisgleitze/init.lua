@@ -9,7 +9,7 @@ return {
             opts = {},
         },
         {
-            "jbyuki/one-small-step-for-vimkind", -- Lua adapter
+            "jbyuki/one-small-step-for-vimkind", -- "osv", Lua adapter
             keys = {
                 {
                     "<leader>dl",
@@ -38,6 +38,7 @@ return {
         map("n", "<leader>da", dap.step_back)
         map("n", "<leader>du", dap.step_out)
         map("n", "<leader>dr", dap.restart)
+        map("n", "<leader>dx", dap.terminate)
         map("n", "<leader>df", "<cmd>FzfLua dap_breakpoints<cr>")
         map("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
@@ -60,10 +61,10 @@ return {
 
         -- Lua
         -- plugin: one-small-step-for-vimkind
-        dap.adapters.nlua = function(callback, config)
+        dap.adapters.nlua = function(callback, config) -- nlua: Neovim Lua
             callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
         end
-        dap.configurations["lua"] = {
+        dap.configurations.lua = {
             {
                 type = "nlua",
                 request = "attach",

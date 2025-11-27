@@ -78,7 +78,7 @@ vim.diagnostic.config({
     },
 })
 
--- set up LSP servers: enables LSPs with configs from /lsp folder
+-- set up LSP servers
 vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
     once = true,
     callback = function()
