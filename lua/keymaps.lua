@@ -1,5 +1,8 @@
 local map = vim.keymap.set
 
+-- clear search highlighting with esc
+map("n", "<esc>", "<cmd>noh<cr><esc>")
+
 -- open Lazy.nvim plugin manager
 map("n", "<leader>L", "<cmd>Lazy<cr>")
 
@@ -46,6 +49,12 @@ map("n", "<C-u>", "<C-u>zz")
 -- center next and previous search results
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
+
+-- switch between windows
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- moves highlighted lines up (K) or down (J) in visual mode
 map("v", "J", ":m '>+1<CR>gv=gv")
