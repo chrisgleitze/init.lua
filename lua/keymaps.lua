@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
--- clear search highlighting with esc
+-- esc also clears search highlighting
 map({ "n", "i", "s", "v" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- open Lazy.nvim plugin manager
@@ -23,9 +23,9 @@ map("n", "<leader>Q", function()
     vim.cmd("wqa!")
 end)
 
--- restart nvim
+-- restart nvim, incl. write current buffer
 map("n", "<leader>R", function()
-    vim.cmd("restart")
+    vim.cmd("write | restart")
 end)
 
 -- open Mason
