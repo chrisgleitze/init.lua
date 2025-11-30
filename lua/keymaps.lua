@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- clear search highlighting with esc
-map({ "n", "i", "s" }, "<esc>", "<cmd>noh<cr><esc>")
+map({ "n", "i", "s", "v" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- open Lazy.nvim plugin manager
 map("n", "<leader>L", "<cmd>Lazy<cr>")
