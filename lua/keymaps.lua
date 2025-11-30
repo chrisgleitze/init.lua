@@ -19,19 +19,13 @@ map("n", "<leader>S", function()
 end)
 
 -- quit nvim
-map("n", "<leader>Q", function()
-    vim.cmd("wqa!")
-end)
+map("n", "<leader>Q", "<cmd>wqa!<cr>")
 
 -- restart nvim, incl. write current buffer
-map("n", "<leader>R", function()
-    vim.cmd("write | restart")
-end)
+map("n", "<leader>R", "<cmd>write | restart<cr>")
 
 -- open Mason
-map("n", "<leader>Ma", function()
-    vim.cmd("Mason")
-end)
+map("n", "<leader>Ma", "<cmd>Mason<cr>")
 
 -- make Y behave like C and D - copy text until end of line
 map("n", "Y", "yg_")
