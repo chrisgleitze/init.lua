@@ -12,14 +12,15 @@ autocmd("BufReadPost", {
     end,
 })
 
+-- remove whitespace when buffer is written
 autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("cg/whitespace", {}),
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
 
+-- highlight effect for yanked text
 autocmd("TextYankPost", {
-    desc = "Highlight effect for yanked text",
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({
@@ -37,4 +38,16 @@ autocmd("FileType", {
         vim.cmd.wincmd("H")
         vim.api.nvim_win_set_width(0, 40)
     end,
+})
+
+-- quit Lazy.nvim with Esc
+local user_grp = vim.api.nvim_create_augroup("LazyUserGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "lazy",
+    callback = function()
+        vim.keymap.set("n", "<esc>", function()
+            vim.api.nvim_win_close(0, false)
+        end, { buffer = true, nowait = true })
+    end,
+    group = user_grp,
 })

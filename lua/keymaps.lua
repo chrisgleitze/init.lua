@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
--- esc also clears search highlighting
+-- Esc also clears search highlighting
 map({ "n", "i", "s", "v" }, "<esc>", "<cmd>noh<cr><esc>")
 
 -- open Lazy.nvim plugin manager
@@ -8,21 +8,18 @@ map("n", "<leader>L", "<cmd>Lazy<cr>")
 
 -- write buffer
 map("n", "<leader>W", function()
-    vim.cmd("w")
+    vim.cmd("write")
     print("buffer saved")
 end)
 
 -- source buffer
-map("n", "<leader>S", function()
-    vim.cmd("source %")
-    print("buffer sourced")
-end)
+map("n", "<leader>S", "<cmd>source % | lua print('buffer sourced')<cr>")
 
 -- quit nvim
 map("n", "<leader>Q", "<cmd>wqa!<cr>")
 
 -- restart nvim, incl. write current buffer
-map("n", "<leader>R", "<cmd>write | restart<cr>")
+map("n", "<leader>R", "<cmd>w | restart<cr>")
 
 -- open Mason
 map("n", "<leader>Ma", "<cmd>Mason<cr>")
@@ -36,7 +33,7 @@ map("n", "<leader>DB", "<cmd>bdelete<cr>")
 -- join lines, cursor doesn't move
 map("n", "J", "mzJ`z")
 
---jump up and down a page and center cursor
+-- jump up and down a page and center cursor
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
