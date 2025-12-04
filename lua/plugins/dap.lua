@@ -31,6 +31,7 @@ return {
         dap.set_log_level("DEBUG")
         local map = vim.keymap.set
 
+        map("n", "<leader>dv", "<cmd>DapViewToggle<cr>")
         map("n", "<leader>db", dap.toggle_breakpoint)
         map("n", "<leader>dc", dap.continue)
         map("n", "<leader>di", dap.step_into)
