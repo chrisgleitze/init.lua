@@ -40,127 +40,24 @@ return {
         })
     end,
     keys = {
-        {
-            -- Alt-h toggles hidden files in search results on/off
-            "<leader><leader>",
-            function()
-                require("fzf-lua").files()
-            end,
-            desc = "find files in project directory",
-        },
-        {
-            "<leader>/",
-            function()
-                require("fzf-lua").live_grep()
-            end,
-            desc = "(not fuzzy) find by grepping in project directory",
-        },
-        {
-            "<leader>fp",
-            function()
-                require("fzf-lua").grep()
-            end,
-            desc = "fuzzy find by using ripgrep in project directory",
-        },
-        {
-            "<leader>fc",
-            function()
-                require("fzf-lua").lgrep_curbuf()
-            end,
-            desc = "[f]ind (grep) in [c]urrent buffer",
-        },
-        {
-            "<leader>fr",
-            function()
-                require("fzf-lua").resume()
-            end,
-            desc = "[f]ind in [r]esumed search",
-        },
-        {
-            "<leader>fu",
-            function()
-                require("fzf-lua").buffers()
-            end,
-            desc = "[f]ind open b[u]ffers",
-            -- delete buffer in search results with C-x
-        },
-        {
-            "<leader>fw",
-            function()
-                require("fzf-lua").grep_cword()
-            end,
-            desc = "[f]ind current [w]ord",
-        },
-        {
-            "<leader>fW",
-            function()
-                require("fzf-lua").grep_cWORD()
-            end,
-            desc = "[f]ind current [W]ORD",
-        },
-        {
-            "<leader>fd",
-            function()
-                require("fzf-lua").diagnostics_document()
-            end,
-            desc = "[f]ind [d]iagnostics",
-        },
-        {
-            "<leader>fo",
-            function()
-                require("fzf-lua").oldfiles()
-            end,
-            desc = "[f]ind [o]ld files",
-        },
-        {
-            "<leader>fa",
-            function()
-                require("fzf-lua").autocmds()
-            end,
-            desc = "[f]ind [a]utocommands",
-        },
-        {
-            "<leader>gs",
-            function()
-                require("fzf-lua").git_status()
-            end,
-            desc = "find [g]it [s]tatus",
-        },
-        {
-            "<leader>gc",
-            function()
-                require("fzf-lua").git_commits()
-            end,
-            desc = "find [g]it [c]ommits",
-        },
-        {
-            "<leader>gbl",
-            function()
-                require("fzf-lua").git_blame()
-            end,
-            desc = "find [g]it [bl]ame",
-        },
-        {
-            "<leader>gbr",
-            function()
-                require("fzf-lua").git_branches()
-            end,
-            desc = "find [g]it [br]anches",
-        },
-        {
-            "<leader>fv",
-            function()
-                require("fzf-lua").nvim_options()
-            end,
-            desc = "[f]ind [o]ld files",
-        },
-        {
-            "<leader>vh",
-            function()
-                require("fzf-lua").helptags()
-            end,
-            desc = "[v]iew/search Neovim [h]elp",
-        },
+        -- Alt-h toggles hidden files in search results on/off
+        { "<leader><leader>", "<cmd>FzfLua files<cr>", desc = "find files in project directory" },
+        { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "(not fuzzy) find by grepping in project directory" },
+        { "<leader>fp", "<cmd>FzfLua grep<cr>", desc = "fuzzy find by using ripgrep in project directory" },
+        { "<leader>fc", "<cmd>FzfLua lgrep_curbuf<cr>", desc = "[f]ind (grep) in [c]urrent buffer" },
+        { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "[f]ind in [r]esumed search" },
+        { "<leader>fu", "<cmd>FzfLua buffers<cr>", desc = "[f]ind open b[u]ffers" },
+        { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "[f]ind current [w]ord" },
+        { "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", desc = "[f]ind current [W]ORD" },
+        { "<leader>fd", "<cmd>FzfLua diagnostics_document<cr>", desc = "[f]ind [d]iagnostics" },
+        { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "[f]ind [o]ld files" },
+        { "<leader>fa", "<cmd>FzfLua autocmds<cr>", desc = "[f]ind [a]utocommands" },
+        { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "find [g]it [s]tatus" },
+        { "<leader>gs", "<cmd>FzfLua git_commits<cr>", desc = "find [g]it [c]ommits" },
+        { "<leader>gbl", "<cmd>FzfLua git_blame<cr>", desc = "find [g]it [bl]ame" },
+        { "<leader>gbr", "<cmd>FzfLua git_branches<cr>", desc = "find [g]it [br]anches" },
+        { "<leader>fv", "<cmd>FzfLua nvim_options<cr>", desc = "[f]ind [o]ld files" },
+        { "<leader>vh", "<cmd>FzfLua helptags<cr>", desc = "[v]iew/search Neovim [h]elp" },
         {
             "<leader>fig",
             function()
@@ -173,14 +70,14 @@ return {
             function()
                 require("fzf-lua").complete_path({
                     winopts = {
-                        height = 0.4,
-                        width = 0.5,
+                        height = 0.5,
+                        width = 0.6,
                         relative = "cursor",
                     },
                 })
             end,
             mode = "i",
-            desc = "Fuzzy complete path",
+            desc = "fuzzy complete path",
         },
     },
 }
