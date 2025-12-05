@@ -168,5 +168,19 @@ return {
             end,
             desc = "find in neovim con[fig]uration",
         },
+        {
+            "<C-x><C-f>",
+            function()
+                require("fzf-lua").complete_path({
+                    winopts = {
+                        height = 0.4,
+                        width = 0.5,
+                        relative = "cursor",
+                    },
+                })
+            end,
+            mode = "i",
+            desc = "Fuzzy complete path",
+        },
     },
 }
