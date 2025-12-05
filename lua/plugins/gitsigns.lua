@@ -24,11 +24,15 @@ return {
             local function map(lhs, rhs)
                 vim.keymap.set("n", lhs, rhs)
             end
-
+            map("gs[", gs.prev_hunk)
+            map("gs]", gs.next_hunk)
+            map("<leader>gsR", gs.reset_buffer)
             map("<leader>gsb", gs.blame)
             map("<leader>gsl", gs.blame_line)
             map("<leader>gsh", gs.preview_hunk)
             map("<leader>gsi", gs.preview_hunk_inline)
+            map("<leader>gsr", gs.reset_hunk)
+            map("<leader>gss", gs.stage_hunk)
         end,
     },
 }
