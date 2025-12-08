@@ -70,8 +70,8 @@ return {
             function()
                 require("fzf-lua").complete_path({
                     winopts = {
-                        height = 0.5,
-                        width = 0.6,
+                        height = 0.4,
+                        width = 0.5,
                         relative = "cursor",
                     },
                 })

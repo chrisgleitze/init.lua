@@ -45,7 +45,7 @@ return {
                     -- "emmet_ls",
                     -- "html",
                     -- "intelephense",
-                    -- "lua_ls",
+                    "lua_ls@3.15.0",
                     -- "phpactor",
                     -- "rust_analyzer",
                     -- "ts_ls",
@@ -58,6 +58,7 @@ return {
                     exclude = {
                         "bashls",
                         "clangd",
+                        "jdtls",
                         "phpactor",
                     },
                 },

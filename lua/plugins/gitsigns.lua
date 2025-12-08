@@ -21,6 +21,8 @@ return {
         on_attach = function()
             local gs = require("gitsigns")
 
+            ---@param lhs string
+            ---@param rhs function
             local function map(lhs, rhs)
                 vim.keymap.set("n", lhs, rhs)
             end
