@@ -17,7 +17,7 @@ return {
                 ghost_text = { enabled = true },
                 menu = {
                     border = "none",
-                    scrollbar = false,
+                    scrollbar = true,
                     draw = {
                         treesitter = { "lsp" },
                         gap = 2,

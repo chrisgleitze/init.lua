@@ -1,4 +1,3 @@
--- Formatting
 return {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
@@ -16,6 +15,7 @@ return {
             less = { "prettier" },
             lua = { "stylua" },
             markdown = { "prettier" },
+            -- for php see intelephense config
             rust = { "rust_analyzer" },
             scss = { "prettier" },
             sh = { "shfmt" },
