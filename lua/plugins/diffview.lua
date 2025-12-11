@@ -47,7 +47,6 @@ return {
             },
             -- stylua: ignore start
             keymaps = {
-                -- close all the various diffviews with q in normal mode
                 view = {
                     { "n", "<esc>",      actions.close                          },
                 },

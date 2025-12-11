@@ -41,19 +41,17 @@ autocmd("FileType", {
 })
 
 -- quit Lazy.nvim with Esc
-local user_grp = vim.api.nvim_create_augroup("LazyUserGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
     pattern = "lazy",
     callback = function()
         vim.keymap.set("n", "<esc>", function()
             vim.api.nvim_win_close(0, false)
         end, { buffer = true, nowait = true })
     end,
-    group = user_grp,
 })
 
 -- no auto continue comments on new line
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
     group = vim.api.nvim_create_augroup("no_auto_comment", {}),
     callback = function()
         vim.opt_local.formatoptions:remove({ "c", "r", "o" })
