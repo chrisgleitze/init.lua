@@ -45,16 +45,44 @@ return {
                     winbar_info = false,
                 },
             },
+            -- stylua: ignore start
             keymaps = {
                 -- close all the various diffviews with q in normal mode
                 view = {
-                    { "n", "q", actions.close },
-                },
-                file_panel = {
-                    { "n", "q", "<cmd>DiffviewClose<cr>" },
+                    { "n", "<esc>",      actions.close                          },
                 },
                 file_history_panel = {
-                    { "n", "q", "<cmd>DiffviewClose<cr>" },
+                    { "n", "<esc>",      "<cmd>DiffviewClose<cr>"               },
+                },
+                disable_defaults = true,
+                file_panel = {
+                    { "n", "<esc>",      "<cmd>DiffviewClose<cr>"               },
+                    { 'n', 'j',          actions.next_entry,                    },
+                    { 'n', 'k',          actions.prev_entry,                    },
+                    { 'n', '<cr>',       actions.select_entry,                  },
+                    { 'n', 's',          actions.toggle_stage_entry,            },
+                    { 'n', 'S',          actions.stage_all,                     },
+                    { 'n', 'U',          actions.unstage_all,                   },
+                    { 'n', 'X',          actions.restore_entry,                 },
+                    { 'n', 'L',          actions.open_commit_log,               },
+                    { 'n', 'gf',         actions.goto_file_tab,                 },
+                    { 'n', 'za',         actions.toggle_fold,                   },
+                    { 'n', 'zR',         actions.open_all_folds,                },
+                    { 'n', 'zM',         actions.close_all_folds,               },
+                    { 'n', '<c-b>',      actions.scroll_view(-0.25),            },
+                    { 'n', '<c-f>',      actions.scroll_view(0.25),             },
+                    { 'n', '<tab>',      actions.select_next_entry,             },
+                    { 'n', '<s-tab>',    actions.select_prev_entry,             },
+                    { 'n', 'i',          actions.listing_style,                 },
+                    { 'n', '[x',         actions.prev_conflict,                 },
+                    { 'n', ']x',         actions.next_conflict,                 },
+                    { 'n', '?',          actions.help('file_panel'),            },
+                    { 'n', '<leader>GO', actions.conflict_choose_all('ours'),   },
+                    { 'n', '<leader>GT', actions.conflict_choose_all('theirs'), },
+                    { 'n', '<leader>GB', actions.conflict_choose_all('base'),   },
+                    { 'n', '<leader>GA', actions.conflict_choose_all('all'),    },
+                    { 'n', '<leader>GD', actions.conflict_choose_all('none'),   },
+                    -- stylua: ignore end
                 },
             },
         })
