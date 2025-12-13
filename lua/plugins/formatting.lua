@@ -29,9 +29,10 @@ return {
             },
         },
         format_on_save = {
-            lsp_fallback = true,
-            async = false,
             timeout_ms = 1000,
+            lsp_fallback = true,
+            lsp_format = "fallback",
+            async = false,
         },
         vim.keymap.set("n", "<leader>F", function()
             require("conform").format({ bufnr = 0 })

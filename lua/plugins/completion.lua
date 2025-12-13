@@ -33,6 +33,10 @@ return {
                 },
             },
             sources = {
+                per_filetype = {
+                    text = {}, -- disabled
+                    markdown = {}, -- disabled
+                },
                 -- adding any nvim-cmp sources here will enable them
                 -- with blink.compat
                 default = { "lsp", "path", "snippets", "buffer" },
