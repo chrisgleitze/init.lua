@@ -45,7 +45,7 @@ return {
                     -- "emmet_ls",
                     -- "html",
                     -- "intelephense",
-                    "lua_ls@3.15.0",
+                    -- "lua_ls
                     -- "phpactor",
                     -- "rust_analyzer",
                     -- "ts_ls",
@@ -69,7 +69,7 @@ return {
                 ensure_installed = {
                     "bash-language-server",
                     "eslint_d", -- JavaScript linter
-                    "phpstan", -- PHP code analysis tool
+                    -- "phpstan", -- PHP code analysis tool
                     "prettier", -- Prettier formatter
                     "shfmt", -- Shell formatter
                     "stylua", -- Lua formatter
