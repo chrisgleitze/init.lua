@@ -22,11 +22,5 @@ return {
                 lint.try_lint()
             end,
         })
-
-        -- keymap for linting
-        vim.keymap.set("n", "<leader>li", function()
-            lint.try_lint()
-            print("linting done")
-        end)
     end,
 }
