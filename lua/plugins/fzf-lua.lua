@@ -45,7 +45,12 @@ return {
         { "<leader>/", "<cmd>FzfLua live_grep<cr>", desc = "(not fuzzy) find by grepping in project directory" },
         { "<leader>fg", "<cmd>FzfLua grep<cr>", desc = "fuzzy find by using ripgrep in project directory" },
         { "<leader>fc", "<cmd>FzfLua lgrep_curbuf<cr>", desc = "[f]ind (grep) in [c]urrent buffer" },
-        { "<leader>fv", "<cmd>FzfLua grep_visual<cr>", desc = "[f]ind (grep) in [c]urrent buffer", mode = "x" },
+        {
+            "<leader>fv",
+            "<cmd>FzfLua grep_visual<cr>",
+            desc = "[f]ind (grep) [v]isual selection in project",
+            mode = "x",
+        },
         { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "[f]ind current [w]ord" },
         { "<leader>fW", "<cmd>FzfLua grep_cWORD<cr>", desc = "[f]ind current [W]ORD" },
         { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "[f]ind in [r]esumed search" },
