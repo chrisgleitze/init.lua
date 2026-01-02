@@ -6,11 +6,12 @@ map({ "n", "i", "s", "v" }, "<esc>", "<cmd>noh<cr><esc>")
 -- open Lazy.nvim plugin manager
 map("n", "<leader>L", "<cmd>Lazy<cr>")
 
--- write buffer
+-- write buffer in normal and insert mode
 map("n", "<leader>W", function()
     vim.cmd("write")
     print("buffer saved")
 end)
+map("i", "<C-r>", "<Esc>:w<cr>")
 
 -- source buffer
 map("n", "<leader>S", "<cmd>source % | lua print('buffer sourced')<cr>")
