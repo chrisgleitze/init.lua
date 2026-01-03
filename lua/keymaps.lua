@@ -22,14 +22,17 @@ map("n", "<leader>Q", "<cmd>wqa!<cr>")
 -- restart nvim, incl. write current buffer
 map("n", "<leader>R", "<cmd>w | restart<cr>")
 
+-- open new buffer
+map("n", "<leader>n", "<cmd>enew<cr>")
+
+-- delete buffer
+map("n", "<leader>DB", "<cmd>bdelete<cr>")
+
 -- open Mason
 map("n", "<leader>Ma", "<cmd>Mason<cr>")
 
 -- make Y behave like C and D - copy text until end of line
 map("n", "Y", "yg_")
-
--- delete buffer
-map("n", "<leader>DB", "<cmd>bdelete<cr>")
 
 -- join lines, cursor doesn't move
 map("n", "J", "mzJ`z")
