@@ -1,7 +1,6 @@
 -- LSP
 local M = {}
 local map = vim.keymap.set
--- local opts = { buffer = e.buf, silent = true }
 
 map("n", "gd", vim.lsp.buf.definition)
 map("n", "K", vim.lsp.buf.hover)
