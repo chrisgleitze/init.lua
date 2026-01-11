@@ -14,8 +14,8 @@ o.termguicolors = true
 o.undofile = true
 
 -- important for performance
-o.timeoutlen = 500
-o.ttimeoutlen = 10
+o.timeout = false -- no timeout for mappings
+o.ttimeoutlen = 10 -- timeout for key codes
 o.updatetime = 300
 
 -- Editing
