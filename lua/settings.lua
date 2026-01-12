@@ -23,6 +23,7 @@ o.autoindent = true
 o.expandtab = true
 o.hlsearch = true
 o.incsearch = true
+o.ignorecase = true
 o.shiftwidth = 4
 o.tabstop = 4
 o.virtualedit = "block"
