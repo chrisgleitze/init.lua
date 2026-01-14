@@ -17,7 +17,6 @@ return {
             lua = { "stylua" },
             markdown = { "prettier" },
             -- for php see intelephense config
-            rust = { "rust_analyzer" },
             scss = { "prettier" },
             sh = { "shfmt" },
             typescript = { "prettier" },

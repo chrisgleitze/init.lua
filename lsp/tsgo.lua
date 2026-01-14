@@ -1,28 +1,27 @@
--- installs both typescript and ts_ls:
--- npm install -g typescript typescript-language-server
+-- npm i -g @typescript/native-preview
 
 ---@type vim.lsp.Config
 return {
-    cmd = { "typescript-language-server", "--stdio" },
-    init_options = {
-        enable = true,
-        lint = true,
-    },
+    cmd = { "tsgo", "--lsp", "--stdio" },
     filetypes = {
-        "vue",
         "javascript",
-        "typescript",
         "javascriptreact",
         "javascript.jsx",
+        "typescript",
         "typescriptreact",
         "typescript.tsx",
     },
     root_markers = {
+        ".git",
+        "jsconfig.json",
+        "tsconfig.json",
+        "tsconfig.base.json",
+        "package.json",
         "package-lock.json",
         "yarn.lock",
         "pnpm-lock.yaml",
-        "bun.lockb",
         "bun.lock",
-        "deno.lock",
+        "bun.lockb",
     },
+    enabled = true,
 }

@@ -47,7 +47,6 @@ return {
                     -- "intelephense",
                     -- "lua_ls
                     -- "phpactor",
-                    -- "rust_analyzer",
                     -- "ts_ls",
                     -- "tailwindcss",
                 },
