@@ -5,9 +5,9 @@
 
 ---@type vim.lsp.Config
 return {
-    cmd = { "stylelint-lsp", "--stdio" },
-    filetypes = { "css", "less", "scss" },
-    root_markers = { ".stylelintrc", ".stylelintrc.js", ".stylelintrc.json", "stylelint.config.js" },
+    cmd = { 'stylelint-lsp', '--stdio' },
+    filetypes = { 'css', 'less', 'scss' },
+    root_markers = { '.stylelintrc', '.stylelintrc.js', '.stylelintrc.json', 'stylelint.config.js' },
     settings = {
         stylelintplus = {
             -- lint on save instead of on type.

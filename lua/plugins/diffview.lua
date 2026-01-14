@@ -1,46 +1,46 @@
 return {
-    "sindrets/diffview.nvim",
+    'sindrets/diffview.nvim',
     lazy = true,
     keys = {
         -- open diffview
-        { "<leader>V", "<cmd>DiffviewOpen<cr>" },
+        { '<leader>V', '<cmd>DiffviewOpen<cr>' },
         -- [g]it [h]istory of current file
-        { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>" },
+        { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>' },
     },
     config = function()
-        local actions = require("diffview.actions")
-        require("diffview").setup({
+        local actions = require('diffview.actions')
+        require('diffview').setup({
             enhanced_diff_hl = true,
             use_icons = true,
             show_help_hints = true,
             icons = {
-                folder_closed = "",
-                folder_open = "",
+                folder_closed = '',
+                folder_open = '',
             },
             signs = {
-                fold_closed = "",
-                fold_open = "",
+                fold_closed = '',
+                fold_open = '',
             },
             file_panel = {
-                listing_style = "tree",
+                listing_style = 'tree',
                 win_config = {
-                    position = "left",
+                    position = 'left',
                     width = 35,
                 },
             },
             view = {
                 default = {
-                    layout = "diff2_horizontal",
+                    layout = 'diff2_horizontal',
                     disable_diagnostics = false,
                     winbar_info = false,
                 },
                 merge_tool = {
-                    layout = "diff3_horizontal",
+                    layout = 'diff3_horizontal',
                     disable_diagnostics = false,
                     winbar_info = true,
                 },
                 file_history = {
-                    layout = "diff2_horizontal",
+                    layout = 'diff2_horizontal',
                     disable_diagnostics = true,
                     winbar_info = false,
                 },

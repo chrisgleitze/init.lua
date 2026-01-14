@@ -2,10 +2,10 @@ local o = vim.opt
 
 -- General
 o.backup = false
-o.guicursor = ""
+o.guicursor = ''
 o.hidden = true
 o.linebreak = true
-o.mouse = "a"
+o.mouse = 'a'
 o.number = true
 o.relativenumber = true
 o.scrolloff = 10
@@ -26,12 +26,12 @@ o.incsearch = true
 o.ignorecase = true
 o.shiftwidth = 4
 o.tabstop = 4
-o.virtualedit = "block"
+o.virtualedit = 'block'
 
 -- UI
 o.cursorline = false
 o.cmdheight = 1
-o.signcolumn = "yes"
+o.signcolumn = 'yes'
 o.splitbelow = true
 o.splitright = true
-o.winborder = "single"
+o.winborder = 'single'

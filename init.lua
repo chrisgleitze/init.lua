@@ -1,7 +1,7 @@
 local g = vim.g
 
 -- leader key
-g.mapleader = " "
+g.mapleader = ' '
 
 -- disable built-in stuff I don't use
 g.loaded_2html_plugin = 1
@@ -30,22 +30,22 @@ g.loaded_zip = 1
 g.loaded_zipPlugin = 1
 
 -- bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
     local out = vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--branch=stable",
+        'git',
+        'clone',
+        '--filter=blob:none',
+        '--branch=stable',
         lazyrepo,
         lazypath,
     })
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
+            { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+            { out, 'WarningMsg' },
+            { '\nPress any key to exit...' },
         }, true, {})
         vim.fn.getchar()
         os.exit(1)
@@ -54,16 +54,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- configure plugins
-require("lazy").setup({
+require('lazy').setup({
     spec = {
-        { import = "plugins" },
+        { import = 'plugins' },
     },
     checker = {
         enabled = true,
         notify = false,
     },
     ui = {
-        border = "rounded",
+        border = 'rounded',
     },
     -- enable or disable luarocks
     rocks = {
@@ -73,7 +73,7 @@ require("lazy").setup({
 })
 
 -- load general settings and more
-require("settings")
-require("keymaps")
-require("autocmds")
-require("lsp")
+require('settings')
+require('keymaps')
+require('autocmds')
+require('lsp')

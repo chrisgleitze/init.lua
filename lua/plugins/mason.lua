@@ -1,37 +1,37 @@
 return {
     {
         -- turns TypeScript erros into plain English
-        "dmmulroy/ts-error-translator.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        'dmmulroy/ts-error-translator.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         config = function()
-            require("ts-error-translator").setup()
+            require('ts-error-translator').setup()
         end,
     },
     {
         -- Mason, package manager for LSPs, linters, formatters etc.
-        "williamboman/mason.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        'williamboman/mason.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
+            'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
         },
         config = function()
             -- import mason
-            local mason = require("mason")
+            local mason = require('mason')
 
             -- import mason-lspconfig
-            local mason_lspconfig = require("mason-lspconfig")
+            local mason_lspconfig = require('mason-lspconfig')
 
             -- import mason-tool-installer
-            local mason_tool_installer = require("mason-tool-installer")
+            local mason_tool_installer = require('mason-tool-installer')
 
             -- enable mason and configure icons
             mason.setup({
                 ui = {
                     icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗",
+                        package_installed = '✓',
+                        package_pending = '➜',
+                        package_uninstalled = '✗',
                     },
                 },
             })
@@ -55,10 +55,10 @@ return {
                     -- due to recent changes to mason-lspconfig;
                     -- exclude the redundancies here, so only my own lsp-configs are loaded
                     exclude = {
-                        "bashls",
-                        "clangd",
-                        "jdtls",
-                        "phpactor",
+                        'bashls',
+                        'clangd',
+                        'jdtls',
+                        'phpactor',
                     },
                 },
             })
@@ -66,20 +66,20 @@ return {
             -- install tools not included in Mason
             mason_tool_installer.setup({
                 ensure_installed = {
-                    "bash-language-server",
-                    "eslint_d", -- JavaScript linter
+                    'bash-language-server',
+                    'eslint_d', -- JavaScript linter
                     -- "phpstan", -- PHP code analysis tool
-                    "prettier", -- Prettier formatter
-                    "shfmt", -- Shell formatter
-                    "stylua", -- Lua formatter
+                    'prettier', -- Prettier formatter
+                    'shfmt', -- Shell formatter
+                    'stylua', -- Lua formatter
                 },
                 auto_update = false,
                 run_on_start = true,
                 start_delay = 0,
                 integrations = {
-                    ["mason-lspconfig"] = true,
-                    ["mason-null-ls"] = true,
-                    ["mason-nvim-dap"] = true,
+                    ['mason-lspconfig'] = true,
+                    ['mason-null-ls'] = true,
+                    ['mason-nvim-dap'] = true,
                 },
             })
         end,

@@ -3,38 +3,38 @@
 
 ---@type vim.lsp.Config
 return {
-    cmd = { "lua-language-server" },
-    filetypes = { "lua" },
+    cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
     root_markers = {
-        ".emmyrc.json",
-        ".luarc.json",
-        ".luarc.jsonc",
-        ".luacheckrc",
-        ".stylua.toml",
-        "stylua.toml",
-        "selene.toml",
-        "selene.yml",
-        ".git",
+        '.emmyrc.json',
+        '.luarc.json',
+        '.luarc.jsonc',
+        '.luacheckrc',
+        '.stylua.toml',
+        'stylua.toml',
+        'selene.toml',
+        'selene.yml',
+        '.git',
     },
     settings = {
         Lua = {
-            completion = { callSnippet = "Replace" },
+            completion = { callSnippet = 'Replace' },
             diagnostics = {
-                globals = { "vim" },
+                globals = { 'vim' },
             },
             format = { enable = false }, -- use stylua via conform.nvim instead
             hint = {
                 enable = true,
-                arrayIndex = "Disable",
+                arrayIndex = 'Disable',
             },
             runtime = {
-                version = "LuaJIT",
+                version = 'LuaJIT',
             },
             workspace = {
                 checkThirdParty = false,
                 library = {
                     vim.env.VIMRUNTIME,
-                    "${3rd}/luv/library",
+                    '${3rd}/luv/library',
                 },
             },
         },

@@ -1,14 +1,14 @@
 return {
-    -- "kdheepak/lazygit.nvim",
+    -- 'kdheepak/lazygit.nvim',
     -- lazy = false,
     -- cmd = {
-    --     "LazyGit",
-    --     "LazyGitConfig",
-    --     "LazyGitCurrentFile",
-    --     "LazyGitFilter",
-    --     "LazyGitFilterCurrentFile",
+    --     'LazyGit',
+    --     'LazyGitConfig',
+    --     'LazyGitCurrentFile',
+    --     'LazyGitFilter',
+    --     'LazyGitFilterCurrentFile',
     -- },
     -- keys = {
-    --     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    --     { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     -- },
 }

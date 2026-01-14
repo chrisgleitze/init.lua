@@ -2,24 +2,24 @@
 local M = {}
 local map = vim.keymap.set
 
-map("n", "gd", vim.lsp.buf.definition)
-map("n", "K", vim.lsp.buf.hover)
-map("n", "<leader>vws", vim.lsp.buf.workspace_symbol)
-map("n", "<leader>vca", vim.lsp.buf.code_action)
-map("n", "<leader>vrr", vim.lsp.buf.references)
-map("n", "<leader>vrn", vim.lsp.buf.rename)
-map("n", "<leader>vsh", vim.lsp.buf.signature_help)
-map("i", "ctrl-s", vim.lsp.buf.signature_help)
+map('n', 'gd', vim.lsp.buf.definition)
+map('n', 'K', vim.lsp.buf.hover)
+map('n', '<leader>vws', vim.lsp.buf.workspace_symbol)
+map('n', '<leader>vca', vim.lsp.buf.code_action)
+map('n', '<leader>vrr', vim.lsp.buf.references)
+map('n', '<leader>vrn', vim.lsp.buf.rename)
+map('n', '<leader>vsh', vim.lsp.buf.signature_help)
+map('i', 'ctrl-s', vim.lsp.buf.signature_help)
 
 -- diagnostic keymaps
-map("n", "<leader>vd", function()
-    vim.diagnostic.open_float(nil, { border = "rounded" })
+map('n', '<leader>vd', function()
+    vim.diagnostic.open_float(nil, { border = 'rounded' })
 end)
-map("n", "[d", function()
-    vim.diagnostic.jump({ float = { border = "rounded" }, count = -1 })
+map('n', '[d', function()
+    vim.diagnostic.jump({ float = { border = 'rounded' }, count = -1 })
 end)
-map("n", "]d", function()
-    vim.diagnostic.jump({ float = { border = "rounded" }, count = 1 })
+map('n', ']d', function()
+    vim.diagnostic.jump({ float = { border = 'rounded' }, count = 1 })
 end)
 
 -- enable diagnostics by default
@@ -48,8 +48,8 @@ local function show_diagnostics()
         underline = true,
     })
 end
-map("n", "<leader>dh", hide_diagnostics)
-map("n", "<leader>ds", show_diagnostics)
+map('n', '<leader>dh', hide_diagnostics)
+map('n', '<leader>ds', show_diagnostics)
 
 -- diagnostic visuals
 vim.diagnostic.config({
@@ -57,33 +57,33 @@ vim.diagnostic.config({
         enabled = true,
         prefix = function(diagnostic)
             if diagnostic.severity == vim.diagnostic.severity.ERROR then
-                return "🭰× "
+                return '🭰× '
             elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-                return "🭰▲ "
+                return '🭰▲ '
             else
-                return "🭰• "
+                return '🭰• '
             end
         end,
-        suffix = "🭵",
+        suffix = '🭵',
     },
     underline = true,
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = " ×",
-            [vim.diagnostic.severity.WARN] = " ▲",
-            [vim.diagnostic.severity.HINT] = " •",
-            [vim.diagnostic.severity.INFO] = " •",
+            [vim.diagnostic.severity.ERROR] = ' ×',
+            [vim.diagnostic.severity.WARN] = ' ▲',
+            [vim.diagnostic.severity.HINT] = ' •',
+            [vim.diagnostic.severity.INFO] = ' •',
         },
     },
 })
 
 -- set up LSP servers
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
     once = true,
     callback = function()
-        local server_configs = vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
+        local server_configs = vim.iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
             :map(function(file)
-                return vim.fn.fnamemodify(file, ":t:r")
+                return vim.fn.fnamemodify(file, ':t:r')
             end)
             :totable()
         vim.lsp.enable(server_configs)
