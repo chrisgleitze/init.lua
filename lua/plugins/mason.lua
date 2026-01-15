@@ -67,7 +67,7 @@ return {
             mason_tool_installer.setup({
                 ensure_installed = {
                     'bash-language-server',
-                    'eslint_d', -- JavaScript linter
+                    -- 'eslint_d', -- JavaScript linter
                     -- "phpstan", -- PHP code analysis tool
                     'prettier', -- Prettier formatter
                     'shfmt', -- Shell formatter
