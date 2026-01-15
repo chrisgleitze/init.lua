@@ -13,7 +13,6 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
-            'WhoIsSethDaniel/mason-tool-installer.nvim',
         },
         config = function()
             -- import mason
@@ -21,9 +20,6 @@ return {
 
             -- import mason-lspconfig
             local mason_lspconfig = require('mason-lspconfig')
-
-            -- import mason-tool-installer
-            local mason_tool_installer = require('mason-tool-installer')
 
             -- enable mason and configure icons
             mason.setup({
@@ -39,16 +35,16 @@ return {
             mason_lspconfig.setup({
                 -- list of servers for mason to install
                 ensure_installed = {
-                    -- "bashls",
-                    -- "cssls",
-                    -- "clangd",
-                    -- "emmet_ls",
-                    -- "html",
-                    -- "intelephense",
-                    -- "lua_ls
-                    -- "phpactor",
-                    -- "ts_ls",
-                    -- "tailwindcss",
+                    'bashls',
+                    'clangd',
+                    'cssls',
+                    'html',
+                    'intelephense',
+                    'lua_ls',
+                    'phpactor',
+                    'stylua',
+                    'ts_ls',
+                    'tailwindcss',
                 },
                 automatic_enable = {
                     -- it's possible that LSPs are loaded twice into the buffer by default
@@ -60,26 +56,6 @@ return {
                         'jdtls',
                         'phpactor',
                     },
-                },
-            })
-
-            -- install tools not included in Mason
-            mason_tool_installer.setup({
-                ensure_installed = {
-                    'bash-language-server',
-                    -- 'eslint_d', -- JavaScript linter
-                    -- "phpstan", -- PHP code analysis tool
-                    'prettier', -- Prettier formatter
-                    'shfmt', -- Shell formatter
-                    'stylua', -- Lua formatter
-                },
-                auto_update = false,
-                run_on_start = true,
-                start_delay = 0,
-                integrations = {
-                    ['mason-lspconfig'] = true,
-                    ['mason-null-ls'] = true,
-                    ['mason-nvim-dap'] = true,
                 },
             })
         end,
