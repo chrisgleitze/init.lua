@@ -28,6 +28,9 @@ map('n', '<leader>n', '<cmd>enew<cr>')
 -- delete buffer
 map('n', '<leader>DB', '<cmd>bdelete<cr>')
 
+-- open buffer via buffer list
+map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
+
 -- open Mason
 map('n', '<leader>Ma', '<cmd>Mason<cr>')
 
