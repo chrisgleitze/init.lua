@@ -11,7 +11,7 @@ map('n', '<leader>W', function()
     vim.cmd('write')
     print('buffer saved')
 end)
-map('i', '<C-r>', '<Esc>:w<cr>')
+map('i', '<C-r>', '<esc>:w<cr>')
 
 -- source buffer
 map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
