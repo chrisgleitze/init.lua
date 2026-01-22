@@ -3,15 +3,15 @@ return {
     dependencies = { 'junegunn/gv.vim' },
     config = function()
         local map = vim.keymap.set
-        map('n', '<leader>Gi', '<cmd>Git <CR>')
-        map('n', '<leader>Gb', '<cmd>Git blame<CR>')
-        map('n', '<leader>Gl', '<cmd>Git log<CR>')
-        map('n', '<leader>Gd', '<cmd>Git diff<CR>')
-        map('n', '<leader>Gw', '<cmd>Gwrite | :G commit<CR>')
-        map('n', '<leader>Gp', '<cmd>Git push<CR>')
+        map('n', '<leader>Gi', '<cmd>Git <cr>')
+        map('n', '<leader>Gb', '<cmd>Git blame<cr>')
+        map('n', '<leader>Gl', '<cmd>Git log<cr>')
+        map('n', '<leader>Gd', '<cmd>Git diff<cr>')
+        map('n', '<leader>Gw', '<cmd>Gwrite | :G commit<cr>')
+        map('n', '<leader>Gp', '<cmd>Git push<cr>')
 
-        map('n', '<leader>GVV', '<cmd>GV<CR>')
-        map('n', '<leader>GV!', '<cmd>GV!<CR>')
-        map('n', '<leader>GV?', '<cmd>GV?<CR>')
+        map('n', '<leader>GVV', '<cmd>GV<cr>')
+        map('n', '<leader>GV!', '<cmd>GV!<cr>')
+        map('n', '<leader>GV?', '<cmd>GV?<cr>')
     end,
 }
