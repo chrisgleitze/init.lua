@@ -60,6 +60,7 @@ return {
         { '<leader>fa', '<cmd>FzfLua autocmds<cr>', desc = '[f]ind [a]utocommands' },
         { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'find [g]it [s]tatus' },
         { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'find [g]it [c]ommits' },
+        { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'find [g]it [c]ommits in current buffer' },
         { '<leader>gbl', '<cmd>FzfLua git_blame<cr>', desc = 'find [g]it [bl]ame' },
         { '<leader>gbr', '<cmd>FzfLua git_branches<cr>', desc = 'find [g]it [br]anches' },
         { '<leader>fO', '<cmd>FzfLua nvim_options<cr>', desc = '[f]ind [o]ld files' },
