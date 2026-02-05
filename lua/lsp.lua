@@ -2,7 +2,12 @@
 local M = {}
 local map = vim.keymap.set
 
-map('n', 'gd', vim.lsp.buf.definition)
+map('n', 'gd', function()
+    require('fzf-lua').lsp_definitions({ jump1 = true })
+end)
+map('n', 'gD', function()
+    require('fzf-lua').lsp_definitions({ jump1 = false })
+end)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', '<leader>vws', vim.lsp.buf.workspace_symbol)
 map('n', '<leader>vca', vim.lsp.buf.code_action)
