@@ -6,11 +6,12 @@ map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
 -- open Lazy.nvim plugin manager
 map('n', '<leader>L', '<cmd>Lazy<cr>')
 
--- write buffer in normal and insert mode
+-- write buffer in normal
 map('n', '<leader>W', function()
     vim.cmd('write')
     print('buffer saved')
 end)
+-- and in insert mode
 map('i', '<C-r>', '<esc>:w<cr>')
 
 -- source buffer
@@ -55,16 +56,16 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
 -- moves highlighted lines up (K) or down (J) in visual mode
-map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+map('v', 'J', ":m '>+1<cr>gv=gv")
+map('v', 'K', ":m '<-2<cr>gv=gv")
 
 -- move lines up or down in normal, insert, and visual modes
-map('n', '<A-j>', ':m .+1<CR>==')
-map('n', '<A-k>', ':m .-2<CR>==')
-map('i', '<C-j>', '<Esc>:m .+1<CR>==gi')
-map('i', '<C-k>', '<Esc>:m .-2<CR>==gi')
-map('v', '<C-j>', ":m '>+1<CR>gv=gv")
-map('v', '<C-k>', ":m '<-2<CR>gv=gv")
+map('n', '<A-j>', ':m .+1<cr>==')
+map('n', '<A-k>', ':m .-2<cr>==')
+map('i', '<A-j>', '<esc>:m .+1<cr>==gi')
+map('i', '<A-k>', '<esc>:m .-2<cr>==gi')
+map('v', '<A-j>', ":m '>+1<cr>gv=gv")
+map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
 -- helps you change all occurrences of the word the cursor is on
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
