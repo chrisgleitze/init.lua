@@ -1,17 +1,104 @@
 # gitignore template from the official Neovim repo
-# Tools
+# with many of my own additions
+
+# API Keys, Secrets etc.
 /.direnv/
 /venv/
 compile_commands.json
 /.envrc
 .env
+.env.*
+!.env.example
+.env.backup
+.venv.backup
+*.key
+*.pem
+*.secret
+secrets/
+config/secrets.json
+config/secrets.yaml
+anthropic_api_key.txt
+openai_api_key.txt
+api_keys.json
+credentials.json
+.secrets
+
+# Claude Code
+.claude/
+.claude-code/
+claude_cache/
+.anthropic/
+
+# GitHub Copilot
+.copilot/
+copilot-cache/
+
+# Amazon CodeWhisperer
+.aws/codewhisperer/
+.codewhisperer/
+
+# AI/LLM Frameworks and Libraries
+# LangChain
+.langchain/
+langchain.db
+langchain_cache/
+
+ OpenAI
+.openai/
+openai_cache/
+
+# Vector Stores & Embeddings
+vector_store/
+vectorstore/
+embeddings/
+embeddings_cache/
+index/
+indices/
+
+#######
 
 # IDEs
 /.vs/
 /.vscode/
 /.idea/
 
+# Vim
+*.swp
+*.swo
+*~
+.vim/
+Session.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Icon
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+*.tar.xz
+*.tar.gz
+
 # Build/deps dir
+build
 /.zig-cache/
 /zig-out/
 /.deps/
