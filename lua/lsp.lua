@@ -14,7 +14,7 @@ map('n', '<leader>vca', vim.lsp.buf.code_action)
 map('n', '<leader>vrr', vim.lsp.buf.references)
 map('n', '<leader>vrn', vim.lsp.buf.rename)
 map('n', '<leader>vsh', vim.lsp.buf.signature_help)
-map('i', 'ctrl-s', vim.lsp.buf.signature_help)
+map('i', '<C-s>', vim.lsp.buf.signature_help)
 
 -- diagnostic keymaps
 map('n', '<leader>vd', function()
