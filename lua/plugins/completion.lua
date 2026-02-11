@@ -5,14 +5,36 @@ return {
         version = '1.*',
         event = 'InsertEnter',
         dependencies = {
-            'rafamadriz/friendly-snippets',
-            { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp' },
+            -- pre-configured snippets
+            -- 'rafamadriz/friendly-snippets',
+            {
+                -- snippet engine
+                'L3MON4D3/LuaSnip',
+                dependencies = { 'rafamadriz/friendly-snippets' },
+                version = 'v2.*',
+                build = 'make install_jsregexp',
+                config = function()
+                    local luasnip = require('luasnip')
+                    luasnip.setup({
+                        history = true,
+                        delete_check_events = 'TextChanged',
+                        region_check_events = 'CursorMoved',
+                    })
+                    -- loads friendly-snippets
+                    require('luasnip.loaders.from_vscode').lazy_load()
+                    -- my custom snippets
+                    require('luasnip.loaders.from_vscode').lazy_load({
+                        paths = { vim.fn.stdpath('config') .. '/snippets' },
+                    })
+                end,
+            },
             {
                 'saghen/blink.compat',
                 version = not vim.g.lazyvim_blink_main and '*',
             },
         },
         opts = {
+            snippets = { preset = 'luasnip' },
             completion = {
                 ghost_text = { enabled = true },
                 menu = {
@@ -48,6 +70,8 @@ return {
                 ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
                 ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
                 ['<C-e>'] = { 'hide', 'fallback' },
+                ['<Tab>'] = { 'snippet_forward', 'fallback' },
+                ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
             },
         },
         config = function(_, opts)
