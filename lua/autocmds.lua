@@ -30,16 +30,6 @@ autocmd('TextYankPost', {
     end,
 })
 
--- config for built-in undotree plugin
-vim.cmd.packadd('nvim.undotree') -- load plugin on startup
-autocmd('FileType', {
-    pattern = 'nvim-undotree',
-    callback = function()
-        vim.cmd.wincmd('H')
-        vim.api.nvim_win_set_width(0, 40)
-    end,
-})
-
 -- quit Lazy.nvim with Esc
 autocmd('FileType', {
     pattern = 'lazy',
@@ -50,7 +40,7 @@ autocmd('FileType', {
     end,
 })
 
--- no auto continue comments on new line
+-- don't auto continue comments in new line
 autocmd('FileType', {
     group = vim.api.nvim_create_augroup('no_auto_comment', {}),
     callback = function()
