@@ -5,11 +5,9 @@ return {
     branch = 'main',
     build = ':TSUpdate',
     opts = {
+        ensure_installed = 'all',
         auto_install = true,
         sync_install = true,
         highlight = { enable = true },
-        ensure_installed = {
-            'all',
-        },
     },
 }

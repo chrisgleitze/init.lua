@@ -11,12 +11,12 @@ return {
             html = { 'prettier' },
             json = { 'prettier' },
             jsonc = { 'prettier' },
-            javascript = { 'prettierd', 'prettier', stop_after_first = true },
+            javascript = { 'prettier' },
             javascriptreact = { 'prettier' },
             less = { 'prettier' },
             lua = { 'stylua' },
             markdown = { 'prettier' },
-            -- for php see intelephense config
+            -- see intelephense config for php formatting
             scss = { 'prettier' },
             sh = { 'shfmt' },
             typescript = { 'prettier' },
@@ -34,9 +34,5 @@ return {
             lsp_format = 'fallback',
             async = false,
         },
-        vim.keymap.set('n', '<leader>F', function()
-            require('conform').format({ bufnr = 0 })
-            print('buffer formatted')
-        end),
     },
 }

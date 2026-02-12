@@ -19,17 +19,6 @@ autocmd('BufWritePre', {
     command = [[%s/\s\+$//e]],
 })
 
--- highlight effect for yanked text
-autocmd('TextYankPost', {
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-
 -- quit Lazy.nvim with Esc
 autocmd('FileType', {
     pattern = 'lazy',

@@ -48,14 +48,14 @@ return {
             -- stylua: ignore start
             keymaps = {
                 view = {
-                    { "n", "<esc>",      actions.close                          },
+                    { 'n', '<esc>',      actions.close                          },
                 },
                 file_history_panel = {
-                    { "n", "<esc>",      "<cmd>DiffviewClose<cr>"               },
+                    { 'n', '<esc>',      '<cmd>DiffviewClose<cr>'               },
                 },
                 disable_defaults = true,
                 file_panel = {
-                    { "n", "<esc>",      "<cmd>DiffviewClose<cr>"               },
+                    { 'n', '<esc>',      '<cmd>DiffviewClose<cr>'               },
                     { 'n', 'j',          actions.next_entry,                    },
                     { 'n', 'k',          actions.prev_entry,                    },
                     { 'n', '<cr>',       actions.select_entry,                  },

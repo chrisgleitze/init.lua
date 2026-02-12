@@ -41,9 +41,11 @@ return {
                     'html',
                     'intelephense',
                     'lua_ls',
+                    -- 'prettier',
                     'phpactor',
                     'stylua',
-                    'ts_ls',
+                    'tsgo',
+                    -- 'ts_ls',
                     'tailwindcss',
                 },
                 automatic_enable = {

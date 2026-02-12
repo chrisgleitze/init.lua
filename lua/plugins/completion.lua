@@ -5,8 +5,6 @@ return {
         version = '1.*',
         event = 'InsertEnter',
         dependencies = {
-            -- pre-configured snippets
-            -- 'rafamadriz/friendly-snippets',
             {
                 -- snippet engine
                 'L3MON4D3/LuaSnip',
@@ -50,7 +48,7 @@ return {
                     },
                 },
                 documentation = {
-                    auto_show = false,
+                    auto_show = true,
                     auto_show_delay_ms = 0, -- show documentation immediately
                 },
             },
