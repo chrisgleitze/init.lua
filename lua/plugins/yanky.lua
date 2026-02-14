@@ -2,6 +2,7 @@
 -- and additional features for yank command
 return {
     'gbprod/yanky.nvim',
+    event = { 'BufReadPre' },
     opts = {
         ring = { history_length = 20 },
         highlight = { timer = 40 },
