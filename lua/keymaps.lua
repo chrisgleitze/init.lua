@@ -7,12 +7,12 @@ map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
 map('n', '<leader>L', '<cmd>Lazy<cr>')
 
 -- write buffer in normal
-map('n', '<leader>W', function()
+map('n', '<C-s>', function()
     vim.cmd('write')
     print('buffer saved')
 end)
 -- and in insert mode
-map('i', '<C-r>', '<esc>:w<cr>')
+map({ 'i', 'x' }, '<C-s>', '<esc>:w<cr>')
 
 -- source buffer
 map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
