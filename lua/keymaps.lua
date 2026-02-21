@@ -55,10 +55,6 @@ map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
--- moves highlighted lines up (K) or down (J) in visual mode
-map('v', 'J', ":m '>+1<cr>gv=gv")
-map('v', 'K', ":m '<-2<cr>gv=gv")
-
 -- move lines up or down in normal, insert, and visual modes
 map('n', '<A-j>', ':m .+1<cr>==')
 map('n', '<A-k>', ':m .-2<cr>==')
