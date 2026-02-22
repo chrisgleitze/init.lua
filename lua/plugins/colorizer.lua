@@ -1,3 +1,4 @@
+-- color highlighter
 return {
     'catgoose/nvim-colorizer.lua',
     event = { 'BufReadPre', 'BufNewFile' },
