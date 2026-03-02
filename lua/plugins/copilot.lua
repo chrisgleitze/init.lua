@@ -1,0 +1,26 @@
+-- GitHub Copilot completion
+return {
+    -- 'zbirenbaum/copilot.lua',
+    -- event = 'InsertEnter',
+    -- config = function()
+    --     require('copilot').setup({
+    --         panel = { enabled = false },
+    --         suggestion = {
+    --             auto_trigger = false,
+    --             hide_during_completion = false,
+    --             keymap = {
+    --                 accept = '<A-a>',
+    --                 accept_word = '<A-w>',
+    --                 accept_line = '<A-l>',
+    --                 prev = '<C-[>',
+    --                 next = '<C-]>',
+    --                 dismiss = '<A-/>',
+    --             },
+    --         },
+    --         filetypes = {
+    --             markdown = true,
+    --             yaml = true,
+    --         },
+    --     })
+    -- end,
+}

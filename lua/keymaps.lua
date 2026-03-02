@@ -64,4 +64,4 @@ map('v', '<A-j>', ":m '>+1<cr>gv=gv")
 map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
 -- helps you change all occurrences of the word the cursor is on
-map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

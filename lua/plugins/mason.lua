@@ -45,7 +45,6 @@ return {
                     'phpactor',
                     'stylua',
                     'tsgo',
-                    -- 'ts_ls',
                     'tailwindcss',
                 },
                 automatic_enable = {
