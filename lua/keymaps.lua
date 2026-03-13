@@ -6,6 +6,9 @@ map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
 -- open Lazy.nvim plugin manager
 map('n', '<leader>L', '<cmd>Lazy<cr>')
 
+-- open Mason
+map('n', '<leader>Ma', '<cmd>Mason<cr>')
+
 -- write buffer in normal
 map('n', '<C-s>', function()
     vim.cmd('write')
@@ -31,9 +34,6 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 
 -- open buffer via buffer list
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
-
--- open Mason
-map('n', '<leader>Ma', '<cmd>Mason<cr>')
 
 -- make Y behave like C and D - copy text until end of line
 map('n', 'Y', 'yg_')
@@ -63,5 +63,5 @@ map('i', '<A-k>', '<esc>:m .-2<cr>==gi')
 map('v', '<A-j>', ":m '>+1<cr>gv=gv")
 map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
--- helps you change all occurrences of the word the cursor is on
+-- helps you change all occurrences of the word the cursor is on in a file
 map('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
