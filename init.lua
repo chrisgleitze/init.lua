@@ -5,6 +5,7 @@ g.mapleader = ' '
 
 -- disable built-in stuff I don't use
 g.loaded_2html_plugin = 1
+g.did_install_default_menus = 1
 g.loaded_gzip = 1
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
