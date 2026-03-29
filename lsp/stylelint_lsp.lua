@@ -1,12 +1,10 @@
 -- CSS linter
--- install globally: npm i -g stylelint-lsp
--- install in project with recommended rules, creates stylelintrc file:
--- npm init stylelint
+-- install globally: npm install -g @stylelint/language-server
 
 ---@type vim.lsp.Config
 return {
-    cmd = { 'stylelint-lsp', '--stdio' },
-    filetypes = { 'css', 'less', 'scss' },
+    cmd = { 'stylelint-language-server', '--stdio' },
+    filetypes = { 'astro', 'css', 'html', 'less', 'scss', 'vue' },
     root_markers = { '.stylelintrc', '.stylelintrc.js', '.stylelintrc.json', 'stylelint.config.js' },
     settings = {
         stylelintplus = {
