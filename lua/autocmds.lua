@@ -36,3 +36,14 @@ autocmd('FileType', {
         vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
     end,
 })
+
+autocmd('TextYankPost', {
+    group = vim.api.nvim_create_augroup('yank_group', {}),
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
