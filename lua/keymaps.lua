@@ -63,5 +63,5 @@ map('i', '<A-k>', '<esc>:m .-2<cr>==gi')
 map('v', '<A-j>', ":m '>+1<cr>gv=gv")
 map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
--- helps you change all occurrences of the word the cursor is on in a file
+-- helps you change all occurrences of the word the cursor is on
 map('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

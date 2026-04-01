@@ -13,7 +13,7 @@ return {
             follow_current_file = { enabled = true },
         },
         window = {
-            width = 30,
+            width = 35,
         },
     },
     keys = {
