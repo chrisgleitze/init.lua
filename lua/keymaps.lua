@@ -26,6 +26,10 @@ map('n', '<leader>Q', '<cmd>wqa!<cr>')
 -- restart nvim, incl. write current buffer
 map('n', '<leader>R', '<cmd>w | restart<cr>')
 
+-- copy and paste to system clipboard
+map('v', '<leader>y', '"+y')
+map('v', '<leader>p', '"+p')
+
 -- open new buffer
 map('n', '<leader>n', '<cmd>enew<cr>')
 
