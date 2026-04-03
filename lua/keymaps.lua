@@ -30,6 +30,13 @@ map('n', '<leader>R', '<cmd>w | restart<cr>')
 map('v', '<leader>y', '"+y')
 map('v', '<leader>p', '"+p')
 
+-- copy and select all lines of current buffer
+map('n', 'yg', ':%y<CR>', { noremap = true, silent = true })
+map('n', 'vg', 'ggVG', { noremap = true, silent = true })
+
+-- make Y behave like C and D - copy text until end of line
+map('n', 'Y', 'yg_')
+
 -- open new buffer
 map('n', '<leader>n', '<cmd>enew<cr>')
 
@@ -38,9 +45,6 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 
 -- open buffer via buffer list
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
-
--- make Y behave like C and D - copy text until end of line
-map('n', 'Y', 'yg_')
 
 -- join lines, cursor doesn't move
 map('n', 'J', 'mzJ`z')
