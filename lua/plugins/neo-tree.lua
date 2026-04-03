@@ -18,6 +18,6 @@ return {
     },
     keys = {
         vim.keymap.set('n', '<leader>t', '<Cmd>Neotree toggle<CR>'),
-        vim.keymap.set('n', '<leader>T', '<Cmd>Neotree position=current<CR>'),
+        vim.keymap.set('n', '<leader>T', '<Cmd>Neotree position=current toggle<CR>'),
     },
 }
