@@ -1,9 +1,12 @@
 return {
     'sindrets/diffview.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     lazy = true,
     keys = {
         -- open diffview
         { '<leader>V', '<cmd>DiffviewOpen<cr>' },
+        -- git history of the whole repo
+        { '<leader>gH', '<cmd>DiffviewFileHistory<cr>' },
         -- [g]it [h]istory of current file
         { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>' },
     },
