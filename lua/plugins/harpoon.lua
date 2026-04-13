@@ -2,7 +2,7 @@ return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     lazy = false,
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    -- dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local harpoon = require('harpoon')
 
@@ -20,7 +20,7 @@ return {
             harpoon.ui:toggle_quick_menu(harpoon:list())
         end)
 
-        -- switch to harpooned file 1-4
+        -- switch to harpooned file 1-8
         set('n', '<leader>q', function()
             harpoon:list():select(1)
         end)
@@ -46,7 +46,7 @@ return {
             harpoon:list():select(8)
         end)
 
-        -- susbstitute harpoon file 1-4 with new files
+        -- susbstitute harpoon file 1-8 with new files
         set('n', '<leader><C-q>', function()
             harpoon:list():replace_at(1)
         end)

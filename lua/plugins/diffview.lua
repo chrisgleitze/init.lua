@@ -5,7 +5,7 @@ return {
     keys = {
         -- open diffview
         { '<leader>V', '<cmd>DiffviewOpen<cr>' },
-        -- git history of the whole repo
+        -- [g]it [H]istory of the whole repo
         { '<leader>gH', '<cmd>DiffviewFileHistory<cr>' },
         -- [g]it [h]istory of current file
         { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>' },
