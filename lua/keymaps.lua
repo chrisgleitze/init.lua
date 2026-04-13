@@ -53,8 +53,8 @@ map('n', '<leader>Qd', function()
 end)
 
 -- copy and paste to system clipboard
-map('v', '<leader>y', '"+y')
-map('v', '<leader>p', '"+p')
+map('v', '<leader>Y', '"+y')
+map('v', '<leader>P', '"+p')
 
 -- copy and select all lines of current buffer
 map('n', 'yg', ':%y<CR>', { noremap = true, silent = true })
