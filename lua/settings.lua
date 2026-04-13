@@ -12,6 +12,14 @@ o.scrolloff = 10
 o.swapfile = false
 o.termguicolors = true
 o.undofile = true
+o.sessionoptions = {
+    'buffers',
+    'curdir',
+    'folds',
+    'help',
+    'tabpages',
+    'winsize',
+}
 
 -- important for performance
 o.timeout = false -- no timeout for mappings

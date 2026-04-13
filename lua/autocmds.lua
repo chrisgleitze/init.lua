@@ -1,5 +1,31 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- restore the last session when nvim starts without file args
+-- autocmd('VimEnter', {
+--     group = vim.api.nvim_create_augroup('cg/session_restore', { clear = true }),
+--     nested = true,
+--     callback = function()
+--         if vim.fn.argc() > 0 then
+--             return
+--         end
+--
+--         if vim.bo.buftype ~= '' then
+--             return
+--         end
+--
+--         if vim.api.nvim_buf_get_name(0) ~= '' then
+--             return
+--         end
+--
+--         local ft = vim.bo.filetype
+--         if ft == 'gitcommit' or ft == 'neo-tree' or ft == 'oil' then
+--             return
+--         end
+--
+--         require('persistence').load({ last = true })
+--     end,
+-- })
+
 -- go to the last location when opening a buffer
 autocmd('BufReadPost', {
     group = vim.api.nvim_create_augroup('cg/last_location', { clear = true }),

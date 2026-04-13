@@ -23,11 +23,34 @@ map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
 -- source buffer
 map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
 
--- quit nvim
-map('n', '<leader>Q', '<cmd>wqa!<cr>')
-
 -- restart nvim, incl. write current buffer
 map('n', '<leader>R', '<cmd>w | restart<cr>')
+
+-- quit nvim
+map('n', '<leader>QQ', function()
+    vim.cmd('silent! wall')
+    vim.cmd('wqa!')
+end)
+
+-- load the last session manually
+map('n', '<leader>Qs', function()
+    require('persistence').load({ last = true })
+end)
+
+-- select a session to load
+map('n', '<leader>QS', function()
+    require('persistence').select()
+end)
+
+-- load the last session for the current directory
+map('n', '<leader>Ql', function()
+    require('persistence').load()
+end)
+
+-- stop Persistence => session won't be saved on exit
+map('n', '<leader>Qd', function()
+    require('persistence').stop()
+end)
 
 -- copy and paste to system clipboard
 map('v', '<leader>y', '"+y')
