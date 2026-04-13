@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
--- Esc also clears search highlighting
+-- Esc also clears search highlighting and stops snippet session
 map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
 
 -- open Lazy.nvim plugin manager
@@ -16,6 +16,9 @@ map('n', '<C-s>', function()
 end)
 -- and in insert mode
 map({ 'i', 'x' }, '<C-s>', '<esc>:w<cr>')
+
+-- jump to the end of the line in insert mode
+map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
 
 -- source buffer
 map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
