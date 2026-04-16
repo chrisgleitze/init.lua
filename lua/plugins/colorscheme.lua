@@ -17,11 +17,22 @@ return {
     --     vim.cmd('colorscheme rose-pine-main')
     -- end,
 
-    'gruvbox-community/gruvbox',
+    -- 'gruvbox-community/gruvbox',
+    -- lazy = false,
+    -- priority = 1000,
+    -- config = function()
+    --     vim.g.gruvbox_contrast_dark = 'hard'
+    --     vim.cmd('colorscheme gruvbox')
+    -- end,
+
+    'vague-theme/vague.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-        vim.g.gruvbox_contrast_dark = 'hard'
-        vim.cmd('colorscheme gruvbox')
+        require('vague').setup({
+            bold = false,
+            italic = false,
+        })
+        vim.cmd.colorscheme('vague')
     end,
 }
