@@ -2,6 +2,7 @@ local o = vim.opt
 
 -- General
 o.backup = false
+o.clipboard = 'unnamedplus'
 o.guicursor = ''
 o.hidden = true
 o.linebreak = true
