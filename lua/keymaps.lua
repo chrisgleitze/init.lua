@@ -32,27 +32,7 @@ map('n', '<leader>QQ', function()
     vim.cmd('wqa!')
 end)
 
--- load the last session manually
-map('n', '<leader>Qs', function()
-    require('persistence').load({ last = true })
-end)
-
--- select a session to load
-map('n', '<leader>QS', function()
-    require('persistence').select()
-end)
-
--- load the last session for the current directory
-map('n', '<leader>Ql', function()
-    require('persistence').load()
-end)
-
--- stop Persistence => session won't be saved on exit
-map('n', '<leader>Qd', function()
-    require('persistence').stop()
-end)
-
--- copy and paste to system clipboard
+-- copy to and paste from system clipboard
 map('v', '<leader>Y', '"+y')
 map('v', '<leader>P', '"+p')
 
@@ -71,6 +51,9 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 
 -- open buffer via buffer list
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
+
+-- opens lazygit instance of current directory in new tmux windows
+map('n', '<leader>gg', '<cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. ' -- lazygit <CR><CR>')
 
 -- join lines, cursor doesn't move
 map('n', 'J', 'mzJ`z')
