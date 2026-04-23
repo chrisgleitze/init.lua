@@ -15,7 +15,7 @@ return {
         set('n', '<C-j>', nvim_tmux_nav.NvimTmuxNavigateDown)
         set('n', '<C-k>', nvim_tmux_nav.NvimTmuxNavigateUp)
         set('n', '<C-l>', nvim_tmux_nav.NvimTmuxNavigateRight)
-        set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
-        set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
+        -- set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
+        -- set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
     end,
 }

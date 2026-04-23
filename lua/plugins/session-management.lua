@@ -1,7 +1,7 @@
--- session management plugin
+-- session management
 return {
     'folke/persistence.nvim',
-    event = 'BufReadPre', -- this will only start session saving when an actual file was opened
+    event = 'VimEnter',
     opts = {
         need = 1, -- save once at least one real file buffer is open
         branch = true, -- keep separate sessions per git branch
@@ -49,5 +49,26 @@ return {
             end
             vim.cmd('silent! mks! ' .. vim.fn.fnameescape(persistence.current()))
         end
+
+        local map = vim.keymap.set
+        -- load the last session manually
+        map('n', '<leader>Qs', function()
+            require('persistence').load({ last = true })
+        end)
+
+        -- select a session to load
+        map('n', '<leader>QS', function()
+            require('persistence').select()
+        end)
+
+        -- load the last session for the current directory
+        map('n', '<leader>Ql', function()
+            require('persistence').load()
+        end)
+
+        -- stop Persistence => session won't be saved on exit
+        map('n', '<leader>Qd', function()
+            require('persistence').stop()
+        end)
     end,
 }
