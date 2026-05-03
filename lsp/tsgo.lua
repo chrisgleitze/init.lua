@@ -1,8 +1,18 @@
 -- npm i -g @typescript/native-preview
 
+local tsgo_package = vim.fn.stdpath('data') .. '/mason/packages/tsgo/node_modules/@typescript/native-preview'
+local tsgo_js = tsgo_package .. '/bin/tsgo.js'
+local native_tsgo = vim.fn.stdpath('data') .. '/mason/packages/tsgo/node_modules/@typescript/native-preview-linux-x64/lib/tsgo'
+
+if vim.fn.filereadable(tsgo_js) == 0 or vim.fn.executable(native_tsgo) == 0 then
+    return {
+        enabled = false,
+    }
+end
+
 ---@type vim.lsp.Config
 return {
-    cmd = { 'tsgo', '--lsp', '--stdio' },
+    cmd = { 'node', tsgo_js, '--lsp', '--stdio' },
     filetypes = {
         'javascript',
         'javascriptreact',

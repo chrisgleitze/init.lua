@@ -86,11 +86,16 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
     once = true,
     callback = function()
-        local server_configs = vim.iter(vim.api.nvim_get_runtime_file('lsp/*.lua', true))
-            :map(function(file)
-                return vim.fn.fnamemodify(file, ':t:r')
-            end)
-            :totable()
+        local config_lsp_dir = vim.fn.stdpath('config') .. '/lsp'
+        local server_configs = {}
+
+        for name, file_type in vim.fs.dir(config_lsp_dir) do
+            if file_type == 'file' and name:match('%.lua$') then
+                local server_name = name:gsub('%.lua$', '')
+                table.insert(server_configs, server_name)
+            end
+        end
+
         vim.lsp.enable(server_configs)
     end,
 })
