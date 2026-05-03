@@ -15,6 +15,40 @@ return {
             'williamboman/mason-lspconfig.nvim',
         },
         config = function()
+            local function prefer_wsl_node()
+                if vim.fn.has('wsl') ~= 1 then
+                    return
+                end
+
+                local nvm_bins = vim.fn.glob(vim.env.HOME .. '/.nvm/versions/node/*/bin', false, true)
+                table.sort(nvm_bins, function(a, b)
+                    local function version(path)
+                        local major, minor, patch = path:match('/v(%d+)%.(%d+)%.(%d+)/bin$')
+                        return tonumber(major) or 0, tonumber(minor) or 0, tonumber(patch) or 0
+                    end
+
+                    local a_major, a_minor, a_patch = version(a)
+                    local b_major, b_minor, b_patch = version(b)
+
+                    if a_major ~= b_major then
+                        return a_major > b_major
+                    end
+                    if a_minor ~= b_minor then
+                        return a_minor > b_minor
+                    end
+                    return a_patch > b_patch
+                end)
+
+                for _, bin in ipairs(nvm_bins) do
+                    if vim.fn.executable(bin .. '/npm') == 1 then
+                        vim.env.PATH = bin .. ':' .. vim.env.PATH
+                        return
+                    end
+                end
+            end
+
+            prefer_wsl_node()
+
             -- import mason
             local mason = require('mason')
 
