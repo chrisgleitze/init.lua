@@ -13,6 +13,15 @@ o.scrolloff = 10
 o.swapfile = false
 o.termguicolors = true
 o.undofile = true
+o.shada = {
+    '!',
+    "'100",
+    '<50',
+    's10',
+    'h',
+    'r/tmp/',
+    'r/private/',
+}
 o.sessionoptions = {
     'buffers',
     'curdir',
