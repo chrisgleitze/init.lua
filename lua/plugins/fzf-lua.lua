@@ -59,6 +59,7 @@ return {
         { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = '[f]ind [o]ld files' },
         { '<leader>fa', '<cmd>FzfLua autocmds<cr>', desc = '[f]ind [a]utocommands' },
         { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'find [g]it [s]tatus' },
+        { '<leader>gd', '<cmd>FzfLua git_diff<cr>', desc = 'find [g]it [s]tatus' },
         { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'find [g]it [c]ommits' },
         { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'find [g]it [c]ommits in current file' },
         { '<leader>gbl', '<cmd>FzfLua git_blame<cr>', desc = 'find [g]it [bl]ame' },
