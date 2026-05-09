@@ -1,6 +1,16 @@
 -- overlays *'s over defined patterns in defined files
 return {
     'laytan/cloak.nvim',
+    event = {
+        'BufReadPre .env*',
+        'BufReadPre .dev.vars',
+        'BufReadPre auth.json',
+        'BufReadPre wrangler.toml',
+        'BufNewFile .env*',
+        'BufNewFile .dev.vars',
+        'BufNewFile auth.json',
+        'BufNewFile wrangler.toml',
+    },
     config = function()
         require('cloak').setup({
             enabled = true,
