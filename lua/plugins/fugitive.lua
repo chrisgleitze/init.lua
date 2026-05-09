@@ -2,12 +2,7 @@ return {
     'tpope/vim-fugitive',
     cmd = {
         'Git',
-        'Git blame',
-        'Git log',
-        'Git diff',
         'Gwrite',
-        'Git commit',
-        'Git push',
     },
     dependencies = {
         {
