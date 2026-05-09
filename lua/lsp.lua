@@ -24,12 +24,34 @@ end)
 -- enable diagnostics by default
 vim.diagnostic.enable(true)
 vim.diagnostic.config({
-    update_in_insert = true,
+    update_in_insert = false,
     severity_sort = true,
     float = {
         source = true,
+        border = 'rounded',
     },
-    virtual_text = true,
+    virtual_text = {
+        enabled = true,
+        prefix = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+                return '🭰× '
+            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+                return '🭰▲ '
+            else
+                return '🭰• '
+            end
+        end,
+        suffix = '🭵',
+    },
+    underline = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = ' ×',
+            [vim.diagnostic.severity.WARN] = ' ▲',
+            [vim.diagnostic.severity.HINT] = ' •',
+            [vim.diagnostic.severity.INFO] = ' •',
+        },
+    },
 })
 
 local function show_buffer_diagnostics(bufnr, quiet)
@@ -65,32 +87,6 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
             show_buffer_diagnostics(args.buf, true)
         end
     end,
-})
-
--- diagnostic visuals
-vim.diagnostic.config({
-    virtual_text = {
-        enabled = true,
-        prefix = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.ERROR then
-                return '🭰× '
-            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
-                return '🭰▲ '
-            else
-                return '🭰• '
-            end
-        end,
-        suffix = '🭵',
-    },
-    underline = true,
-    signs = {
-        text = {
-            [vim.diagnostic.severity.ERROR] = ' ×',
-            [vim.diagnostic.severity.WARN] = ' ▲',
-            [vim.diagnostic.severity.HINT] = ' •',
-            [vim.diagnostic.severity.INFO] = ' •',
-        },
-    },
 })
 
 -- set up LSP servers
