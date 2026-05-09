@@ -81,17 +81,8 @@ return {
                     'tsgo',
                     'tailwindcss',
                 },
-                automatic_enable = {
-                    -- it's possible that LSPs are loaded twice into the buffer by default
-                    -- due to recent changes to mason-lspconfig;
-                    -- exclude the redundancies here, so only my own lsp-configs are loaded
-                    exclude = {
-                        'bashls',
-                        'clangd',
-                        'jdtls',
-                        'phpactor',
-                    },
-                },
+                -- LSP servers are configured and enabled from lsp/*.lua.
+                automatic_enable = false,
             })
         end,
     },
