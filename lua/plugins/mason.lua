@@ -10,6 +10,7 @@ return {
     {
         -- Mason, package manager for LSPs, linters, formatters etc.
         'williamboman/mason.nvim',
+        cmd = 'Mason',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
