@@ -2,13 +2,21 @@
 local M = {}
 local map = vim.keymap.set
 
-map('n', 'K', vim.lsp.buf.hover)
-map('n', '<leader>vws', vim.lsp.buf.workspace_symbol)
-map('n', '<leader>vca', vim.lsp.buf.code_action)
-map('n', '<leader>vrr', vim.lsp.buf.references)
-map('n', '<leader>vrn', vim.lsp.buf.rename)
-map('n', '<leader>vsh', vim.lsp.buf.signature_help)
--- map('i', '<C-s>', vim.lsp.buf.signature_help)
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('cg/lsp_keymaps', { clear = true }),
+    callback = function(args)
+        local function lsp_map(lhs, rhs)
+            map('n', lhs, rhs, { buffer = args.buf })
+        end
+
+        lsp_map('K', vim.lsp.buf.hover)
+        lsp_map('<leader>vws', vim.lsp.buf.workspace_symbol)
+        lsp_map('<leader>vca', vim.lsp.buf.code_action)
+        lsp_map('<leader>vrr', vim.lsp.buf.references)
+        lsp_map('<leader>vrn', vim.lsp.buf.rename)
+        lsp_map('<leader>vsh', vim.lsp.buf.signature_help)
+    end,
+})
 
 -- diagnostic keymaps
 map('n', '<leader>vd', function()
