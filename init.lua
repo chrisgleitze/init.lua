@@ -1,3 +1,6 @@
+-- enable new quicker Lua module loader
+vim.loader.enable()
+
 local g = vim.g
 
 -- leader key
