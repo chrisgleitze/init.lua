@@ -1,6 +1,69 @@
 -- Debugger
 return {
     'mfussenegger/nvim-dap',
+    keys = {
+        { '<leader>dv', '<cmd>DapViewToggle<cr>' },
+        {
+            '<leader>db',
+            function()
+                require('dap').toggle_breakpoint()
+            end,
+        },
+        {
+            '<leader>dc',
+            function()
+                require('dap').continue()
+            end,
+        },
+        {
+            '<leader>di',
+            function()
+                require('dap').step_into()
+            end,
+        },
+        {
+            '<leader>do',
+            function()
+                require('dap').step_over()
+            end,
+        },
+        {
+            '<leader>da',
+            function()
+                require('dap').step_back()
+            end,
+        },
+        {
+            '<leader>du',
+            function()
+                require('dap').step_out()
+            end,
+        },
+        {
+            '<leader>dr',
+            function()
+                require('dap').restart()
+            end,
+        },
+        {
+            '<leader>dx',
+            function()
+                require('dap').terminate()
+            end,
+        },
+        {
+            '<leader>df',
+            function()
+                require('fzf-lua').dap_breakpoints()
+            end,
+        },
+        {
+            '<leader>B',
+            function()
+                require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+            end,
+        },
+    },
     dependencies = {
         {
             'igorlfs/nvim-dap-view',
@@ -28,22 +91,7 @@ return {
     },
     config = function()
         local dap = require('dap')
-        dap.set_log_level('DEBUG')
-        local map = vim.keymap.set
-
-        map('n', '<leader>dv', '<cmd>DapViewToggle<cr>')
-        map('n', '<leader>db', dap.toggle_breakpoint)
-        map('n', '<leader>dc', dap.continue)
-        map('n', '<leader>di', dap.step_into)
-        map('n', '<leader>do', dap.step_over)
-        map('n', '<leader>da', dap.step_back)
-        map('n', '<leader>du', dap.step_out)
-        map('n', '<leader>dr', dap.restart)
-        map('n', '<leader>dx', dap.terminate)
-        map('n', '<leader>df', '<cmd>FzfLua dap_breakpoints<cr>')
-        map('n', '<leader>B', function()
-            dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-        end)
+        dap.set_log_level('WARN')
 
         -- opens UI when starting a new debug session
         local dv = require('dap-view')
