@@ -11,26 +11,30 @@ return {
 
         persistence.setup(opts)
 
-        -- directories to exclude
-        local excluded_dirs = {
-            '/tmp',
-            vim.fn.expand('~/'),
-            vim.fn.expand('/'),
-        }
-
-        local function is_excluded()
-            local cwd = vim.fn.getcwd()
-
-            for _, dir in ipairs(excluded_dirs) do
-                if cwd == dir or cwd:find('^' .. vim.pesc(dir .. '/')) then
-                    return true
-                end
-            end
-
-            return false
+        local function normalize_dir(path)
+            -- compare canonical directory strings so "~" and trailing slashes do not matter.
+            return vim.fn.fnamemodify(vim.fn.expand(path), ':p'):gsub('([^/])/$', '%1')
         end
 
-        local function update_persistence()
+        local home = normalize_dir('~')
+        local tmp = normalize_dir('/tmp')
+
+        local function is_excluded(path)
+            local cwd = normalize_dir(path or vim.fn.getcwd())
+            -- exclude home/root exactly; exclude /tmp recursively.
+            return cwd == home or cwd == '/' or cwd == tmp or cwd:sub(1, #tmp + 1) == tmp .. '/'
+        end
+
+        local original_load = persistence.load
+        persistence.load = function(load_opts)
+            -- do not load the current directory's session while persistence is disabled there.
+            if not (load_opts and load_opts.last) and is_excluded() then
+                return
+            end
+            return original_load(load_opts)
+        end
+
+        local function sync_persistence()
             if is_excluded() then
                 persistence.stop()
             else
@@ -38,9 +42,12 @@ return {
             end
         end
 
-        vim.api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
-            callback = update_persistence,
+        vim.api.nvim_create_autocmd('DirChanged', {
+            group = vim.api.nvim_create_augroup('cg/persistence', { clear = true }),
+            callback = sync_persistence,
         })
+        -- setup() starts persistence, so apply the exclusion immediately.
+        sync_persistence()
 
         -- avoid hit-enter prompts from :mksession messages when quitting
         persistence.save = function()
