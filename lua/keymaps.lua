@@ -53,7 +53,9 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
 
 -- opens lazygit instance of current directory in new tmux windows
-map('n', '<leader>gg', '<cmd>!tmux new-window -c ' .. vim.fn.getcwd() .. ' -- lazygit <CR><CR>')
+map('n', '<leader>gg', function()
+    vim.fn.jobstart({ 'tmux', 'new-window', '-c', vim.fn.getcwd(), '--', 'lazygit' }, { detach = true })
+end)
 
 -- join lines, cursor doesn't move
 map('n', 'J', 'mzJ`z')
