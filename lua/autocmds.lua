@@ -42,7 +42,15 @@ autocmd('BufReadPost', {
 autocmd('BufWritePre', {
     group = vim.api.nvim_create_augroup('cg/whitespace', {}),
     pattern = '*',
-    command = [[%s/\s\+$//e]],
+    callback = function(args)
+        if not vim.bo[args.buf].modifiable or vim.bo[args.buf].buftype ~= '' then
+            return
+        end
+
+        local view = vim.fn.winsaveview()
+        vim.cmd([[%s/\s\+$//e]])
+        vim.fn.winrestview(view)
+    end,
 })
 
 -- quit Lazy.nvim with Esc
