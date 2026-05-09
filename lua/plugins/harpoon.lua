@@ -1,79 +1,68 @@
 return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
-    lazy = false,
     -- dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
         local harpoon = require('harpoon')
 
         harpoon:setup()
+    end,
+    keys = function()
+        local function harpoon_list(action)
+            return function()
+                local list = require('harpoon'):list()
+                list[action](list)
+            end
+        end
 
-        local set = vim.keymap.set
+        local keys = {
+            { '<leader>A', harpoon_list('prepend') },
+            { '<leader>a', harpoon_list('add') },
+            {
+                '<C-e>',
+                function()
+                    local harpoon = require('harpoon')
+                    harpoon.ui:toggle_quick_menu(harpoon:list())
+                end,
+            },
+        }
 
-        set('n', '<leader>A', function()
-            harpoon:list():prepend()
-        end)
-        set('n', '<leader>a', function()
-            harpoon:list():add()
-        end)
-        set('n', '<C-e>', function()
-            harpoon.ui:toggle_quick_menu(harpoon:list())
-        end)
+        local function select(index)
+            return function()
+                require('harpoon'):list():select(index)
+            end
+        end
 
-        -- switch to harpooned file 1-8
-        set('n', '<leader>q', function()
-            harpoon:list():select(1)
-        end)
-        set('n', '<leader>w', function()
-            harpoon:list():select(2)
-        end)
-        set('n', '<leader>e', function()
-            harpoon:list():select(3)
-        end)
-        set('n', '<leader>r', function()
-            harpoon:list():select(4)
-        end)
-        set('n', '<leader>u', function()
-            harpoon:list():select(5)
-        end)
-        set('n', '<leader>i', function()
-            harpoon:list():select(6)
-        end)
-        set('n', '<leader>o', function()
-            harpoon:list():select(7)
-        end)
-        set('n', '<leader>p', function()
-            harpoon:list():select(8)
-        end)
+        vim.list_extend(keys, {
+            -- switch to harpooned file 1-8
+            { '<leader>q', select(1) },
+            { '<leader>w', select(2) },
+            { '<leader>e', select(3) },
+            { '<leader>r', select(4) },
+            { '<leader>u', select(5) },
+            { '<leader>i', select(6) },
+            { '<leader>o', select(7) },
+            { '<leader>p', select(8) },
+        })
 
-        -- susbstitute harpoon file 1-8 with new files
-        set('n', '<leader><C-q>', function()
-            harpoon:list():replace_at(1)
-        end)
-        set('n', '<leader><C-w>', function()
-            harpoon:list():replace_at(2)
-        end)
-        set('n', '<leader><C-e>', function()
-            harpoon:list():replace_at(3)
-        end)
-        set('n', '<leader><C-r>', function()
-            harpoon:list():replace_at(4)
-        end)
-        set('n', '<leader><C-u>', function()
-            harpoon:list():replace_at(5)
-        end)
-        set('n', '<leader><C-i>', function()
-            harpoon:list():replace_at(6)
-        end)
-        set('n', '<leader><C-o>', function()
-            harpoon:list():replace_at(7)
-        end)
-        set('n', '<leader><C-p>', function()
-            harpoon:list():replace_at(8)
-        end)
+        local function replace(index)
+            return function()
+                require('harpoon'):list():replace_at(index)
+            end
+        end
 
-        -- toggle previous & next buffers stored within Harpoon list
-        -- set("n", "<C-S-P>", function() harpoon:list():prev() end)
-        -- set("n", "<C-S-N>", function() harpoon:list():next() end)
+        vim.list_extend(keys, {
+            -- substitute harpooned file 1-8 with new files
+            { '<leader><C-q>', replace(1) },
+            { '<leader><C-w>', replace(2) },
+            { '<leader><C-e>', replace(3) },
+            { '<leader><C-r>', replace(4) },
+            { '<leader><C-u>', replace(5) },
+            { '<leader><C-i>', replace(6) },
+            { '<leader><C-o>', replace(7) },
+            { '<leader><C-p>', replace(8) },
+        })
+
+        return keys
     end,
 }
