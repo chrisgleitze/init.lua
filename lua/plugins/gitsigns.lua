@@ -18,13 +18,13 @@ return {
             changedelete = { text = '▎' },
         },
         preview_config = { border = 'rounded' },
-        on_attach = function()
+        on_attach = function(bufnr)
             local gs = require('gitsigns')
 
             ---@param lhs string
             ---@param rhs function
             local function map(lhs, rhs)
-                vim.keymap.set('n', lhs, rhs)
+                vim.keymap.set('n', lhs, rhs, { buffer = bufnr })
             end
             map('gs[', gs.prev_hunk)
             map('gs]', gs.next_hunk)
