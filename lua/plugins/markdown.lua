@@ -3,6 +3,15 @@ return {
         'MeanderingProgrammer/render-markdown.nvim',
         ft = 'markdown',
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+        keys = {
+            {
+                '<leader>Md',
+                function()
+                    require('render-markdown').buf_toggle()
+                end,
+                ft = 'markdown',
+            },
+        },
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {
@@ -12,11 +21,6 @@ return {
                     enabled = true,
                     superscript = true,
                 },
-            },
-            keymaps = {
-                vim.keymap.set('n', '<leader>Md', function()
-                    require('render-markdown').buf_toggle()
-                end),
             },
         },
     },
