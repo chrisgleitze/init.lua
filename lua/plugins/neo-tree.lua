@@ -1,7 +1,7 @@
 return {
     'nvim-neo-tree/neo-tree.nvim',
-    lazy = false,
     branch = 'v3.x',
+    cmd = 'Neotree',
     dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-tree/nvim-web-devicons',
@@ -31,7 +31,7 @@ return {
         require('neo-tree').setup(opts)
     end,
     keys = {
-        vim.keymap.set('n', '<leader>t', '<Cmd>Neotree toggle<CR>'),
-        vim.keymap.set('n', '<leader>T', '<Cmd>Neotree position=current toggle<CR>'),
+        { '<leader>t', '<cmd>Neotree toggle<cr>' },
+        { '<leader>T', '<cmd>Neotree position=current toggle<cr>' },
     },
 }
