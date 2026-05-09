@@ -63,7 +63,8 @@ require('lazy').setup({
         { import = 'plugins' },
     },
     checker = {
-        enabled = true,
+        -- run checker only in UI, not in headless sessions
+        enabled = #vim.api.nvim_list_uis() > 0,
         notify = false,
     },
     ui = {
