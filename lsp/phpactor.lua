@@ -7,7 +7,7 @@
 return {
     cmd = { 'phpactor', 'language-server' },
     filetypes = { 'php' },
-    root_markers = { '.git', 'composer.json', '.phpactor.json', '.phpactor.yml' },
+    root_markers = { 'composer.json', '.phpactor.json', '.phpactor.yml', '.git' },
     workspace_required = true,
     init_options = {
         ['language_server_phpstan.enabled'] = false,

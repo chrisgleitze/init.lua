@@ -20,16 +20,16 @@ return {
         'typescript.tsx',
     },
     root_markers = {
-        '.git',
-        'jsconfig.json',
         'tsconfig.json',
         'tsconfig.base.json',
+        'jsconfig.json',
         'package.json',
         'package-lock.json',
         'yarn.lock',
         'pnpm-lock.yaml',
         'bun.lock',
         'bun.lockb',
+        '.git',
     },
     enabled = true,
 }
