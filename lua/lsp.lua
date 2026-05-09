@@ -2,12 +2,6 @@
 local M = {}
 local map = vim.keymap.set
 
-map('n', 'gd', function()
-    require('fzf-lua').lsp_definitions({ jump1 = true })
-end)
-map('n', 'gD', function()
-    require('fzf-lua').lsp_definitions({ jump1 = false })
-end)
 map('n', 'K', vim.lsp.buf.hover)
 map('n', '<leader>vws', vim.lsp.buf.workspace_symbol)
 map('n', '<leader>vca', vim.lsp.buf.code_action)
@@ -38,23 +32,40 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
--- disable and enable diagnostics in current buffer
+local function show_buffer_diagnostics(bufnr, quiet)
+    if quiet then
+        vim.diagnostic.show(nil, bufnr, nil, {
+            signs = true,
+            underline = false,
+            virtual_text = false,
+        })
+    else
+        vim.diagnostic.show(nil, bufnr)
+    end
+end
+
+-- hide and show inline diagnostics in current buffer, keeping signcolumn markers
 local function hide_diagnostics()
-    vim.diagnostic.config({
-        virtual_text = false,
-        signs = true,
-        underline = false,
-    })
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.b[bufnr].diagnostics_quiet = true
+    show_buffer_diagnostics(bufnr, true)
 end
 local function show_diagnostics()
-    vim.diagnostic.config({
-        virtual_text = true,
-        signs = true,
-        underline = true,
-    })
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.b[bufnr].diagnostics_quiet = false
+    show_buffer_diagnostics(bufnr, false)
 end
 map('n', '<leader>dh', hide_diagnostics)
 map('n', '<leader>ds', show_diagnostics)
+
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+    group = vim.api.nvim_create_augroup('cg/diagnostics_quiet', { clear = true }),
+    callback = function(args)
+        if vim.b[args.buf].diagnostics_quiet then
+            show_buffer_diagnostics(args.buf, true)
+        end
+    end,
+})
 
 -- diagnostic visuals
 vim.diagnostic.config({

@@ -39,6 +39,20 @@ return {
         })
     end,
     keys = {
+        {
+            'gd',
+            function()
+                require('fzf-lua').lsp_definitions({ jump1 = true })
+            end,
+            desc = 'go to definition',
+        },
+        {
+            'gD',
+            function()
+                require('fzf-lua').lsp_definitions({ jump1 = false })
+            end,
+            desc = 'find definitions',
+        },
         -- Alt-h toggles hidden files in search results on/off
         { '<leader><leader>', '<cmd>FzfLua files<cr>', desc = 'find files in project directory' },
         { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = '(not fuzzy) find by grepping in project directory' },
