@@ -3,7 +3,7 @@ return {
     {
         'saghen/blink.cmp',
         version = '1.*',
-        event = 'InsertEnter',
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             {
                 -- snippet engine
