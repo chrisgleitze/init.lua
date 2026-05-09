@@ -5,6 +5,11 @@ local map = vim.keymap.set
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('cg/lsp_keymaps', { clear = true }),
     callback = function(args)
+        if vim.b[args.buf].lsp_keymaps_set then
+            return
+        end
+        vim.b[args.buf].lsp_keymaps_set = true
+
         local function lsp_map(lhs, rhs)
             map('n', lhs, rhs, { buffer = args.buf })
         end
@@ -111,6 +116,7 @@ vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
             end
         end
 
+        table.sort(server_configs)
         vim.lsp.enable(server_configs)
     end,
 })
