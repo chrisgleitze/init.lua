@@ -2,7 +2,7 @@
 
 ## What
 
-Personal Neovim config (Lua, Neovim 0.11+) using lazy.nvim as the plugin manager. Gruvbox colorscheme, blink.cmp for completion, fzf-lua for fuzzy finding, conform.nvim for formatting, treesitter for syntax.
+Personal Neovim config (Lua, Neovim 0.11+) using lazy.nvim as the plugin manager. Vague colorscheme, blink.cmp for completion, fzf-lua for fuzzy finding, conform.nvim for formatting, and treesitter for syntax.
 
 ## Structure
 
@@ -18,7 +18,7 @@ Personal Neovim config (Lua, Neovim 0.11+) using lazy.nvim as the plugin manager
 
 ## How
 
-**Formatting:** StyLua for Lua, prettier for web languages, shfmt for shell. Config is in `.stylua.toml`. Conform.nvim runs formatters on save.
+**Formatting:** StyLua for Lua, clang-format for C/C++, prettier for web languages, shfmt for shell. Config is in `.stylua.toml`. Conform.nvim runs formatters on save.
 
 **Verify changes:** After editing any Lua file, check syntax with `lua -e "loadfile('<path>')"`.
 
@@ -26,7 +26,7 @@ Personal Neovim config (Lua, Neovim 0.11+) using lazy.nvim as the plugin manager
 
 **Add an LSP server:** Create `lsp/<name>.lua` returning a `vim.lsp.Config` table. Optionally add to `ensure_installed` in `lua/plugins/mason.lua:8`.
 
-**Add a filetype override:** Create `after/ftplugin/<filetype>.lua` with `vim.o` option assignments.
+**Add a filetype override:** Create `after/ftplugin/<filetype>.lua` with `vim.opt_local` option assignments.
 
 ## Key decisions
 
@@ -35,7 +35,7 @@ Personal Neovim config (Lua, Neovim 0.11+) using lazy.nvim as the plugin manager
 - TypeScript uses tsgo (native Go-based TS server), not ts_ls (`lsp/tsgo.lua`)
 - blink.cmp sets LSP capabilities globally — don't set them in individual LSP configs (`lua/plugins/completion.lua`)
 - schemastore.nvim is lazy-loaded and called inside `lsp/jsonls.lua` and `lsp/yamlls.lua`
-- mason-lspconfig `automatic_enable` excludes some servers to avoid duplicate loading (`lua/plugins/mason.lua`)
+- mason-lspconfig installs servers only; `automatic_enable = false` avoids duplicate loading because `lua/lsp.lua` enables `lsp/*.lua`
 
 ## Rules
 
