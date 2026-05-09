@@ -2,7 +2,7 @@ return {
     {
         -- turns TypeScript erros into plain English
         'dmmulroy/ts-error-translator.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
+        ft = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
         config = function()
             require('ts-error-translator').setup()
         end,
