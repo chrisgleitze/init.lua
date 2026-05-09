@@ -32,7 +32,8 @@ o.sessionoptions = {
 }
 
 -- important for performance
-o.timeout = false -- no timeout for mappings
+o.timeout = true
+o.timeoutlen = 400
 o.ttimeoutlen = 10 -- timeout for key codes
 o.updatetime = 300
 
