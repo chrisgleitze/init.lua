@@ -149,7 +149,7 @@ return {
             port = '${port}',
             executable = {
                 command = 'node',
-                args = { 'home/chris/js-debug/src/dapDebugServer.js', '${port}' },
+                args = { vim.fn.expand('~/js-debug/src/dapDebugServer.js'), '${port}' },
             },
         }
         dap.configurations.javascript = {
