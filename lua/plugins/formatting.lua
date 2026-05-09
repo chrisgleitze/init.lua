@@ -5,8 +5,8 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
         formatters_by_ft = {
-            c = { 'clangd' },
-            cpp = { 'clangd' },
+            c = { 'clang-format' },
+            cpp = { 'clang-format' },
             css = { 'prettier' },
             html = { 'prettier' },
             json = { 'prettier' },
@@ -24,13 +24,12 @@ return {
             yaml = { 'prettier' },
         },
         formatters = {
-            ['clangd'] = {
+            ['clang-format'] = {
                 prepend_args = { '-style=file', '-fallback-style=LLVM' },
             },
         },
         format_on_save = {
             timeout_ms = 1000,
-            lsp_fallback = true,
             lsp_format = 'fallback',
             async = false,
         },
