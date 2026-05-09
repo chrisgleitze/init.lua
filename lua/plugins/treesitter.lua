@@ -51,6 +51,10 @@ return {
             pattern = 'VeryLazy',
             once = true,
             callback = function()
+                if #vim.api.nvim_list_uis() == 0 then
+                    return
+                end
+
                 require('nvim-treesitter').install(parsers)
             end,
         })
