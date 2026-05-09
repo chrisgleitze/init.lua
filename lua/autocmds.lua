@@ -48,7 +48,7 @@ autocmd('BufWritePre', {
         end
 
         local view = vim.fn.winsaveview()
-        vim.cmd([[%s/\s\+$//e]])
+        vim.cmd([[keepjumps keeppatterns silent! %s/\s\+$//e]])
         vim.fn.winrestview(view)
     end,
 })
