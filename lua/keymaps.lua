@@ -54,6 +54,11 @@ map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
 
 -- opens lazygit instance of current directory in new tmux windows
 map('n', '<leader>gg', function()
+    if not vim.env.TMUX then
+        vim.notify('Not inside tmux', vim.log.levels.WARN)
+        return
+    end
+
     vim.fn.jobstart({ 'tmux', 'new-window', '-c', vim.fn.getcwd(), '--', 'lazygit' }, { detach = true })
 end)
 
