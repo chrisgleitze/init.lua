@@ -146,8 +146,16 @@ local servers_by_ft = {
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('cg/lsp_enable_by_filetype', { clear = true }),
     callback = function(args)
+        -- Filetype is the first filter: configs that do not apply to this
+        -- buffer are never resolved or loaded.
         local servers = servers_by_ft[vim.bo[args.buf].filetype]
         if not servers then
+            return
+        end
+
+        -- Match the Treesitter bigfile guard: skip expensive language servers
+        -- for buffers where interactive editing should stay lightweight.
+        if require('bigfile').is_big(args.buf) then
             return
         end
 
