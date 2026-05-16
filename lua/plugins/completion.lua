@@ -39,7 +39,8 @@ return {
                     border = 'none',
                     scrollbar = true,
                     draw = {
-                        treesitter = { 'lsp' },
+                        -- Avoid extra parser work while rendering completion items.
+                        treesitter = {},
                         gap = 2,
                         columns = {
                             { 'kind_icon', 'kind', gap = 1 },
@@ -49,7 +50,12 @@ return {
                 },
                 documentation = {
                     auto_show = true,
-                    auto_show_delay_ms = 0, -- show documentation immediately
+                    -- Delay docs slightly so quick typing does not constantly
+                    -- open and redraw the documentation window.
+                    auto_show_delay_ms = 250,
+                    -- The docs window can still show useful text without
+                    -- spending Treesitter work on every popup.
+                    treesitter_highlighting = false,
                 },
             },
             sources = {
