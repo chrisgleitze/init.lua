@@ -2,7 +2,13 @@ return {
     'echasnovski/mini.surround',
     recommended = true,
     version = false,
-    event = { 'BufReadPre', 'BufNewFile' },
+    keys = {
+        { 'ys', mode = { 'n', 'x' }, desc = 'Add surrounding' },
+        { 'ds', mode = 'n', desc = 'Delete surrounding' },
+        { 'cs', mode = 'n', desc = 'Replace surrounding' },
+        { 'S', mode = 'x', desc = 'Add surrounding to selection' },
+        { 'yss', mode = 'n', desc = 'Add surrounding to line' },
+    },
     opts = {
         mappings = {
             add = 'ys', -- Add surrounding in Normal and Visual modes (see below)
