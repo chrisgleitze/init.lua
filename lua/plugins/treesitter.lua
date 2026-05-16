@@ -35,14 +35,22 @@ return {
         }
 
         local group = vim.api.nvim_create_augroup('cg/treesitter', { clear = true })
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
+        -- Start parsers once the filetype is known. BufEnter would repeat this
+        -- check on every window/buffer hop without adding useful work.
+        vim.api.nvim_create_autocmd('FileType', {
             group = group,
-            callback = function()
-                if vim.bo.buftype ~= '' then
+            callback = function(args)
+                if vim.bo[args.buf].buftype ~= '' then
                     return
                 end
 
-                pcall(vim.treesitter.start, 0)
+                -- Large files are still editable, but parser startup can make
+                -- opening and scrolling them noticeably slower.
+                if require('bigfile').is_big(args.buf) then
+                    return
+                end
+
+                pcall(vim.treesitter.start, args.buf)
             end,
         })
 
