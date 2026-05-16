@@ -102,22 +102,67 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
     end,
 })
 
--- set up LSP servers
-vim.api.nvim_create_autocmd({ 'BufReadPre', 'BufNewFile' }, {
-    once = true,
-    callback = function()
-        local config_lsp_dir = vim.fn.stdpath('config') .. '/lsp'
-        local server_configs = {}
+-- Keep LSP config loading lazy by enabling only servers that match the
+-- current buffer's filetype.
+local servers_by_ft = {
+    astro = { 'emmet_ls', 'stylelint_lsp' },
+    bash = { 'bashls' },
+    blade = { 'intelephense' },
+    c = { 'clangd' },
+    cpp = { 'clangd' },
+    css = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
+    cuda = { 'clangd' },
+    eruby = { 'emmet_ls' },
+    html = { 'html', 'emmet_ls', 'stylelint_lsp', 'tailwindcss' },
+    htmlangular = { 'emmet_ls', 'tailwindcss' },
+    htmldjango = { 'emmet_ls' },
+    javascript = { 'tsgo', 'tailwindcss' },
+    ['javascript.jsx'] = { 'tsgo', 'tailwindcss' },
+    javascriptreact = { 'tsgo', 'emmet_ls', 'tailwindcss' },
+    json = { 'jsonls' },
+    jsonc = { 'jsonls' },
+    less = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
+    lua = { 'lua_ls' },
+    markdown = { 'tailwindcss' },
+    mdx = { 'tailwindcss' },
+    objc = { 'clangd' },
+    objcpp = { 'clangd' },
+    php = { 'intelephense', 'phpactor', 'tailwindcss' },
+    pug = { 'emmet_ls' },
+    sass = { 'emmet_ls', 'tailwindcss' },
+    scss = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
+    sh = { 'bashls' },
+    svelte = { 'emmet_ls', 'tailwindcss' },
+    templ = { 'html', 'emmet_ls' },
+    typescript = { 'tsgo', 'tailwindcss' },
+    ['typescript.tsx'] = { 'tsgo', 'tailwindcss' },
+    typescriptreact = { 'tsgo', 'emmet_ls', 'tailwindcss' },
+    vue = { 'emmet_ls', 'stylelint_lsp', 'tailwindcss' },
+    yaml = { 'yamlls' },
+}
 
-        for name, file_type in vim.fs.dir(config_lsp_dir) do
-            if file_type == 'file' and name:match('%.lua$') then
-                local server_name = name:gsub('%.lua$', '')
-                table.insert(server_configs, server_name)
+-- Enable only configs relevant to the current filetype, so JSON/YAML schema
+-- setup and other server configs are not loaded by the first unrelated buffer.
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('cg/lsp_enable_by_filetype', { clear = true }),
+    callback = function(args)
+        local servers = servers_by_ft[vim.bo[args.buf].filetype]
+        if not servers then
+            return
+        end
+
+        -- vim.lsp.enable() is global, so avoid re-enabling servers that were
+        -- already activated by an earlier buffer.
+        local to_enable = {}
+        for _, server in ipairs(servers) do
+            if not vim.lsp.is_enabled(server) then
+                table.insert(to_enable, server)
             end
         end
 
-        table.sort(server_configs)
-        vim.lsp.enable(server_configs)
+        if #to_enable > 0 then
+            vim.lsp.enable(to_enable)
+        end
     end,
 })
 
