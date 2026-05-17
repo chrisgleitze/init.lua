@@ -15,6 +15,11 @@ return {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {
+            -- Reuse the editor-wide bigfile guard so long notes or generated
+            -- Markdown stay cheap to open and scroll.
+            ignore = function(bufnr)
+                return require('bigfile').is_big(bufnr)
+            end,
             link = {
                 enabled = false, -- inline link icon rendering
                 footnote = {
