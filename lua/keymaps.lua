@@ -32,10 +32,6 @@ map('n', '<leader>QQ', function()
     vim.cmd('wqa!')
 end)
 
--- copy to and paste from system clipboard
-map('v', '<leader>Y', '"+y')
-map('v', '<leader>P', '"+p')
-
 -- copy and select all lines of current buffer
 map('n', 'yg', ':%y<CR>', { noremap = true, silent = true })
 map('n', 'vg', 'ggVG', { noremap = true, silent = true })
