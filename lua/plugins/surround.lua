@@ -1,6 +1,5 @@
 return {
     'echasnovski/mini.surround',
-    recommended = true,
     version = false,
     keys = {
         { 'ys', mode = { 'n', 'x' }, desc = 'Add surrounding' },
