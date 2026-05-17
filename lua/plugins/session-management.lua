@@ -25,21 +25,25 @@ return {
             return cwd == home or cwd == '/' or cwd == tmp or cwd:sub(1, #tmp + 1) == tmp .. '/'
         end
 
-        local original_load = persistence.load
-        persistence.load = function(load_opts)
-            -- do not load the current directory's session while persistence is disabled there.
-            if not (load_opts and load_opts.last) and is_excluded() then
-                return
-            end
-            return original_load(load_opts)
-        end
-
         local function sync_persistence()
             if is_excluded() then
                 persistence.stop()
             else
                 persistence.start()
             end
+        end
+
+        local original_load = persistence.load
+        persistence.load = function(load_opts)
+            -- Do not load the current directory's session while persistence is disabled there.
+            if not (load_opts and load_opts.last) and is_excluded() then
+                return
+            end
+
+            local result = original_load(load_opts)
+            -- A session file can change cwd; make sure saving follows the restored state.
+            sync_persistence()
+            return result
         end
 
         vim.api.nvim_create_autocmd('DirChanged', {
@@ -54,7 +58,15 @@ return {
             if is_excluded() then
                 return
             end
-            vim.cmd('silent! mks! ' .. vim.fn.fnameescape(persistence.current()))
+
+            local ok, err = pcall(
+                vim.fn.execute,
+                'mksession! ' .. vim.fn.fnameescape(persistence.current()),
+                'silent'
+            )
+            if not ok then
+                vim.api.nvim_err_writeln('Failed to save session: ' .. err)
+            end
         end
 
         local map = vim.keymap.set
