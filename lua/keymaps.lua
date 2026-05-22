@@ -20,6 +20,21 @@ map({ 'i', 'x' }, '<C-s>', '<esc>:w<cr>')
 -- jump to the end of the line in insert mode
 map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
 
+-- toggle blink completion for current buffer
+map('n', '<leader>c', function()
+    if vim.b.completion == false then
+        vim.b.completion = nil
+    else
+        vim.b.completion = false
+        pcall(function()
+            require('blink.cmp').hide()
+        end)
+    end
+
+    local status = vim.b.completion == false and 'disabled' or 'enabled'
+    vim.notify('Blink completion ' .. status .. ' for this buffer')
+end)
+
 -- source buffer
 map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
 
