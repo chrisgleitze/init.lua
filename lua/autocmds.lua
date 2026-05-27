@@ -73,13 +73,13 @@ autocmd('FileType', {
 
 -- highlight on yank effect
 autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('yank_group', {}),
-    pattern = '*',
+    group = vim.api.nvim_create_augroup('yank_group', { clear = true }),
     callback = function()
         vim.api.nvim_set_hl(0, 'YankHighlight', {
             bg = '#f5c542',
         })
-        vim.highlight.on_yank({
+
+        vim.hl.hl_op({
             higroup = 'YankHighlight',
             timeout = 40,
         })
