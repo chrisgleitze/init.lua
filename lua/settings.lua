@@ -34,7 +34,7 @@ o.sessionoptions = {
 -- important for performance
 o.timeout = true -- don't wait indefinitely for mapped keys
 o.timeoutlen = 400
-o.ttimeoutlen = 10 -- timeout for key codes
+o.ttimeoutlen = 50 -- timeout for key codes
 o.updatetime = 300
 
 -- Editing
