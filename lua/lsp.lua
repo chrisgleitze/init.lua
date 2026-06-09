@@ -134,6 +134,7 @@ local servers_by_ft = {
     sh = { 'bashls' },
     svelte = { 'emmet_ls', 'tailwindcss' },
     templ = { 'html', 'emmet_ls' },
+    typst = { 'tinymist' },
     typescript = { 'tsgo', 'tailwindcss' },
     ['typescript.tsx'] = { 'tsgo', 'tailwindcss' },
     typescriptreact = { 'tsgo', 'emmet_ls', 'tailwindcss' },

@@ -79,6 +79,7 @@ return {
                     -- 'prettier',
                     'phpactor',
                     'stylua',
+                    'tinymist',
                     'tsgo',
                     'tailwindcss',
                 },
