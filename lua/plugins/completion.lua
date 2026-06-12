@@ -36,9 +36,6 @@ return {
             completion = {
                 ghost_text = { enabled = true },
                 menu = {
-                    -- Delay the completion menu a bit as well, so suggestions
-                    -- do not pop up immediately while typing quickly.
-                    auto_show_delay_ms = 250,
                     border = 'none',
                     scrollbar = true,
                     draw = {

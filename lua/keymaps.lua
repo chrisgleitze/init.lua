@@ -18,7 +18,7 @@ end)
 map({ 'i', 'x' }, '<C-s>', '<esc>:w<cr>')
 
 -- jump to the end of the line in insert mode
-map({ 'i', 'c' }, '<C-l>', '<C-o>A', { desc = 'Go to the end of the line' })
+map({ 'i', 'c' }, '<C-l>', '<C-o>A')
 
 -- toggle blink completion for current buffer
 map('n', '<leader>c', function()
