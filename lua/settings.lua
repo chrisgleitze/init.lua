@@ -10,6 +10,7 @@ o.mouse = 'a'
 o.number = true
 o.relativenumber = true
 o.scrolloff = 10
+o.scrolloffpad = 1
 o.swapfile = false
 o.termguicolors = true
 o.undofile = true
