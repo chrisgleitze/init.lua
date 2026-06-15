@@ -5,6 +5,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         require('fzf-lua').setup({
+            ui_select = true,
             fzf_colors = true,
             fzf_opts = {
                 ['--no-scrollbar'] = false,
