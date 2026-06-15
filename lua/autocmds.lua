@@ -30,10 +30,10 @@ autocmd('BufWritePre', {
 -- quit Lazy.nvim with Esc
 autocmd('FileType', {
     pattern = 'lazy',
-    callback = function()
+    callback = function(args)
         vim.keymap.set('n', '<esc>', function()
             vim.api.nvim_win_close(0, false)
-        end, { buf = true, nowait = true })
+        end, { buf = args.buf, nowait = true })
     end,
 })
 
