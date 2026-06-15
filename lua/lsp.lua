@@ -10,8 +10,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
         vim.b[args.buf].lsp_keymaps_set = true
 
-        local function lsp_map(lhs, rhs)
-            map('n', lhs, rhs, { buf = args.buf })
+        local function lsp_map(lhs, rhs, mode)
+            map(mode or 'n', lhs, rhs, { buf = args.buf })
         end
 
         lsp_map('K', vim.lsp.buf.hover)
@@ -20,12 +20,31 @@ vim.api.nvim_create_autocmd('LspAttach', {
         lsp_map('<leader>vrr', vim.lsp.buf.references)
         lsp_map('<leader>vrn', vim.lsp.buf.rename)
         lsp_map('<leader>vsh', vim.lsp.buf.signature_help)
+        lsp_map('<leader>ve', function()
+            vim.lsp.buf.selection_range(1)
+        end, { 'n', 'x' })
+        lsp_map('<leader>vE', function()
+            vim.lsp.buf.selection_range(-1)
+        end, { 'n', 'x' })
     end,
 })
 
 -- diagnostic keymaps
 map('n', '<leader>vd', function()
     vim.diagnostic.open_float(nil, { border = 'rounded' })
+end)
+map('n', '<leader>dL', function()
+    local virtual_lines = vim.diagnostic.config().virtual_lines
+    local enable = not virtual_lines
+
+    vim.diagnostic.config({
+        virtual_lines = enable and {
+            current_line = true,
+            overflow = 'wrap',
+        } or false,
+    })
+
+    vim.notify('Diagnostic virtual lines ' .. (enable and 'enabled' or 'disabled'))
 end)
 map('n', '[d', function()
     vim.diagnostic.jump({ float = { border = 'rounded' }, count = -1 })
