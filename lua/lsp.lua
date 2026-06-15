@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.b[args.buf].lsp_keymaps_set = true
 
         local function lsp_map(lhs, rhs)
-            map('n', lhs, rhs, { buffer = args.buf })
+            map('n', lhs, rhs, { buf = args.buf })
         end
 
         lsp_map('K', vim.lsp.buf.hover)
@@ -44,7 +44,6 @@ vim.diagnostic.config({
         border = 'rounded',
     },
     virtual_text = {
-        enabled = true,
         prefix = function(diagnostic)
             if diagnostic.severity == vim.diagnostic.severity.ERROR then
                 return '🭰× '

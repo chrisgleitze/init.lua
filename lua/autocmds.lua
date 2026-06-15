@@ -33,7 +33,7 @@ autocmd('FileType', {
     callback = function()
         vim.keymap.set('n', '<esc>', function()
             vim.api.nvim_win_close(0, false)
-        end, { buffer = true, nowait = true })
+        end, { buf = true, nowait = true })
     end,
 })
 

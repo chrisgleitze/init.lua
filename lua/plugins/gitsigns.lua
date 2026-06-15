@@ -24,7 +24,7 @@ return {
             ---@param lhs string
             ---@param rhs function
             local function map(lhs, rhs)
-                vim.keymap.set('n', lhs, rhs, { buffer = bufnr })
+                vim.keymap.set('n', lhs, rhs, { buf = bufnr })
             end
             map('gs[', gs.prev_hunk)
             map('gs]', gs.next_hunk)
