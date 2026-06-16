@@ -3,6 +3,12 @@ local map = vim.keymap.set
 -- Esc also clears search highlighting and stops snippet session
 map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
 
+-- open native undotree
+map('n', '<leader>U', function()
+    vim.cmd.packadd('nvim.undotree')
+    vim.cmd.Undotree()
+end)
+
 -- open Lazy.nvim plugin manager
 map('n', '<leader>L', '<cmd>Lazy<cr>')
 
