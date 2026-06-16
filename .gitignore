@@ -23,7 +23,11 @@ api_keys.json
 credentials.json
 .secrets
 
+# AI Agents, Codex
+AGENTS.md
+
 # Claude Code
+CLAUDE.md
 .claude/
 .claude-code/
 claude_cache/
