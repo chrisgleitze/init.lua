@@ -27,16 +27,6 @@ autocmd('BufWritePre', {
     end,
 })
 
--- quit Lazy.nvim with Esc
-autocmd('FileType', {
-    pattern = 'lazy',
-    callback = function(args)
-        vim.keymap.set('n', '<esc>', function()
-            vim.api.nvim_win_close(0, false)
-        end, { buf = args.buf, nowait = true })
-    end,
-})
-
 -- don't auto continue comments in new line
 autocmd('FileType', {
     group = vim.api.nvim_create_augroup('no_auto_comment', {}),
