@@ -17,11 +17,11 @@ map('n', '<leader>Ma', '<cmd>Mason<cr>')
 
 -- write buffer in normal
 map('n', '<C-s>', function()
-    vim.cmd('write')
+    vim.cmd('write ++p')
     print('buffer saved')
 end)
 -- and in insert mode
-map({ 'i', 'x' }, '<C-s>', '<esc>:w<cr>')
+map({ 'i', 'x' }, '<C-s>', '<esc>:write ++p<cr>')
 
 -- jump to the end of the line in insert mode
 map({ 'i', 'c' }, '<C-l>', '<C-o>A')
