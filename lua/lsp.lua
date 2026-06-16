@@ -14,18 +14,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
             map(mode or 'n', lhs, rhs, { buf = args.buf })
         end
 
-        lsp_map('K', vim.lsp.buf.hover)
+        -- native LSP defaults:
+        -- hover: `K`
+        -- code actions: `gra`
+        -- rename: `grn`
+        -- references: `grr`
+        -- signature help: `CTRL-S` in  Insert mode
+        -- selection ranges: `an`/`in`
         lsp_map('<leader>vws', vim.lsp.buf.workspace_symbol)
-        lsp_map('<leader>vca', vim.lsp.buf.code_action)
-        lsp_map('<leader>vrr', vim.lsp.buf.references)
-        lsp_map('<leader>vrn', vim.lsp.buf.rename)
-        lsp_map('<leader>vsh', vim.lsp.buf.signature_help)
-        lsp_map('<leader>ve', function()
-            vim.lsp.buf.selection_range(1)
-        end, { 'n', 'x' })
-        lsp_map('<leader>vE', function()
-            vim.lsp.buf.selection_range(-1)
-        end, { 'n', 'x' })
     end,
 })
 
