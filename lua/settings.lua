@@ -40,6 +40,7 @@ o.updatetime = 300
 
 -- Editing
 o.autoindent = true
+o.autoread = true
 o.expandtab = true
 o.hlsearch = true
 o.incsearch = true
