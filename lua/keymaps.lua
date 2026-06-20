@@ -53,10 +53,6 @@ map('n', '<leader>QQ', function()
     vim.cmd('wqa!')
 end)
 
--- copy and select all lines of current buffer
-map('n', 'yg', ':%y<CR>', { noremap = true, silent = true })
-map('n', 'vg', 'ggVG', { noremap = true, silent = true })
-
 -- make Y behave like C and D - copy text until end of line
 map('n', 'Y', 'yg_')
 
