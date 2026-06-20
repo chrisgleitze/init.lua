@@ -36,7 +36,7 @@ autocmd('FileType', {
 })
 
 -- highlight on yank effect
-autocmd('TextYankPost', {
+autocmd({ 'TextYankPost', 'TextPutPost' }, {
     group = vim.api.nvim_create_augroup('yank_group', { clear = true }),
     callback = function()
         vim.api.nvim_set_hl(0, 'YankHighlight', {
