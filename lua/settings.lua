@@ -56,3 +56,4 @@ o.signcolumn = 'yes'
 o.splitbelow = true
 o.splitright = true
 o.winborder = 'single'
+o.pumborder = 'single'
