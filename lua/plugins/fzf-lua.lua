@@ -4,6 +4,8 @@ return {
     cmd = 'FzfLua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+        local actions = require('fzf-lua.actions')
+
         require('fzf-lua').setup({
             ui_select = true,
             fzf_colors = true,
@@ -36,6 +38,12 @@ return {
                     ['ctrl-u'] = 'half-page-up', -- in list of search results
                     ['ctrl-d'] = 'half-page-down', -- in list of search results
                     ['ctrl-c'] = 'abort',
+                },
+            },
+            actions = {
+                files = {
+                    true,
+                    ['ctrl-g'] = { fn = actions.toggle_ignore, reuse = true, header = false },
                 },
             },
         })
