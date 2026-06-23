@@ -39,6 +39,13 @@ return {
                 },
             },
         })
+
+        -- loads fzf-lua faster
+        local utils = require('fzf-lua.utils')
+        local version = { utils.fzf_version() }
+        utils.fzf_version = function()
+            return unpack(version)
+        end
     end,
     keys = {
         {
