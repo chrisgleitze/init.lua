@@ -89,11 +89,11 @@ return {
         { '<leader>fO', '<cmd>FzfLua nvim_options<cr>', desc = '[f]ind [o]ld files' },
         { '<leader>vh', '<cmd>FzfLua helptags<cr>', desc = '[v]iew/search Neovim [h]elp' },
         {
-            '<leader>fig',
+            '<leader>fid',
             function()
-                require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })
+                require('fzf-lua').files({ cwd = vim.fn.expand('~/projects/dotfiles') })
             end,
-            desc = 'find in neovim con[fig]uration',
+            desc = '[f]ind [i]n neovim [d]otfiles',
         },
         {
             '<C-x><C-f>',
