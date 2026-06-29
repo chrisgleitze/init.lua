@@ -1,7 +1,24 @@
 local map = vim.keymap.set
 
--- Esc also clears search highlighting and stops snippet session
-map({ 'n', 'i', 's', 'v' }, '<esc>', '<cmd>noh<cr><esc>')
+local clear = function()
+    vim.cmd.nohlsearch()
+    vim.cmd.echo()
+    vim.diagnostic.config({ virtual_lines = false })
+    pcall(vim.lsp.buf.clear_references)
+    pcall(function()
+        local ls = require('luasnip')
+        if ls.in_snippet() then
+            ls.unlink_current()
+        end
+    end)
+end
+
+-- Esc clears UI, stops snippet session
+map('n', '<Esc>', clear)
+map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
+    clear()
+    return '<Esc>'
+end, { expr = true })
 
 -- open native undotree
 map('n', '<leader>U', function()
@@ -23,7 +40,7 @@ end)
 -- and in insert mode
 map({ 'i', 'x' }, '<C-s>', '<esc>:write ++p<cr>')
 
--- jump to the end of the line in insert mode
+-- jump to the end of the line in insert, command mode
 map({ 'i', 'c' }, '<C-l>', '<C-o>A')
 
 -- toggle blink completion for current buffer
