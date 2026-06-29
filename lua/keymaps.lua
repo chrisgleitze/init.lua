@@ -41,9 +41,6 @@ map('n', '<leader>c', function()
     vim.notify('Blink completion ' .. status .. ' for this buffer')
 end)
 
--- source buffer
-map('n', '<leader>S', "<cmd>source % | lua print('buffer sourced')<cr>")
-
 -- restart nvim, incl. write current buffer
 map('n', '<leader>R', '<cmd>w | restart<cr>')
 
