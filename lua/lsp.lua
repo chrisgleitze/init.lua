@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- diagnostic keymaps
+-- view diagnostic message
 map('n', '<leader>vd', function()
     vim.diagnostic.open_float(nil, { border = 'rounded' })
 end)
@@ -42,11 +42,23 @@ map('n', '<leader>dL', function()
 
     vim.notify('Diagnostic virtual lines ' .. (enable and 'enabled' or 'disabled'))
 end)
+
+-- jump to next diagnostic message
+local function diagnostic_jump(count)
+    vim.diagnostic.jump({
+        count = count,
+        on_jump = function(diagnostic, bufnr)
+            if diagnostic then
+                vim.diagnostic.open_float({ bufnr = bufnr, border = 'rounded' })
+            end
+        end,
+    })
+end
 map('n', '[d', function()
-    vim.diagnostic.jump({ float = { border = 'rounded' }, count = -1 })
+    diagnostic_jump(-1)
 end)
 map('n', ']d', function()
-    vim.diagnostic.jump({ float = { border = 'rounded' }, count = 1 })
+    diagnostic_jump(1)
 end)
 
 -- enable diagnostics by default
