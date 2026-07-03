@@ -15,12 +15,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         -- native LSP defaults:
-        -- hover: K
-        -- code actions: gra
-        -- rename: grn
-        -- references: grr
-        -- signature help: CTRL-S in  Insert mode
-        -- selection ranges: an/in
+        -- K       | hover
+        -- gra     | code actions
+        -- gri     | implementation
+        -- grn     | rename
+        -- grr     | references
+        -- grt     | type definition
+        -- grx     | run codelens
+        -- gO      | document symbols
+        -- gx      | document link öffnen
+        -- C-s     | signature help in  Insert mode
+        -- an/in   | selection ranges
         lsp_map('<leader>vws', vim.lsp.buf.workspace_symbol)
     end,
 })
