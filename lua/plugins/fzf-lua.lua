@@ -7,7 +7,7 @@ return {
         local actions = require('fzf-lua.actions')
 
         require('fzf-lua').setup({
-            ui_select = true,
+            ui_select = {},
             fzf_colors = true,
             fzf_opts = {
                 ['--no-scrollbar'] = false,
