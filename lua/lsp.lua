@@ -40,7 +40,6 @@ map('n', '<leader>dL', function()
 
     vim.diagnostic.config({
         virtual_lines = enable and {
-            current_line = true,
             overflow = 'wrap',
         } or false,
     })
