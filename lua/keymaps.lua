@@ -59,7 +59,7 @@ map('n', '<leader>c', function()
 end)
 
 -- restart nvim, incl. write current buffer
-map('n', '<leader>R', '<cmd>w | restart<cr>')
+map('n', '<leader>R', '<cmd>write ++p | restart<cr>')
 
 -- quit nvim
 map('n', '<leader>QQ', function()
