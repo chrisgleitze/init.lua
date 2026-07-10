@@ -54,5 +54,6 @@ o.cmdheight = 1
 o.signcolumn = 'yes'
 o.splitbelow = true
 o.splitright = true
+o.statusline = ' %f%m%r%=%{&filetype} %l:%c '
 o.winborder = 'single'
 o.pumborder = 'single'
