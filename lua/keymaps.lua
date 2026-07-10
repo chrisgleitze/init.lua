@@ -100,11 +100,26 @@ map('n', '<C-u>', '<C-u>zz')
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
 
--- switch between windows
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
+-- nvim-tmux-navigation
+local function tmux_navigate(wincmd, pane)
+    return function()
+        local win = vim.api.nvim_get_current_win()
+        vim.cmd.wincmd(wincmd)
+        if win == vim.api.nvim_get_current_win() and vim.env.TMUX then
+            local zoomed = vim.fn.system({ 'tmux', 'display-message', '-p', '#{window_zoomed_flag}' }) == '1\n'
+            if zoomed then
+                return
+            end
+
+            vim.fn.jobstart({ 'tmux', 'select-pane', '-' .. pane }, { detach = true })
+        end
+    end
+end
+
+map('n', '<C-h>', tmux_navigate('h', 'L'))
+map('n', '<C-j>', tmux_navigate('j', 'D'))
+map('n', '<C-k>', tmux_navigate('k', 'U'))
+map('n', '<C-l>', tmux_navigate('l', 'R'))
 
 -- move lines up or down in normal, insert, and visual modes
 map('n', '<A-j>', ':m .+1<cr>==')
