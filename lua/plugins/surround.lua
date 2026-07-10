@@ -21,6 +21,13 @@ return {
             suffix_next = '',
         },
         search_method = 'cover_or_next',
+        -- `s` as "nearest common surrounding"
+        -- `dss` deletes it and `css` changes it
+        custom_surroundings = {
+            s = {
+                input = { { '%b()', '%b[]', '%b{}', '".-"', "'.-'", '`.-`' }, '^.().*().$' },
+            },
+        },
     },
     config = function(_, opts)
         require('mini.surround').setup(opts)
