@@ -35,6 +35,21 @@ autocmd('FileType', {
     end,
 })
 
+-- replaces defined patterns in specific files with ***
+autocmd({ 'BufReadPost', 'BufNewFile' }, {
+    group = vim.api.nvim_create_augroup('cg/cloak', { clear = true }),
+    pattern = { '.env*', '.dev.vars', 'auth.json', 'wrangler.toml' },
+    callback = function()
+        -- Conceal each non-space value char after ":" or "=" with "*".
+        vim.opt_local.conceallevel = 2
+        vim.opt_local.concealcursor = 'nvic'
+        vim.api.nvim_set_hl(0, 'CgCloak', { link = 'Comment', default = true })
+        vim.cmd([[syntax match CgCloak /\%([:=]\s*.*\)\@<=\S/ conceal cchar=*]])
+        -- env.vim wraps values in envValue, so add a contained match for .env files.
+        vim.cmd([[syntax match CgCloakEnv /\S/ contained conceal cchar=* containedin=envValue]])
+    end,
+})
+
 -- highlight on yank effect
 autocmd({ 'TextYankPost', 'TextPutPost' }, {
     group = vim.api.nvim_create_augroup('yank_group', { clear = true }),

@@ -1,38 +1,38 @@
 -- overlays *'s over defined patterns in defined files
 return {
-    'laytan/cloak.nvim',
-    event = {
-        'BufReadPre .env*',
-        'BufReadPre .dev.vars',
-        'BufReadPre auth.json',
-        'BufReadPre wrangler.toml',
-        'BufNewFile .env*',
-        'BufNewFile .dev.vars',
-        'BufNewFile auth.json',
-        'BufNewFile wrangler.toml',
-    },
-    config = function()
-        require('cloak').setup({
-            enabled = true,
-            cloak_character = '*',
-            -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
-            highlight_group = 'Comment',
-            patterns = {
-                {
-                    -- Match any file starting with ".env".
-                    -- This can be a table to match multiple file patterns.
-                    file_pattern = {
-                        '.env*',
-                        '.dev.vars',
-                        'auth.json',
-                        'wrangler.toml',
-                    },
-                    -- Match an equals sign and any character after it.
-                    -- This can also be a table of patterns to cloak,
-                    -- example: cloak_pattern = { ":.+", "-.+" } for yaml files.
-                    cloak_pattern = '=.+',
-                },
-            },
-        })
-    end,
+    -- 'laytan/cloak.nvim',
+    -- event = {
+    --     'BufReadPre .env*',
+    --     'BufReadPre .dev.vars',
+    --     'BufReadPre auth.json',
+    --     'BufReadPre wrangler.toml',
+    --     'BufNewFile .env*',
+    --     'BufNewFile .dev.vars',
+    --     'BufNewFile auth.json',
+    --     'BufNewFile wrangler.toml',
+    -- },
+    -- config = function()
+    --     require('cloak').setup({
+    --         enabled = true,
+    --         cloak_character = '*',
+    --         -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
+    --         highlight_group = 'Comment',
+    --         patterns = {
+    --             {
+    --                 -- Match any file starting with ".env".
+    --                 -- This can be a table to match multiple file patterns.
+    --                 file_pattern = {
+    --                     '.env*',
+    --                     '.dev.vars',
+    --                     'auth.json',
+    --                     'wrangler.toml',
+    --                 },
+    --                 -- Match an equals sign and any character after it.
+    --                 -- This can also be a table of patterns to cloak,
+    --                 -- example: cloak_pattern = { ":.+", "-.+" } for yaml files.
+    --                 cloak_pattern = '=.+',
+    --             },
+    --         },
+    --     })
+    -- end,
 }
