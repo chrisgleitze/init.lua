@@ -66,7 +66,7 @@ require('lazy').setup({
         notify = false,
     },
     ui = {
-        border = 'rounded',
+        border = 'single',
     },
     -- enable or disable luarocks
     rocks = {

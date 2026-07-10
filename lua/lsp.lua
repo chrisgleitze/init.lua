@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- view diagnostic message
 map('n', '<leader>vd', function()
-    vim.diagnostic.open_float(nil, { border = 'rounded' })
+    vim.diagnostic.open_float(nil)
 end)
 map('n', '<leader>dL', function()
     local virtual_lines = vim.diagnostic.config().virtual_lines
@@ -53,7 +53,7 @@ local function diagnostic_jump(count)
         count = count,
         on_jump = function(diagnostic, bufnr)
             if diagnostic then
-                vim.diagnostic.open_float({ bufnr = bufnr, border = 'rounded' })
+                vim.diagnostic.open_float({ bufnr = bufnr })
             end
         end,
     })
@@ -72,7 +72,6 @@ vim.diagnostic.config({
     severity_sort = true,
     float = {
         source = true,
-        border = 'rounded',
     },
     virtual_text = {
         prefix = function(diagnostic)

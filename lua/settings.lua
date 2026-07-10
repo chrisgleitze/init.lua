@@ -1,6 +1,6 @@
 local o = vim.opt
 
--- General
+-- general
 o.backup = false
 o.clipboard = 'unnamedplus'
 o.guicursor = ''
@@ -37,7 +37,7 @@ o.timeoutlen = 400
 o.ttimeoutlen = 50 -- timeout for key codes
 o.updatetime = 300
 
--- Editing
+-- editing
 o.autoindent = true
 o.autoread = true
 o.expandtab = true
