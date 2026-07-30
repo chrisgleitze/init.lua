@@ -26,10 +26,6 @@ return {
                     })
                 end,
             },
-            {
-                'saghen/blink.compat',
-                version = not vim.g.lazyvim_blink_main and '*',
-            },
         },
         opts = {
             snippets = { preset = 'luasnip' },
@@ -63,8 +59,6 @@ return {
                     text = {}, -- disabled
                     markdown = {}, -- disabled
                 },
-                -- adding any nvim-cmp sources here will enable them
-                -- with blink.compat
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
             keymap = {
