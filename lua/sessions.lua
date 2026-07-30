@@ -1,6 +1,5 @@
--- Local session management (replaces persistence.nvim).
--- Session files live in stdpath('state')/sessions/ and use persistence.nvim's
--- naming scheme, so sessions saved by the plugin keep working.
+-- Local session management
+-- Session files live in stdpath('state')/sessions/
 local M = {}
 
 local session_dir = vim.fn.stdpath('state') .. '/sessions/'
