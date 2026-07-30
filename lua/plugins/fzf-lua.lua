@@ -1,4 +1,4 @@
--- File Picker
+-- fuzzy search
 return {
     'ibhagwan/fzf-lua',
     cmd = 'FzfLua',
