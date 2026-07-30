@@ -1,6 +1,5 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false,
     build = ':TSUpdate',
     init = function()
         local parsers = {
