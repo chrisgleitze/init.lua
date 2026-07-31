@@ -47,10 +47,10 @@ return {
             prompt_position = 'top',
             preview_position = 'bottom',
             preview_size = 0.45,
-            -- border = 'rounded',
             flex = false,
         },
         preview = { line_numbers = true },
+        hl = { matched = 'SpecialKey', grep_match = 'SpecialKey' },
         keymaps = {
             close = { '<Esc>', '<C-c>' },
             move_up = { '<Up>', '<C-p>', '<C-k>' },
