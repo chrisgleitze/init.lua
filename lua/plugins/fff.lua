@@ -12,6 +12,12 @@ return {
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
+        vim.api.nvim_set_hl(
+            0,
+            'FFFCursorLine',
+            vim.tbl_extend('force', vim.api.nvim_get_hl(0, { name = 'CursorLine' }), { bold = true })
+        )
+
         -- disable grep tips and "No preview available"
         vim.api.nvim_create_autocmd('FileType', {
             group = vim.api.nvim_create_augroup('fff_empty_state', { clear = true }),
@@ -50,7 +56,7 @@ return {
             flex = false,
         },
         preview = { line_numbers = true },
-        hl = { matched = 'SpecialKey', grep_match = 'SpecialKey' },
+        hl = { cursor = 'FFFCursorLine', matched = 'SpecialKey', grep_match = 'SpecialKey' },
         keymaps = {
             close = { '<Esc>', '<C-c>' },
             move_up = { '<Up>', '<C-p>', '<C-k>' },
