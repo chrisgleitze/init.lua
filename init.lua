@@ -20,7 +20,6 @@ g.loaded_netrwPlugin = 1
 g.loaded_remote_plugins = 1
 g.loaded_rrhelper = 1
 g.loaded_spec = 1
-g.loaded_spellfile_plugin = 1
 g.loaded_tar = 1
 g.loaded_tarPlugin = 1
 g.loaded_tohtml = 1
