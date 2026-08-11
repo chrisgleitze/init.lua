@@ -9,7 +9,12 @@ return {
         -- [g]it [H]istory of the whole repo
         { '<leader>gH', '<cmd>DiffviewFileHistory<cr>' },
         -- [g]it [h]istory of current file
-        { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>' },
+        {
+            '<leader>gh',
+            function()
+                vim.cmd('DiffviewFileHistory ' .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)))
+            end,
+        },
     },
     config = function()
         local actions = require('diffview.actions')
