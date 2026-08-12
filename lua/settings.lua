@@ -2,7 +2,21 @@ local o = vim.opt
 
 -- general
 o.backup = false
-o.clipboard = 'unnamedplus'
+o.clipboard = ''
+-- WSL clipboard provider: copy via clip.exe, paste via PowerShell
+-- avoids slow OSC52/X11 clipboard paths
+vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+        ['+'] = 'clip.exe',
+        ['*'] = 'clip.exe',
+    },
+    paste = {
+        ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+}
 o.guicursor = ''
 o.hidden = true
 o.linebreak = true
