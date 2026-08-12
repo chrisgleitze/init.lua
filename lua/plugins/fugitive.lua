@@ -17,7 +17,7 @@ return {
         { '<leader>Gd', '<cmd>Git diff<cr>' },
         { '<leader>Gw', '<cmd>Gwrite | Git commit<cr>' },
         { '<leader>Gp', '<cmd>Git push<cr>' },
-
+        { '<leader>Ge', '<cmd>Git add -p %<cr>' },
         { '<leader>GVV', '<cmd>GV<cr>' },
         { '<leader>GV!', '<cmd>GV!<cr>' },
         { '<leader>GV?', '<cmd>GV?<cr>' },
