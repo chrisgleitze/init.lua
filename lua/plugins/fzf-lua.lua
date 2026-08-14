@@ -71,6 +71,13 @@ return {
             desc = 'find definitions',
         },
         -- { '<leader><leader>', '<cmd>FzfLua files<cr>', desc = 'find files in project directory' },
+        {
+            '<leader>fI',
+            function()
+                require('fzf-lua').files({ no_ignore = true })
+            end,
+            desc = '[f]ind files, incl. [I]gnored files',
+        },
         -- { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = '(not fuzzy) find by grepping in project directory' },
         -- { '<leader>fg', '<cmd>FzfLua grep<cr>', desc = 'fuzzy find by using ripgrep in project directory' },
         { '<leader>fc', '<cmd>FzfLua lgrep_curbuf<cr>', desc = '[f]ind (grep) in [c]urrent buffer' },
