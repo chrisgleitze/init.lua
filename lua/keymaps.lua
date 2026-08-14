@@ -29,9 +29,10 @@ end)
 -- open Lazy.nvim plugin manager
 map('n', '<leader>L', '<cmd>Lazy<cr>')
 
--- copy to terminal/system clipboard via OSC52
+-- copy/paste
 map('v', '<leader>y', '"+y')
-map('n', '<leader>Y', 'gg"+yG')
+map('n', '<leader>Y', '"+yg_')
+map('n', '<leader>p', '"+p')
 
 -- open Mason
 map('n', '<leader>Ma', '<cmd>Mason<cr>')
