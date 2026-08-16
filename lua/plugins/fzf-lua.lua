@@ -123,6 +123,6 @@ return {
             mode = 'i',
             desc = 'fuzzy complete path',
         },
-        -- { "<leader>ft", "<cmd>FzfLua undotree<cr>", desc = "Undotree" },
+        { '<leader>ft', '<cmd>FzfLua undotree<cr>', desc = 'Undotree' },
     },
 }
