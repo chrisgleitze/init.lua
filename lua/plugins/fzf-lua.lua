@@ -124,5 +124,6 @@ return {
             desc = 'fuzzy complete path',
         },
         { '<leader>ft', '<cmd>FzfLua undotree<cr>', desc = 'Undotree' },
+        { '<leader>fz', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
     },
 }
