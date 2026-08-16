@@ -1,8 +1,8 @@
--- npm i -g @typescript/native-preview
+-- npm install -g typescript@latest
 
-local tsgo_bin = vim.fn.stdpath('data') .. '/mason/bin/tsgo'
+local tsc_bin = vim.fn.stdpath('data') .. '/mason/bin/tsc'
 
-if vim.fn.executable(tsgo_bin) == 0 then
+if vim.fn.executable(tsc_bin) == 0 then
     return {
         enabled = false,
     }
@@ -10,7 +10,7 @@ end
 
 ---@type vim.lsp.Config
 return {
-    cmd = { tsgo_bin, '--lsp', '--stdio' },
+    cmd = { tsc_bin, '--lsp', '--stdio' },
     filetypes = {
         'javascript',
         'javascriptreact',
