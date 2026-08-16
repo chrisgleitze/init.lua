@@ -80,7 +80,7 @@ return {
                     'phpactor',
                     'stylua',
                     'tinymist',
-                    'tsgo',
+                    'tsc',
                     'tailwindcss',
                 },
                 -- LSP servers are configured and enabled from lsp/*.lua.
