@@ -26,8 +26,8 @@ return {
             local function map(lhs, rhs)
                 vim.keymap.set('n', lhs, rhs, { buf = bufnr })
             end
-            map('gs[', gs.prev_hunk)
             map('gs]', gs.next_hunk)
+            map('gs[', gs.prev_hunk)
             map('<leader>gsR', gs.reset_buffer)
             map('<leader>gsb', gs.blame)
             map('<leader>gsl', gs.blame_line)
