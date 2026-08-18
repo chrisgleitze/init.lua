@@ -6,4 +6,5 @@ vim.opt_local.wrap = true
 vim.opt_local.linebreak = true
 vim.opt_local.breakindent = true
 
-vim.keymap.set('n', 'zs', '1z=', { buffer = true })
+-- accept first spell suggestion for word under the cursor
+vim.keymap.set('n', 'zs', '1z=', { buf = 0 })
