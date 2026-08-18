@@ -18,6 +18,14 @@ return {
     },
     config = function()
         local actions = require('diffview.actions')
+        local function diffview_hl()
+            vim.api.nvim_set_hl(0, 'DiffviewDiffAdd', { bg = '#12351f' })
+            vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = '#451820' })
+            vim.api.nvim_set_hl(0, 'DiffviewDiffChange', { bg = '#2b2440' })
+            vim.api.nvim_set_hl(0, 'DiffviewDiffText', { bg = '#9a7a00' })
+            vim.api.nvim_set_hl(0, 'DiffviewDiffTextInline', { bg = '#9a7a00' })
+        end
+
         require('diffview').setup({
             enhanced_diff_hl = true,
             use_icons = true,
@@ -66,5 +74,8 @@ return {
                 },
             },
         })
+
+        diffview_hl()
+        vim.api.nvim_create_autocmd('ColorScheme', { callback = diffview_hl })
     end,
 }
