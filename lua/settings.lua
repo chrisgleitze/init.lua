@@ -3,17 +3,24 @@ local o = vim.opt
 -- general
 o.backup = false
 o.clipboard = ''
--- WSL clipboard provider: copy via clip.exe, paste via PowerShell
--- avoids slow OSC52/X11 clipboard paths
+-- WSL clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
+local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | clip.exe' }
+local wsl_paste = {
+    'powershell.exe',
+    '-NoLogo',
+    '-NoProfile',
+    '-Command',
+    '[Console]::OutputEncoding=[Text.UTF8Encoding]::new(); [Console]::Out.Write((Get-Clipboard -Raw).tostring().replace("`r", ""))',
+}
 vim.g.clipboard = {
     name = 'WslClipboard',
     copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
+        ['+'] = wsl_copy,
+        ['*'] = wsl_copy,
     },
     paste = {
-        ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        ['+'] = wsl_paste,
+        ['*'] = wsl_paste,
     },
     cache_enabled = 0,
 }
