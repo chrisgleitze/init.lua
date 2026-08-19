@@ -3,27 +3,6 @@ local o = vim.opt
 -- general
 o.backup = false
 o.clipboard = ''
--- WSL clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
-local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | clip.exe' }
-local wsl_paste = {
-    'powershell.exe',
-    '-NoLogo',
-    '-NoProfile',
-    '-Command',
-    '[Console]::OutputEncoding=[Text.UTF8Encoding]::new(); [Console]::Out.Write((Get-Clipboard -Raw).tostring().replace("`r", ""))',
-}
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ['+'] = wsl_copy,
-        ['*'] = wsl_copy,
-    },
-    paste = {
-        ['+'] = wsl_paste,
-        ['*'] = wsl_paste,
-    },
-    cache_enabled = 0,
-}
 o.guicursor = ''
 o.hidden = true
 o.linebreak = true
@@ -50,6 +29,28 @@ o.sessionoptions = {
     'help',
     'tabpages',
     'winsize',
+}
+
+-- WSL clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
+local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | clip.exe' }
+local wsl_paste = {
+    'powershell.exe',
+    '-NoLogo',
+    '-NoProfile',
+    '-Command',
+    '[Console]::OutputEncoding=[Text.UTF8Encoding]::new(); [Console]::Out.Write((Get-Clipboard -Raw).tostring().replace("`r", ""))',
+}
+vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+        ['+'] = wsl_copy,
+        ['*'] = wsl_copy,
+    },
+    paste = {
+        ['+'] = wsl_paste,
+        ['*'] = wsl_paste,
+    },
+    cache_enabled = 0,
 }
 
 -- important for performance
