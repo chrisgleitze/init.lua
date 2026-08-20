@@ -20,36 +20,47 @@ map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
     return '<Esc>'
 end, { expr = true })
 
+-- open Lazy.nvim plugin manager
+map('n', '<leader>L', '<cmd>Lazy<cr>')
+
+-- open Mason
+map('n', '<leader>Ma', '<cmd>Mason<cr>')
+
 -- open native undotree
 map('n', '<leader>U', function()
     vim.cmd.packadd('nvim.undotree')
     vim.cmd.Undotree()
 end)
 
--- open Lazy.nvim plugin manager
-map('n', '<leader>L', '<cmd>Lazy<cr>')
-
 -- copy/paste
 map('v', '<leader>y', '"+y')
 map('n', '<leader>Y', '"+yg_')
 map('n', '<leader>p', '"+p')
 
--- copy absolute und relative path of current file to clipboard
-local function copy_path(abs)
-    local path = vim.fn.expand(abs and '%:p' or '%:.')
-    vim.fn.setreg('+', path)
-    vim.notify('Copied ' .. path)
+-- copy current file path/context to clipboard
+local function copy_path(abs, with_line)
+    local text = vim.fn.expand(abs and '%:p' or '%:.')
+    if with_line then
+        text = ('%s:%d:%s'):format(text, vim.fn.line('.'), vim.api.nvim_get_current_line())
+    end
+    vim.fn.setreg('+', text)
+    vim.notify('Copied ' .. text)
 end
 
+-- relative and absolute path
 map('n', '<leader>yp', function()
     copy_path(false)
 end)
 map('n', '<leader>yP', function()
     copy_path(true)
 end)
-
--- open Mason
-map('n', '<leader>Ma', '<cmd>Mason<cr>')
+-- incl. line text
+map('n', '<leader>yl', function()
+    copy_path(false, true)
+end)
+map('n', '<leader>yL', function()
+    copy_path(true, true)
+end)
 
 -- write buffer in normal
 map('n', '<C-s>', function()
