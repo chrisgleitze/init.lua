@@ -34,6 +34,20 @@ map('v', '<leader>y', '"+y')
 map('n', '<leader>Y', '"+yg_')
 map('n', '<leader>p', '"+p')
 
+-- copy absolute und relative path of current file to clipboard
+local function copy_path(abs)
+    local path = vim.fn.expand(abs and '%:p' or '%:.')
+    vim.fn.setreg('+', path)
+    vim.notify('Copied ' .. path)
+end
+
+map('n', '<leader>yp', function()
+    copy_path(false)
+end)
+map('n', '<leader>yP', function()
+    copy_path(true)
+end)
+
 -- open Mason
 map('n', '<leader>Ma', '<cmd>Mason<cr>')
 
