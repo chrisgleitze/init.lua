@@ -136,7 +136,7 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
 local servers_by_ft = {
     astro = { 'emmet_ls', 'stylelint_lsp' },
     bash = { 'bashls' },
-    blade = { 'intelephense' },
+    blade = { 'intelephense', 'tailwindcss' },
     c = { 'clangd' },
     cpp = { 'clangd' },
     css = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
@@ -156,7 +156,7 @@ local servers_by_ft = {
     mdx = { 'tailwindcss' },
     objc = { 'clangd' },
     objcpp = { 'clangd' },
-    php = { 'intelephense', 'phpactor', 'tailwindcss' },
+    php = { 'intelephense', 'tailwindcss' },
     pug = { 'emmet_ls' },
     sass = { 'emmet_ls', 'tailwindcss' },
     scss = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
