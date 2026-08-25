@@ -35,6 +35,35 @@ autocmd('FileType', {
     end,
 })
 
+-- close utility buffers with q or Esc
+autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('cg/close_utility_buffers', { clear = true }),
+    pattern = {
+        'checkhealth',
+        'conform-info',
+        'dap-float',
+        'fugitive',
+        'fugitiveblame',
+        'help',
+        'lazy',
+        'lspinfo',
+        'man',
+        'nvim-undotree',
+        'qf',
+    },
+    callback = function(args)
+        vim.bo[args.buf].buflisted = false
+        for _, key in ipairs({ 'q', '<Esc>' }) do
+            vim.keymap.set('n', key, '<cmd>close<cr>', {
+                buffer = args.buf,
+                silent = true,
+                nowait = true,
+                desc = 'close buffer',
+            })
+        end
+    end,
+})
+
 -- replaces defined patterns in specific files with ***
 autocmd({ 'BufReadPost', 'BufNewFile' }, {
     group = vim.api.nvim_create_augroup('cg/cloak', { clear = true }),
