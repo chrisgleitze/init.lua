@@ -19,16 +19,24 @@
     "description": "For Loop"
   },
   "For-Each Loop using =>": {
-    "prefix": "foreach =>",
+    "prefix": ["foreach", "foreach =>"],
     "body": ["${1:array}.forEach(${2:element} => {", "    $0", "});"],
     "description": "For-Each Loop using =>"
   },
   "For-Of Loop": {
     "prefix": "forof",
-    "body": ["for (const ${1:element} of ${2:object}) {", "    $0", "}"],
+    "body": [
+      "for (const ${1:element} of ${2:object}) {",
+      "    $TM_SELECTED_TEXT$0",
+      "}"
+    ],
     "description": "For-Of Loop"
   },
-
+  "For-Await-Of Loop": {
+    "prefix": "forawaitof",
+    "body": ["for await (const ${1:element} of ${2:object}) {", "    $0", "}"],
+    "description": "For-Await-Of Loop"
+  },
   "Function Statement": {
     "prefix": "function",
     "body": ["function ${1:name}($2) {", "    $0", "}"],
@@ -46,7 +54,6 @@
   },
   "Switch Statement": {
     "prefix": "switch",
-
     "body": [
       "switch (${1:key}) {",
       "    case ${2:value}:",
@@ -71,7 +78,7 @@
   },
   "Try-Catch Statement": {
     "prefix": "trycatch",
-    "body": ["try {", "    $0", "} catch (${1:error}) {", "    ", "}"],
+    "body": ["try {", "    $1", "} catch (${2:error}) {", "    $0", "}"],
     "description": "Try-Catch Statement"
   },
   "Set Timeout Function": {

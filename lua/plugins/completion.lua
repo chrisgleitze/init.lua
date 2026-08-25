@@ -19,7 +19,7 @@ return {
                         region_check_events = 'CursorMoved',
                     })
                     luasnip.filetype_extend('javascriptreact', { 'javascript' })
-                    luasnip.filetype_extend('typescriptreact', { 'typescript' })
+                    luasnip.filetype_extend('typescriptreact', { 'typescript', 'javascriptreact' })
 
                     -- loads friendly-snippets
                     require('luasnip.loaders.from_vscode').lazy_load()
