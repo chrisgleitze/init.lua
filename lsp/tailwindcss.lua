@@ -70,6 +70,7 @@ return {
         'typescript',
         'typescriptreact',
         'vue',
+        'blade',
     },
     root_dir = function(bufnr, on_dir)
         -- Calling on_dir() is what opts the buffer into starting this LSP.

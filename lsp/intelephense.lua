@@ -3,5 +3,6 @@
 return {
     cmd = { 'intelephense', '--stdio' },
     filetypes = { 'php', 'blade' },
-    root_markers = { 'composer.json', '.git', '*.php' },
+    root_markers = { 'composer.json', '.git' },
+    workspace_required = false,
 }

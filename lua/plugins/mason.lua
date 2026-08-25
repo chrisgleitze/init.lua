@@ -77,7 +77,6 @@ return {
                     'intelephense',
                     'lua_ls',
                     -- 'prettier',
-                    'phpactor',
                     'stylua',
                     'tinymist',
                     'tsc',
