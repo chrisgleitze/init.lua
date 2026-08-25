@@ -14,13 +14,12 @@
     "body": [
       "for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
       "    $0",
-
       "}"
     ],
     "description": "For Loop"
   },
   "For-Each Loop using =>": {
-    "prefix": "foreach =>",
+    "prefix": ["foreach", "foreach =>"],
     "body": ["${1:array}.forEach(${2:element} => {", "    $0", "});"],
     "description": "For-Each Loop using =>"
   },
@@ -79,7 +78,7 @@
   },
   "Try-Catch Statement": {
     "prefix": "trycatch",
-    "body": ["try {", "    $0", "} catch (${1:error}) {", "    ", "}"],
+    "body": ["try {", "    $1", "} catch (${2:error}) {", "    $0", "}"],
     "description": "Try-Catch Statement"
   },
   "Set Timeout Function": {
