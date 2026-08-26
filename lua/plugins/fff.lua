@@ -57,6 +57,7 @@ return {
         },
         preview = { line_numbers = true },
         hl = { cursor = 'FFFCursorLine', matched = 'SpecialKey', grep_match = 'SpecialKey' },
+        grep = { enable_filename_constraint = true },
         keymaps = {
             close = { '<Esc>', '<C-c>' },
             move_up = { '<Up>', '<C-p>', '<C-k>' },
@@ -87,6 +88,18 @@ return {
             desc = '[f]ind current [W]ORD',
         },
         { '<leader>fr', fff('resume'), desc = '[f]ind in [r]esumed search' },
+        {
+            '<leader>fc',
+            function()
+                local path = vim.fn.expand('%:.')
+                if path == '' or vim.bo.buftype ~= '' or vim.bo.modified then
+                    require('fzf-lua').lgrep_curbuf()
+                    return
+                end
+                require('fff').live_grep({ query = path .. ' ' })
+            end,
+            desc = '[f]ind (grep) in [c]urrent buffer',
+        },
         {
             '<leader>fid',
             fff('find_files_in_dir', vim.fn.expand('~/projects/dotfiles')),
