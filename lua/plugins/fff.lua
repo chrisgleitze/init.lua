@@ -12,11 +12,19 @@ return {
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
-        vim.api.nvim_set_hl(
-            0,
-            'FFFCursorLine',
-            vim.tbl_extend('force', vim.api.nvim_get_hl(0, { name = 'CursorLine' }), { bold = true })
-        )
+        local function set_fff_highlights()
+            vim.api.nvim_set_hl(0, 'FFFNormal', { fg = '#e0def4', bg = '#191724' })
+            vim.api.nvim_set_hl(0, 'FFFBorder', { fg = '#908caa', bg = '#191724' })
+            vim.api.nvim_set_hl(0, 'FFFTitle', { fg = '#9ccfd8', bg = '#191724', bold = true })
+            vim.api.nvim_set_hl(0, 'FFFPrompt', { fg = '#9ccfd8', bg = '#191724', bold = true })
+            vim.api.nvim_set_hl(0, 'FFFCursorLine', { bg = '#312c49', bold = true })
+            vim.api.nvim_set_hl(0, 'FFFGrepMatch', { fg = '#9ccfd8', bold = true })
+        end
+        set_fff_highlights()
+        vim.api.nvim_create_autocmd('ColorScheme', {
+            group = vim.api.nvim_create_augroup('cg/fff_highlights', { clear = true }),
+            callback = set_fff_highlights,
+        })
 
         -- disable grep tips and "No preview available"
         vim.api.nvim_create_autocmd('FileType', {
@@ -56,7 +64,16 @@ return {
             flex = false,
         },
         preview = { line_numbers = true },
-        hl = { cursor = 'FFFCursorLine', matched = 'SpecialKey', grep_match = 'SpecialKey' },
+        hl = {
+            normal = 'FFFNormal',
+            border = 'FFFBorder',
+            title = 'FFFTitle',
+            prompt = 'FFFPrompt',
+            cursor = 'FFFCursorLine',
+            matched = 'FFFGrepMatch',
+            grep_match = 'FFFGrepMatch',
+            winhl = 'Normal:FFFNormal,FloatBorder:FFFBorder,FloatTitle:FFFTitle,CursorLine:FFFCursorLine',
+        },
         grep = { enable_filename_constraint = true },
         keymaps = {
             close = { '<Esc>', '<C-c>' },
