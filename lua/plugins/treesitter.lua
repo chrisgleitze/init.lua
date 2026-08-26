@@ -1,5 +1,7 @@
 return {
     'nvim-treesitter/nvim-treesitter',
+    lazy = true,
+    cmd = { 'TSInstall', 'TSInstallFromGrammar', 'TSUpdate', 'TSUninstall', 'TSLog' },
     build = ':TSUpdate',
     init = function()
         local parsers = {
