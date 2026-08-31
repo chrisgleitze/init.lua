@@ -16,6 +16,17 @@ local function swap_ts(fn, query)
     end
 end
 
+-- `as` is Vim's sentence textobject, which is worth keeping in prose. Only shadow
+-- it where the buffer has a parser with a `locals` query, i.e. in actual code.
+local function select_scope()
+    local parser = vim.treesitter.get_parser(0, nil, { error = false })
+    if parser and vim.treesitter.query.get(parser:lang(), 'locals') then
+        return '<Cmd>lua require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")<CR>'
+    end
+
+    return 'as'
+end
+
 -- modes for textobject keymaps
 local xo = { 'x', 'o' }
 local nxo = { 'n', 'x', 'o' }
@@ -53,6 +64,7 @@ return {
                 'toml',
                 'tsx',
                 'typescript',
+                'typst',
                 'vim',
                 'vimdoc',
                 'yaml',
@@ -111,6 +123,7 @@ return {
             { 'al', select_ts('@loop.outer'), mode = xo, desc = 'a loop' },
             { 'il', select_ts('@loop.inner'), mode = xo, desc = 'inner loop' },
             { 'a/', select_ts('@comment.outer'), mode = xo, desc = 'a comment' },
+            { 'as', select_scope, mode = xo, expr = true, desc = 'a scope (sentence outside of code)' },
 
             -- move
             { ']f', goto_ts('goto_next_start', '@function.outer'), mode = nxo, desc = 'next function' },

@@ -60,7 +60,7 @@ return {
             sources = {
                 per_filetype = {
                     text = {}, -- disabled
-                    markdown = { 'lsp', 'path' },
+                    markdown = { 'lsp', 'path', 'snippets' },
                 },
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },

@@ -167,6 +167,7 @@ local servers_by_ft = {
     scss = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
     sh = { 'bashls' },
     svelte = { 'emmet_ls', 'tailwindcss' },
+    tex = { 'texlab' },
     templ = { 'html', 'emmet_ls' },
     typst = { 'tinymist' },
     typescript = { 'tsc', 'tailwindcss' },
