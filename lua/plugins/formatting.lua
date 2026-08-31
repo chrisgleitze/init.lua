@@ -55,7 +55,7 @@ return {
             javascriptreact = prettier,
             less = prettier,
             lua = { 'stylua' },
-            markdown = prettier,
+            -- markdown = prettier,
             -- see intelephense config for php formatting
             python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
             scss = prettier,
