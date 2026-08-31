@@ -69,7 +69,7 @@ autocmd({ 'BufReadPost', 'BufNewFile' }, {
     group = vim.api.nvim_create_augroup('cg/cloak', { clear = true }),
     pattern = { '.env*', '.dev.vars', 'auth.json', 'wrangler.toml' },
     callback = function()
-        -- Conceal each non-space value char after ":" or "=" with "*".
+        -- conceal each non-space value char after ":" or "=" with "*".
         vim.opt_local.conceallevel = 2
         vim.opt_local.concealcursor = 'nvic'
         vim.api.nvim_set_hl(0, 'CgCloak', { link = 'Comment', default = true })

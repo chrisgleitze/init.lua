@@ -70,6 +70,7 @@ return {
             mason_lspconfig.setup({
                 -- list of servers for mason to install
                 ensure_installed = {
+                    'basedpyright',
                     'bashls',
                     'clangd',
                     'cssls',
@@ -77,6 +78,7 @@ return {
                     'intelephense',
                     'lua_ls',
                     -- 'prettier',
+                    'ruff',
                     'stylua',
                     'tinymist',
                     'tsc',

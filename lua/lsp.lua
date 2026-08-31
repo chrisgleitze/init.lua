@@ -5,6 +5,11 @@ local map = vim.keymap.set
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('cg/lsp_keymaps', { clear = true }),
     callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.name == 'ruff' then
+            client.server_capabilities.hoverProvider = false
+        end
+
         if vim.b[args.buf].lsp_keymaps_set then
             return
         end
@@ -157,6 +162,7 @@ local servers_by_ft = {
     objcpp = { 'clangd' },
     php = { 'intelephense', 'tailwindcss' },
     pug = { 'emmet_ls' },
+    python = { 'basedpyright', 'ruff' },
     sass = { 'emmet_ls', 'tailwindcss' },
     scss = { 'cssls', 'stylelint_lsp', 'tailwindcss' },
     sh = { 'bashls' },
