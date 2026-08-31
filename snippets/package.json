@@ -8,6 +8,10 @@
       {
         "language": "typescript",
         "path": "./typescript.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
       }
     ]
   }

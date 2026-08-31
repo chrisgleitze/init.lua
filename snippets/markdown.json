@@ -1,0 +1,27 @@
+{
+  "Footnote reference": {
+    "prefix": "fnr",
+    "body": ["[^$1]$0"],
+    "description": "Pandoc footnote reference"
+  },
+  "Footnote definition": {
+    "prefix": "fnd",
+    "body": ["[^$1]: $0"],
+    "description": "Pandoc footnote definition"
+  },
+  "Citation": {
+    "prefix": "cite",
+    "body": ["[@$1]$0"],
+    "description": "Pandoc citation"
+  },
+  "Display math": {
+    "prefix": "dm",
+    "body": ["$$", "$1", "$$", "$0"],
+    "description": "Display math block"
+  },
+  "Code block": {
+    "prefix": "cb",
+    "body": ["```$1", "$0", "```"],
+    "description": "Markdown fenced code block"
+  }
+}
