@@ -27,10 +27,14 @@ return {
                 },
             },
             keymap = {
+                builtin = {
+                    ['<C-i>'] = 'toggle-preview',
+                },
                 fzf = {
                     -- couldn't make the Alt key work, likely due to this issue:
                     -- https://github.com/LazyVim/LazyVim/discussions/4029
                     -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
+                    ['ctrl-i'] = 'toggle-preview',
                     ['ctrl-k'] = 'up',
                     ['ctrl-j'] = 'down',
                     ['ctrl-b'] = 'preview-page-up',
