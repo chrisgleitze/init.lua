@@ -31,14 +31,14 @@ o.sessionoptions = {
     'winsize',
 }
 
--- WSL clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
-local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | clip.exe' }
+-- wsl clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
+local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | /mnt/c/Windows/System32/clip.exe' }
 local wsl_paste = {
-    'powershell.exe',
+    '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe',
     '-NoLogo',
     '-NoProfile',
     '-Command',
-    '[Console]::OutputEncoding=[Text.UTF8Encoding]::new(); [Console]::Out.Write((Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    '$text = Get-Clipboard -Raw -Format Text -ErrorAction SilentlyContinue; [Console]::OutputEncoding=[Text.UTF8Encoding]::new(); if ($null -ne $text) { [Console]::Out.Write($text.Replace("`r", "")) }',
 }
 vim.g.clipboard = {
     name = 'WslClipboard',
