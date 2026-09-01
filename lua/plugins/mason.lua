@@ -80,7 +80,6 @@ return {
                     -- 'prettier',
                     'ruff',
                     'stylua',
-                    'tinymist',
                     'tsc',
                     'tailwindcss',
                 },

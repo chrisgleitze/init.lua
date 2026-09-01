@@ -31,7 +31,7 @@ o.sessionoptions = {
     'winsize',
 }
 
--- wsl clipboard provider: convert UTF-8 so Windows clipboard keeps umlauts intact
+-- wsl clipboard provider
 local wsl_copy = { 'sh', '-c', 'iconv -f UTF-8 -t UTF-16LE | /mnt/c/Windows/System32/clip.exe' }
 local wsl_paste = {
     '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe',

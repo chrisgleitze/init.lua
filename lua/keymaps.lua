@@ -88,7 +88,7 @@ map('n', '<leader>c', function()
     vim.notify('Blink completion ' .. status .. ' for this buffer')
 end)
 
--- restart nvim, incl. write current buffer
+-- write current buffer and restart nvim
 map('n', '<leader>R', '<cmd>write ++p | restart<cr>')
 
 -- quit nvim

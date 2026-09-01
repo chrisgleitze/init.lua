@@ -168,7 +168,6 @@ local servers_by_ft = {
     sh = { 'bashls' },
     svelte = { 'emmet_ls', 'tailwindcss' },
     templ = { 'html', 'emmet_ls' },
-    typst = { 'tinymist' },
     typescript = { 'tsc', 'tailwindcss' },
     typescriptreact = { 'tsc', 'emmet_ls', 'tailwindcss' },
     vue = { 'emmet_ls', 'stylelint_lsp', 'tailwindcss' },
