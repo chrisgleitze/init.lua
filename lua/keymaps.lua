@@ -3,6 +3,7 @@ local map = vim.keymap.set
 local clear = function()
     vim.cmd.nohlsearch()
     vim.cmd.echo()
+    pcall(vim.api.nvim_buf_clear_namespace, 0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
     vim.diagnostic.config({ virtual_lines = false })
     pcall(vim.lsp.buf.clear_references)
     pcall(function()
