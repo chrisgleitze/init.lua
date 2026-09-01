@@ -4,6 +4,16 @@ local function fff(method, arg)
     end
 end
 
+local function toggle_fff_preview()
+    local ui = require('fff.picker_ui.picker_ui')
+    local state = ui.state
+    if not state.active or not state.config then
+        return
+    end
+    state.config.preview.enabled = not state.config.preview.enabled
+    ui.relayout()
+end
+
 return {
     'dmtrKovalenko/fff.nvim',
     build = function()
@@ -77,10 +87,14 @@ return {
         grep = { enable_filename_constraint = true },
         keymaps = {
             close = { '<Esc>', '<C-c>' },
-            move_up = { '<Up>', '<C-p>', '<C-k>' },
-            move_down = { '<Down>', '<C-n>', '<C-j>' },
+            move_up = { '<Up>', '<C-k>' },
+            move_down = { '<Down>', '<C-j>' },
             preview_scroll_up = '<C-b>',
             preview_scroll_down = '<C-f>',
+        },
+        mappings = {
+            i = { ['<C-i>'] = toggle_fff_preview, ['<Tab>'] = toggle_fff_preview },
+            n = { ['<C-i>'] = toggle_fff_preview, ['<Tab>'] = toggle_fff_preview },
         },
     },
     keys = {
