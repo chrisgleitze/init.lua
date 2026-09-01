@@ -30,20 +30,6 @@ local function pandoc(ext)
     local output = vim.fn.fnamemodify(input, ':r') .. ext
     local args = { 'pandoc', '-s', input, '-o', output }
 
-    if ext == '.pdf' then
-        vim.list_extend(args, {
-            '--pdf-engine=xelatex',
-            '-V',
-            'papersize=a4',
-            '-V',
-            'geometry:margin=2.5cm',
-            '-V',
-            'fontsize=12pt',
-            '-V',
-            'mainfont=Times New Roman',
-        })
-    end
-
     -- run pandoc asynchronously so Neovim stays usable
     vim.system(args, { text = true }, function(obj)
         vim.schedule(function()
