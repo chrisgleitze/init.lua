@@ -19,7 +19,6 @@ return {
     build = function()
         require('fff.download').download_or_build_binary()
     end,
-    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
         local function set_fff_highlights()
