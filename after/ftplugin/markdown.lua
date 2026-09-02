@@ -1,5 +1,4 @@
 vim.opt_local.autoindent = false
-vim.opt_local.spell = true
 vim.opt_local.spelllang = { 'de_de', 'en_us' }
 vim.opt_local.spellcapcheck = ''
 vim.opt_local.wrap = true
