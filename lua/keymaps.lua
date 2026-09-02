@@ -3,9 +3,19 @@ local map = vim.keymap.set
 local clear = function()
     vim.cmd.nohlsearch()
     vim.cmd.echo()
+
+    -- clear leftover multicursor marks if the plugin was active
     pcall(vim.api.nvim_buf_clear_namespace, 0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
-    vim.diagnostic.config({ virtual_lines = false })
+
+    -- hide diagnostic virtual lines
+    if vim.diagnostic.config().virtual_lines then
+        vim.diagnostic.config({ virtual_lines = false })
+    end
+
+    -- clear LSP reference highlights if present
     pcall(vim.lsp.buf.clear_references)
+
+    -- leave active snippets without erroring when LuaSnip is unloaded
     pcall(function()
         local ls = require('luasnip')
         if ls.in_snippet() then
@@ -14,7 +24,7 @@ local clear = function()
     end)
 end
 
--- Esc clears UI, stops snippet session
+-- Esc
 map('n', '<Esc>', clear)
 map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
     clear()
