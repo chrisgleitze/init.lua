@@ -49,10 +49,13 @@ map('n', '<leader>Y', '"+yg_')
 map('n', '<leader>p', '"+p')
 
 -- copy current file path/context to clipboard
-local function copy_path(abs, with_line)
+local function copy_path(abs, with_line, with_text)
     local text = vim.fn.expand(abs and '%:p' or '%:.')
     if with_line then
-        text = ('%s:%d:%s'):format(text, vim.fn.line('.'), vim.api.nvim_get_current_line())
+        text = ('%s:%d'):format(text, vim.fn.line('.'))
+    end
+    if with_text then
+        text = ('%s:%s'):format(text, vim.api.nvim_get_current_line())
     end
     vim.fn.setreg('+', text)
     vim.notify('Copied ' .. text)
@@ -65,12 +68,19 @@ end)
 map('n', '<leader>yP', function()
     copy_path(true)
 end)
--- incl. line text
-map('n', '<leader>yl', function()
+-- incl. line number
+map('n', '<leader>yn', function()
     copy_path(false, true)
 end)
-map('n', '<leader>yL', function()
+map('n', '<leader>yN', function()
     copy_path(true, true)
+end)
+-- incl. line text
+map('n', '<leader>yl', function()
+    copy_path(false, true, true)
+end)
+map('n', '<leader>yL', function()
+    copy_path(true, true, true)
 end)
 
 -- write buffer in normal
