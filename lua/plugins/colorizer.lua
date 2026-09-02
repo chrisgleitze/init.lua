@@ -1,7 +1,7 @@
 -- color highlighter
 return {
     'catgoose/nvim-colorizer.lua',
-    ft = { 'css', 'scss', 'html', 'javascript', 'typescript', 'json', 'jsonc', 'lua', 'yaml' },
+    ft = { 'css', 'scss', 'html', 'javascript', 'typescript' },
     opts = {
         user_default_options = {
             tailwind = true,
@@ -15,10 +15,6 @@ return {
             'html',
             'javascript',
             'typescript',
-            'json',
-            'jsonc',
-            'lua',
-            'yaml',
         },
     },
 }
