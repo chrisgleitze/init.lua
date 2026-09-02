@@ -11,7 +11,13 @@ return {
         -- Mason, package manager for LSPs, linters, formatters etc.
         'williamboman/mason.nvim',
         cmd = 'Mason',
-        event = { 'BufReadPre', 'BufNewFile' },
+        init = function()
+            -- keep Mason-installed tools on PATH without loading mason.nvim
+            local mason_bin = vim.fn.stdpath('data') .. '/mason/bin'
+            if not vim.env.PATH:find(mason_bin, 1, true) then
+                vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
+            end
+        end,
         dependencies = {
             'williamboman/mason-lspconfig.nvim',
         },
