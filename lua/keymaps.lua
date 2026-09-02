@@ -4,7 +4,7 @@ local clear = function()
     vim.cmd.nohlsearch()
     vim.cmd.echo()
 
-    -- clear leftover multicursor marks if the plugin was active
+    -- clear active multicursors
     pcall(vim.api.nvim_buf_clear_namespace, 0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
 
     -- hide diagnostic virtual lines
