@@ -1,5 +1,5 @@
+-- edit and review GitHub issues and pull requests
 return {
-    -- edit and review GitHub issues and pull requests
     'pwntester/octo.nvim',
     cmd = 'Octo',
     dependencies = {

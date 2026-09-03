@@ -1,10 +1,8 @@
--- Formatting
--- Prefer the Prettier daemon when installed; fall back to regular prettier so
--- formatting still works on machines without prettierd.
+-- formatting
 local prettier = { 'prettierd', 'prettier', stop_after_first = true }
 
 local function format_on_save(bufnr)
-    -- Keep save latency predictable for large files; format those manually.
+    -- keep save latency predictable for large files; format those manually
     if vim.api.nvim_buf_line_count(bufnr) > 5000 then
         return
     end
@@ -16,8 +14,8 @@ local function format_on_save(bufnr)
     end
 
     return {
-        -- Keep the save path short. If a formatter is slower than this, it is
-        -- better surfaced as an explicit formatting action.
+        -- keep the save path short; if a formatter is slower than this,
+        -- it is better surfaced as an explicit formatting action
         timeout_ms = 700,
         lsp_format = 'fallback',
     }
@@ -28,8 +26,8 @@ return {
     lazy = true,
     cmd = 'ConformInfo',
     init = function()
-        -- Register format-on-save without loading conform.nvim during startup.
-        -- The first save loads Conform only if the file is small enough to format.
+        -- register format-on-save without loading conform.nvim during startup
+        -- the first save loads Conform only if the file is small enough to format
         vim.api.nvim_create_autocmd('BufWritePre', {
             group = vim.api.nvim_create_augroup('cg/conform_format_on_save', { clear = true }),
             callback = function(args)

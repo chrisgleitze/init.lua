@@ -1,4 +1,4 @@
--- Debugger
+-- debugger
 return {
     'mfussenegger/nvim-dap',
     keys = {
@@ -69,7 +69,13 @@ return {
             'igorlfs/nvim-dap-view',
             ---@module 'dap-view'
             ---@type dapview.Config
-            opts = {},
+            opts = {
+                auto_toggle = true,
+                virtual_text = {
+                    enabled = true,
+                    position = 'eol',
+                },
+            },
         },
         {
             'jbyuki/one-small-step-for-vimkind', -- "osv", Lua adapter
@@ -83,30 +89,10 @@ return {
                 },
             },
         },
-        {
-            -- adds virtual text in debugging session
-            'theHamsta/nvim-dap-virtual-text',
-            opts = { virt_text_pos = 'eol' },
-        },
     },
     config = function()
         local dap = require('dap')
         dap.set_log_level('WARN')
-
-        -- opens UI when starting a new debug session
-        local dv = require('dap-view')
-        dap.listeners.before.attach['dap-view-config'] = function()
-            dv.open()
-        end
-        dap.listeners.before.launch['dap-view-config'] = function()
-            dv.open()
-        end
-        dap.listeners.before.event_terminated['dap-view-config'] = function()
-            dv.close()
-        end
-        dap.listeners.before.event_exited['dap-view-config'] = function()
-            dv.close()
-        end
 
         -- Lua
         -- plugin: one-small-step-for-vimkind
@@ -139,11 +125,45 @@ return {
                 stopOnEntry = false,
             },
         }
+        dap.configurations.c = dap.configurations.cpp
+        dap.configurations.rust = dap.configurations.cpp
 
-        -- JavaScript
+        -- Python
+        -- github.com/microsoft/debugpy
+        local function python_path()
+            local venv = vim.fn.getcwd() .. '/.venv/bin/python'
+            if vim.fn.executable(venv) == 1 then
+                return venv
+            end
+            return 'python3'
+        end
+
+        dap.adapters.python = {
+            type = 'executable',
+            command = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python',
+            args = { '-m', 'debugpy.adapter' },
+        }
+        dap.configurations.python = {
+            {
+                type = 'python',
+                request = 'launch',
+                name = 'Launch file',
+                program = '${file}',
+                cwd = '${workspaceFolder}',
+                pythonPath = python_path,
+            },
+            {
+                type = 'python',
+                request = 'attach',
+                name = 'Attach localhost:5678',
+                connect = { host = '127.0.0.1', port = 5678 },
+                pythonPath = python_path,
+            },
+        }
+
+        -- Javascript
         -- github.com/microsoft/vscode-js-debug
-        require('dap').adapters['pwa-node'] = {
-            -- dap.adapters.pwa-node = {
+        dap.adapters['pwa-node'] = {
             type = 'server',
             host = 'localhost',
             port = '${port}',
