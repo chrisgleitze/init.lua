@@ -72,6 +72,7 @@ require('lazy').setup({
 -- load general settings and more
 require('settings')
 require('keymaps')
+require('cmdatom')
 require('autocmds')
 require('cwd')
 require('sessions')
