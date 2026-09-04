@@ -182,3 +182,24 @@ map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 
 -- helps you change all occurrences of the word the cursor is on
 map('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- run cmd in directory of current file
+local function run_command_in_file_dir()
+    -- buffers without a real path (terminal, neo-tree, ...) fall back to the cwd
+    local dir = vim.fn.expand('%:p:h')
+    if vim.fn.isdirectory(dir) == 0 then
+        dir = vim.fn.getcwd()
+    end
+
+    vim.ui.input({ prompt = 'Command: ', completion = 'shellcmd' }, function(command)
+        if not command or command:match('^%s*$') then
+            return
+        end
+
+        -- :! expands % # ! as current file, alternate file and previous command, so both
+        -- parts have to be escaped -- shellescape needs its {special} flag for that
+        vim.cmd(('!cd %s && %s'):format(vim.fn.shellescape(dir, true), vim.fn.escape(command, '%#!')))
+    end)
+end
+
+map({ 'n', 'v' }, '<leader>C', run_command_in_file_dir)

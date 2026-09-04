@@ -1,4 +1,3 @@
--- formatting
 local prettier = { 'prettierd', 'prettier', stop_after_first = true }
 
 local function format_on_save(bufnr)
