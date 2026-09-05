@@ -71,7 +71,9 @@ end
 function M.save()
     vim.fn.mkdir(session_dir, 'p')
     -- silent avoids hit-enter prompts from :mksession messages when quitting
-    local ok, err = pcall(vim.cmd, 'silent mksession! ' .. vim.fn.fnameescape(session_file(true)))
+    local ok, err = pcall(function()
+        vim.cmd('silent mksession! ' .. vim.fn.fnameescape(session_file(true)))
+    end)
     if not ok then
         vim.notify('Failed to save session: ' .. err, vim.log.levels.ERROR)
     end
@@ -124,15 +126,30 @@ function M.stop()
     enabled = false
 end
 
+-- save once at least one real file buffer is open
+local function should_save()
+    return enabled and not is_excluded() and has_real_buffer()
+end
+
 vim.api.nvim_create_autocmd('VimLeavePre', {
     group = vim.api.nvim_create_augroup('cg/sessions', { clear = true }),
     callback = function()
-        -- save once at least one real file buffer is open
-        if enabled and not is_excluded() and has_real_buffer() then
+        if should_save() then
             M.save()
         end
     end,
 })
+
+-- periodic save: a hard kill gives no signal, so VimLeavePre never runs
+vim.uv.new_timer():start(
+    60000,
+    60000,
+    vim.schedule_wrap(function()
+        if should_save() then
+            M.save()
+        end
+    end)
+)
 
 local map = vim.keymap.set
 -- load the last session manually
