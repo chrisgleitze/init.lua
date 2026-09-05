@@ -48,6 +48,8 @@ return {
                 files = {
                     true,
                     ['ctrl-g'] = { fn = actions.toggle_ignore, reuse = true, header = false },
+                    -- default binding is <A-h>, which the Alt issue above makes unusable
+                    ['ctrl-h'] = { fn = actions.toggle_hidden, reuse = true, header = false },
                 },
             },
         })
@@ -94,6 +96,14 @@ return {
         -- { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = '[f]ind current [w]ord' },
         -- { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = '[f]ind current [W]ORD' },
         -- { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[f]ind in [r]esumed search' },
+        {
+            '<leader>f.',
+            function()
+                -- getcwd(-1, -1) = global cwd, ignoring any window/tab-local :lcd
+                require('fzf-lua').files({ cwd = vim.fn.getcwd(-1, -1) })
+            end,
+            desc = "[f]ind files incl. hidden [.]dotfiles, from Neovim's working directory",
+        },
         { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[f]ind open b[u]ffers' },
         { '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = '[f]ind [d]iagnostics' },
         { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = '[f]ind [o]ld files' },
