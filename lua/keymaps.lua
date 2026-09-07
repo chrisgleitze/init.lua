@@ -91,6 +91,15 @@ end)
 -- and in insert mode
 map({ 'i', 'x' }, '<C-s>', '<esc>:write ++p<cr>')
 
+-- write current buffer and restart nvim
+map('n', '<leader>R', '<cmd>write ++p | restart<cr>')
+
+-- quit nvim
+map('n', '<leader>QQ', function()
+    vim.cmd('silent! wall')
+    vim.cmd('wqa!')
+end)
+
 -- jump to the end of the line in insert, command mode
 map({ 'i', 'c' }, '<C-l>', '<C-o>A')
 
@@ -109,15 +118,6 @@ map('n', '<leader>c', function()
     vim.notify('Blink completion ' .. status .. ' for this buffer')
 end)
 
--- write current buffer and restart nvim
-map('n', '<leader>R', '<cmd>write ++p | restart<cr>')
-
--- quit nvim
-map('n', '<leader>QQ', function()
-    vim.cmd('silent! wall')
-    vim.cmd('wqa!')
-end)
-
 -- make Y behave like C and D - copy text until end of line
 map('n', 'Y', 'yg_')
 
@@ -129,6 +129,12 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 
 -- open buffer via buffer list
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
+
+-- change directory
+map('n', 'cd%', '<cmd>lcd %:h | verbose pwd<cr>')
+map('n', 'cdg', [[<cmd>execute 'lcd' luaeval('vim.fs.root(vim.fn.expand("%"), ".git")') | verbose pwd<cr>]])
+map('n', 'cdu', '<cmd>lcd .. | verbose pwd<cr>')
+map('n', 'cd-', '<cmd>lcd - | verbose pwd<cr>')
 
 -- opens lazygit instance of current directory in new tmux windows
 map('n', '<leader>gg', function()
