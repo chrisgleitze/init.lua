@@ -135,9 +135,13 @@ map('n', '<leader>DB', '<cmd>bdelete<cr>')
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
 
 -- change directory
+-- change to the current file's directory
 map('n', 'cd%', '<cmd>lcd %:h | verbose pwd<cr>')
+-- change to the git repository root
 map('n', 'cdg', [[<cmd>execute 'lcd' luaeval('vim.fs.root(vim.fn.expand("%"), ".git")') | verbose pwd<cr>]])
+-- change to the parent directory
 map('n', 'cdu', '<cmd>lcd .. | verbose pwd<cr>')
+-- change to the previous directory
 map('n', 'cd-', '<cmd>lcd - | verbose pwd<cr>')
 
 -- opens lazygit instance of current directory in new tmux windows
