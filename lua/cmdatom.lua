@@ -62,6 +62,12 @@ if vim.fn.exists('##CmdAtom') == 1 then
     end, { desc = 'repeat last CmdAtom action' })
 
     vim.keymap.set('n', '.', function()
+        -- Native dot-repeat cascades edits to every active multicursor.
+        local mc = vim.api.nvim_create_namespace('nvim.multicursor')
+        if #vim.api.nvim_buf_get_extmarks(0, mc, 0, -1, { limit = 1 }) > 0 then
+            vim.api.nvim_feedkeys('.', 'n', false)
+            return
+        end
         replay(last_edit, '.')
     end, { desc = 'repeat last CmdAtom edit' })
 end
