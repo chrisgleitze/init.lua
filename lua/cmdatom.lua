@@ -1,8 +1,14 @@
+-- Extend repeat behavior with Neovim's experimental CmdAtom event.
+-- <leader>, replays the last non-edit action; . replays the last edit and
+-- falls back to native dot-repeat when none was captured. The feature check keeps this
+-- config compatible with Neovim versions that do not provide CmdAtom.
 if vim.fn.exists('##CmdAtom') == 1 then
     local last_atom ---@type vim.event.cmdatom.data?
     local last_edit ---@type vim.event.cmdatom.data?
+    -- Highest undo sequence seen per buffer, used to reject undo/redo events.
     local maxseq = {} ---@type table<integer, integer>
 
+    -- Classify each completed user action and remember the latest replayable one.
     local function remember(args)
         local atom = args.data
         local lhs = atom.lhs or ''
@@ -21,6 +27,7 @@ if vim.fn.exists('##CmdAtom') == 1 then
         end
     end
 
+    -- Choose the captured key sequence and schedule it after the current event.
     local function replay(atom, fallback)
         if not atom then
             if fallback then
@@ -37,6 +44,7 @@ if vim.fn.exists('##CmdAtom') == 1 then
             return
         end
 
+        -- CmdAtom is emitted after the action; defer replay until that event finishes.
         vim.schedule(function()
             vim.api.nvim_feedkeys(keys, atom.keys ~= '' and 'n' or 'm', false)
         end)
