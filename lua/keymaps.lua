@@ -43,10 +43,17 @@ map('n', '<leader>U', function()
     vim.cmd.Undotree()
 end)
 
--- copy/paste
+-- make Y behave like C and D - copy text until end of line
+map('n', 'Y', 'yg_')
+
+-- copy/paste to/from system clipboard
 map('v', '<leader>y', '"+y')
 map('n', '<leader>Y', '"+yg_')
 map('n', '<leader>p', '"+p')
+map('n', '<leader>ya', '<cmd>%y+<cr>')
+
+-- select entire buffer
+map('n', '<leader>va', 'ggVG')
 
 -- copy current file path/context to clipboard
 local function copy_path(abs, with_line, with_text)
@@ -117,9 +124,6 @@ map('n', '<leader>c', function()
     local status = vim.b.completion == false and 'disabled' or 'enabled'
     vim.notify('Blink completion ' .. status .. ' for this buffer')
 end)
-
--- make Y behave like C and D - copy text until end of line
-map('n', 'Y', 'yg_')
 
 -- open new buffer
 map('n', '<leader>n', '<cmd>enew<cr>')
