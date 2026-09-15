@@ -1,4 +1,4 @@
-local o = vim.opt
+local o = vim.o
 
 -- files
 o.swapfile = false
