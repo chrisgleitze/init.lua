@@ -57,9 +57,9 @@ vim.api.nvim_create_autocmd('FileType', {
             return
         end
 
-        -- Large files are still editable, but parser startup can make
-        -- opening and scrolling them noticeably slower.
+        -- Some bundled ftplugins start Treesitter before this autocmd.
         if require('bigfile').is_big(args.buf) then
+            vim.treesitter.stop(args.buf)
             return
         end
 
