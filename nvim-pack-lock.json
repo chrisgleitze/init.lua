@@ -55,10 +55,6 @@
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
       "src": "https://github.com/williamboman/mason.nvim"
     },
-    "mini.splitjoin": {
-      "rev": "9301717c7612ccb72e89629df89416585dd54c9b",
-      "src": "https://github.com/nvim-mini/mini.splitjoin"
-    },
     "mini.surround": {
       "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
       "src": "https://github.com/echasnovski/mini.surround"

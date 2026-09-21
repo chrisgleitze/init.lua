@@ -78,7 +78,6 @@ vim.pack.add({
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/iamcco/markdown-preview.nvim',
     { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' },
-    'https://github.com/nvim-mini/mini.splitjoin',
     'https://github.com/echasnovski/mini.surround',
     { src = 'https://github.com/zk-org/zk-nvim', name = 'zk' },
 }, { load = false })
