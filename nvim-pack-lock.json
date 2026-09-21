@@ -113,10 +113,6 @@
       "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
       "src": "https://github.com/rose-pine/neovim"
     },
-    "ts-error-translator.nvim": {
-      "rev": "558abff11b9e8f4cefc0de09df780c56841c7a4b",
-      "src": "https://github.com/dmmulroy/ts-error-translator.nvim"
-    },
     "vim-fugitive": {
       "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
       "src": "https://github.com/tpope/vim-fugitive"

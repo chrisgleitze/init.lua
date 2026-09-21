@@ -68,7 +68,6 @@ vim.pack.add({
     { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
     'https://github.com/windwp/nvim-autopairs',
     'https://github.com/stevearc/conform.nvim',
-    'https://github.com/dmmulroy/ts-error-translator.nvim',
     'https://github.com/williamboman/mason.nvim',
     'https://github.com/williamboman/mason-lspconfig.nvim',
     'https://github.com/dmtrKovalenko/fff.nvim',

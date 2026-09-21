@@ -1,6 +1,3 @@
--- turns TypeScript erros into plain English
-require('ts-error-translator').setup()
-
 -- Mason, package manager for LSPs, linters, formatters etc.
 -- keep Mason-installed tools on PATH
 local mason_bin = vim.fn.stdpath('data') .. '/mason/bin'
