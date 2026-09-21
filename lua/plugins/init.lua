@@ -52,11 +52,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 -- plugin_loader defers these groups until their trigger fires (see each module)
 local loader = require('plugin_loader')
 loader.register('diffview', { 'https://github.com/dlyongemallo/diffview.nvim' })
-loader.register('dap', {
-    'https://github.com/mfussenegger/nvim-dap',
-    'https://github.com/igorlfs/nvim-dap-view',
-    'https://github.com/jbyuki/one-small-step-for-vimkind',
-})
 
 -- everything else: install/clone only (load = false), each gets set up by
 -- its own module below or by the deferred block at the end

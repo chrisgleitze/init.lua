@@ -41,7 +41,6 @@ autocmd('FileType', {
     pattern = {
         'checkhealth',
         'conform-info',
-        'dap-float',
         'fugitive',
         'fugitiveblame',
         'help',
