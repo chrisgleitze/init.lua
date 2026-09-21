@@ -36,6 +36,9 @@ map('n', '<leader>L', function()
     vim.pack.update()
 end)
 
+-- remove plugins no longer present in vim.pack.add()
+map('n', '<leader>DD', '<cmd>packdel ++all<cr>')
+
 -- open Mason
 map('n', '<leader>Ma', '<cmd>Mason<cr>')
 
