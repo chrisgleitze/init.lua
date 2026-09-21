@@ -5,6 +5,16 @@ local map = vim.keymap.set
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('cg/lsp_keymaps', { clear = true }),
     callback = function(args)
+        if require('bigfile').is_big(args.buf) then
+            -- Core records the attachment after LspAttach callbacks finish.
+            vim.schedule(function()
+                if vim.lsp.buf_is_attached(args.buf, args.data.client_id) then
+                    vim.lsp.buf_detach_client(args.buf, args.data.client_id)
+                end
+            end)
+            return
+        end
+
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client and client.name == 'ruff' then
             client.server_capabilities.hoverProvider = false
@@ -186,8 +196,8 @@ vim.api.nvim_create_autocmd('FileType', {
             return
         end
 
-        -- Match the Treesitter bigfile guard: skip expensive language servers
-        -- for buffers where interactive editing should stay lightweight.
+        -- Avoid enabling new servers for large buffers. Servers enabled by an
+        -- earlier buffer are handled by the LspAttach guard above.
         if require('bigfile').is_big(args.buf) then
             return
         end
