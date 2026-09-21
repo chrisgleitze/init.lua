@@ -31,8 +31,10 @@ map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
     return '<Esc>'
 end, { expr = true })
 
--- open Lazy.nvim plugin manager
-map('n', '<leader>L', '<cmd>Lazy<cr>')
+-- open plugin update view
+map('n', '<leader>L', function()
+    vim.pack.update()
+end)
 
 -- open Mason
 map('n', '<leader>Ma', '<cmd>Mason<cr>')
@@ -50,10 +52,10 @@ map('n', 'Y', 'yg_')
 map('v', '<leader>y', '"+y')
 map('n', '<leader>Y', '"+yg_')
 map('n', '<leader>p', '"+p')
-map('n', '<leader>ya', '<cmd>%y+<cr>')
 
--- select entire buffer
-map('n', '<leader>va', 'ggVG')
+-- copy/select entire buffer
+map('n', 'yag', '<cmd>%y+<cr>')
+map('n', 'vag', 'ggVG')
 
 -- copy current file path/context to clipboard
 local function copy_path(abs, with_line, with_text)

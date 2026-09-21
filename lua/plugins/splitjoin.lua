@@ -1,13 +1,6 @@
 -- join and split code block
-return {
-    'nvim-mini/mini.splitjoin',
-    keys = {
-        {
-            '<leader>sj',
-            function()
-                require('mini.splitjoin').toggle()
-            end,
-        },
-    },
-    opts = {},
-}
+require('mini.splitjoin').setup({})
+
+vim.keymap.set('n', '<leader>sj', function()
+    require('mini.splitjoin').toggle()
+end)

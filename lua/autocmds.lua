@@ -45,7 +45,7 @@ autocmd('FileType', {
         'fugitive',
         'fugitiveblame',
         'help',
-        'lazy',
+        'nvim-pack',
         'lspinfo',
         'man',
         'nvim-undotree',

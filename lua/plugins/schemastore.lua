@@ -1,4 +1,1 @@
--- JSON/YAML schemas
-return {
-    { 'b0o/schemastore.nvim', lazy = true },
-}
+-- schemastore.nvim only needs to be available on the runtimepath.

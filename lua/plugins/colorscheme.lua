@@ -1,38 +1,20 @@
-return {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require('rose-pine').setup({
-            dark_variant = 'main',
-            styles = {
-                italic = false,
-            },
-            groups = {
-                background = '#0d0a0a',
-            },
-        })
+require('rose-pine').setup({
+    dark_variant = 'main',
+    styles = {
+        italic = false,
+    },
+    groups = {
+        background = '#0d0a0a',
+    },
+})
 
-        vim.cmd('colorscheme rose-pine-main')
-    end,
+vim.cmd('colorscheme rose-pine-main')
 
-    -- 'gruvbox-community/gruvbox',
-    -- lazy = false,
-    -- priority = 1000,
-    -- config = function()
-    --     vim.g.gruvbox_contrast_dark = 'hard'
-    --     vim.cmd('colorscheme gruvbox')
-    -- end,
+-- vim.g.gruvbox_contrast_dark = 'hard'
+-- vim.cmd('colorscheme gruvbox')
 
-    -- 'vague-theme/vague.nvim',
-    -- lazy = false,
-    -- priority = 1000,
-    -- config = function()
-    --     require('vague').setup({
-    --         bold = false,
-    --         italic = false,
-    --     })
-    --     vim.cmd.colorscheme('vague')
-    -- end,
-}
+-- require('vague').setup({
+--     bold = false,
+--     italic = false,
+-- })
+-- vim.cmd.colorscheme('vague')

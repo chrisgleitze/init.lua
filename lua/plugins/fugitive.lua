@@ -1,25 +1,10 @@
-return {
-    'tpope/vim-fugitive',
-    cmd = {
-        'Git',
-        'Gwrite',
-    },
-    dependencies = {
-        {
-            'junegunn/gv.vim',
-            cmd = 'GV',
-        },
-    },
-    keys = {
-        { '<leader>Gi', '<cmd>Git<cr>' },
-        { '<leader>Gb', '<cmd>Git blame<cr>' },
-        { '<leader>Gl', '<cmd>Git log<cr>' },
-        { '<leader>Gd', '<cmd>Git diff<cr>' },
-        { '<leader>Gw', '<cmd>Gwrite | Git commit<cr>' },
-        { '<leader>Gp', '<cmd>Git push<cr>' },
-        { '<leader>Ge', '<cmd>Git add -p %<cr>' },
-        { '<leader>GVV', '<cmd>GV<cr>' },
-        { '<leader>GV!', '<cmd>GV!<cr>' },
-        { '<leader>GV?', '<cmd>GV?<cr>' },
-    },
-}
+vim.keymap.set('n', '<leader>Gi', '<cmd>Git<cr>')
+vim.keymap.set('n', '<leader>Gb', '<cmd>Git blame<cr>')
+vim.keymap.set('n', '<leader>Gl', '<cmd>Git log<cr>')
+vim.keymap.set('n', '<leader>Gd', '<cmd>Git diff<cr>')
+vim.keymap.set('n', '<leader>Gw', '<cmd>Gwrite | Git commit<cr>')
+vim.keymap.set('n', '<leader>Gp', '<cmd>Git push<cr>')
+vim.keymap.set('n', '<leader>Ge', '<cmd>Git add -p %<cr>')
+vim.keymap.set('n', '<leader>GVV', '<cmd>GV<cr>')
+vim.keymap.set('n', '<leader>GV!', '<cmd>GV!<cr>')
+vim.keymap.set('n', '<leader>GV?', '<cmd>GV?<cr>')

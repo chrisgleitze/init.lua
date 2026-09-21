@@ -1,143 +1,105 @@
 -- fuzzy search
-return {
-    'ibhagwan/fzf-lua',
-    cmd = 'FzfLua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-        local actions = require('fzf-lua.actions')
+local actions = require('fzf-lua.actions')
 
-        require('fzf-lua').setup({
-            ui_select = {},
-            fzf_colors = true,
-            fzf_opts = {
-                ['--no-scrollbar'] = false,
-                ['--cycle'] = true,
-                ['--ansi'] = true,
-                ['--height'] = '100%',
-                ['--highlight-line'] = true,
-            },
-            defaults = {
-                formatter = 'path.dirname_first', -- show greyed-out directory before filename
-            },
-            winopts = {
-                height = 0.90,
-                width = 0.80,
-                preview = {
-                    layout = 'vertical',
-                },
-            },
-            keymap = {
-                builtin = {
-                    ['<C-i>'] = 'toggle-preview',
-                },
-                fzf = {
-                    -- couldn't make the Alt key work, likely due to this issue:
-                    -- https://github.com/LazyVim/LazyVim/discussions/4029
-                    -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
-                    ['ctrl-i'] = 'toggle-preview',
-                    ['ctrl-k'] = 'up',
-                    ['ctrl-j'] = 'down',
-                    ['ctrl-b'] = 'preview-page-up',
-                    ['ctrl-f'] = 'preview-page-down',
-                    ['ctrl-u'] = 'half-page-up', -- in list of search results
-                    ['ctrl-d'] = 'half-page-down', -- in list of search results
-                    ['ctrl-c'] = 'abort',
-                },
-            },
-            actions = {
-                files = {
-                    true,
-                    ['ctrl-g'] = { fn = actions.toggle_ignore, reuse = true, header = false },
-                    -- default binding is <A-h>, which the Alt issue above makes unusable
-                    ['ctrl-h'] = { fn = actions.toggle_hidden, reuse = true, header = false },
-                },
-            },
-        })
-
-        -- loads fzf-lua faster
-        local utils = require('fzf-lua.utils')
-        local version = { utils.fzf_version() }
-        utils.fzf_version = function()
-            return unpack(version)
-        end
-    end,
-    keys = {
-        {
-            'gd',
-            function()
-                require('fzf-lua').lsp_definitions({ jump1 = true })
-            end,
-            desc = 'go to definition',
-        },
-        {
-            'gD',
-            function()
-                require('fzf-lua').lsp_definitions({ jump1 = false })
-            end,
-            desc = 'find definitions',
-        },
-        -- { '<leader><leader>', '<cmd>FzfLua files<cr>', desc = 'find files in project directory' },
-        {
-            '<leader>fI',
-            function()
-                require('fzf-lua').files({ no_ignore = true })
-            end,
-            desc = '[f]ind files, incl. [I]gnored files',
-        },
-        -- { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = '(not fuzzy) find by grepping in project directory' },
-        -- { '<leader>fg', '<cmd>FzfLua grep<cr>', desc = 'fuzzy find by using ripgrep in project directory' },
-        -- { '<leader>fc', '<cmd>FzfLua lgrep_curbuf<cr>', desc = '[f]ind (grep) in [c]urrent buffer' },
-        -- {
-        --     '<leader>fv',
-        --     '<cmd>FzfLua grep_visual<cr>',
-        --     desc = '[f]ind (grep) [v]isual selection in project',
-        --     mode = 'x',
-        -- },
-        -- { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = '[f]ind current [w]ord' },
-        -- { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = '[f]ind current [W]ORD' },
-        -- { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = '[f]ind in [r]esumed search' },
-        {
-            '<leader>f.',
-            function()
-                -- getcwd(-1, -1) = global cwd, ignoring any window/tab-local :lcd
-                require('fzf-lua').files({ cwd = vim.fn.getcwd(-1, -1) })
-            end,
-            desc = "[f]ind files incl. hidden [.]dotfiles, from Neovim's working directory",
-        },
-        { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = '[f]ind open b[u]ffers' },
-        { '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', desc = '[f]ind [d]iagnostics' },
-        { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = '[f]ind [o]ld files' },
-        { '<leader>fa', '<cmd>FzfLua autocmds<cr>', desc = '[f]ind [a]utocommands' },
-        { '<leader>gsa', '<cmd>FzfLua git_status<cr>', desc = 'find [g]it [s]tatus' },
-        { '<leader>gd', '<cmd>FzfLua git_diff<cr>', desc = 'find [g]it [s]tatus' },
-        { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'find [g]it [c]ommits' },
-        { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'find [g]it [c]ommits in current file' },
-        { '<leader>gbl', '<cmd>FzfLua git_blame<cr>', desc = 'find [g]it [bl]ame' },
-        { '<leader>gbr', '<cmd>FzfLua git_branches<cr>', desc = 'find [g]it [br]anches' },
-        { '<leader>fO', '<cmd>FzfLua nvim_options<cr>', desc = '[f]ind [o]ld files' },
-        { '<leader>vh', '<cmd>FzfLua helptags<cr>', desc = '[v]iew/search Neovim [h]elp' },
-        -- {
-        --     '<leader>fid',
-        --     function()
-        --         require('fzf-lua').files({ cwd = vim.fn.expand('~/projects/dotfiles') })
-        --     end,
-        --     desc = '[f]ind [i]n neovim [d]otfiles',
-        -- },
-        {
-            '<C-x><C-f>',
-            function()
-                require('fzf-lua').complete_path({
-                    winopts = {
-                        height = 0.4,
-                        width = 0.5,
-                        relative = 'cursor',
-                    },
-                })
-            end,
-            mode = 'i',
-            desc = 'fuzzy complete path',
-        },
-        { '<leader>ft', '<cmd>FzfLua undotree<cr>', desc = 'Undotree' },
-        { '<leader>fz', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
+require('fzf-lua').setup({
+    ui_select = {},
+    fzf_colors = true,
+    fzf_opts = {
+        ['--no-scrollbar'] = false,
+        ['--cycle'] = true,
+        ['--ansi'] = true,
+        ['--height'] = '100%',
+        ['--highlight-line'] = true,
     },
-}
+    defaults = {
+        formatter = 'path.dirname_first', -- show greyed-out directory before filename
+    },
+    winopts = {
+        height = 0.90,
+        width = 0.80,
+        preview = {
+            layout = 'vertical',
+        },
+    },
+    keymap = {
+        builtin = {
+            ['<C-i>'] = 'toggle-preview',
+        },
+        fzf = {
+            -- couldn't make the Alt key work, likely due to this issue:
+            -- https://github.com/LazyVim/LazyVim/discussions/4029
+            -- https://www.reddit.com/r/neovim/comments/vfqseq/enable_special_keyboard_combinations_in_alacritty/
+            ['ctrl-i'] = 'toggle-preview',
+            ['ctrl-k'] = 'up',
+            ['ctrl-j'] = 'down',
+            ['ctrl-b'] = 'preview-page-up',
+            ['ctrl-f'] = 'preview-page-down',
+            ['ctrl-u'] = 'half-page-up', -- in list of search results
+            ['ctrl-d'] = 'half-page-down', -- in list of search results
+            ['ctrl-c'] = 'abort',
+        },
+    },
+    actions = {
+        files = {
+            true,
+            ['ctrl-g'] = { fn = actions.toggle_ignore, reuse = true, header = false },
+            -- default binding is <A-h>, which the Alt issue above makes unusable
+            ['ctrl-h'] = { fn = actions.toggle_hidden, reuse = true, header = false },
+        },
+    },
+})
+
+-- loads fzf-lua faster
+local utils = require('fzf-lua.utils')
+local version = { utils.fzf_version() }
+utils.fzf_version = function()
+    return unpack(version)
+end
+
+vim.keymap.set('n', 'gd', function()
+    require('fzf-lua').lsp_definitions({ jump1 = true })
+end, { desc = 'go to definition' })
+vim.keymap.set('n', 'gD', function()
+    require('fzf-lua').lsp_definitions({ jump1 = false })
+end, { desc = 'find definitions' })
+-- vim.keymap.set('n', '<leader><leader>', '<cmd>FzfLua files<cr>', { desc = 'find files in project directory' })
+vim.keymap.set('n', '<leader>fI', function()
+    require('fzf-lua').files({ no_ignore = true })
+end, { desc = '[f]ind files, incl. [I]gnored files' })
+-- vim.keymap.set('n', '<leader>/', '<cmd>FzfLua live_grep<cr>', { desc = '(not fuzzy) find by grepping in project directory' })
+-- vim.keymap.set('n', '<leader>fg', '<cmd>FzfLua grep<cr>', { desc = 'fuzzy find by using ripgrep in project directory' })
+-- vim.keymap.set('n', '<leader>fc', '<cmd>FzfLua lgrep_curbuf<cr>', { desc = '[f]ind (grep) in [c]urrent buffer' })
+-- vim.keymap.set('x', '<leader>fv', '<cmd>FzfLua grep_visual<cr>', { desc = '[f]ind (grep) [v]isual selection in project' })
+-- vim.keymap.set('n', '<leader>fw', '<cmd>FzfLua grep_cword<cr>', { desc = '[f]ind current [w]ord' })
+-- vim.keymap.set('n', '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', { desc = '[f]ind current [W]ORD' })
+-- vim.keymap.set('n', '<leader>fr', '<cmd>FzfLua resume<cr>', { desc = '[f]ind in [r]esumed search' })
+vim.keymap.set('n', '<leader>f.', function()
+    -- getcwd(-1, -1) = global cwd, ignoring any window/tab-local :lcd
+    require('fzf-lua').files({ cwd = vim.fn.getcwd(-1, -1) })
+end, { desc = "[f]ind files incl. hidden [.]dotfiles, from Neovim's working directory" })
+vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = '[f]ind open b[u]ffers' })
+vim.keymap.set('n', '<leader>fd', '<cmd>FzfLua diagnostics_document<cr>', { desc = '[f]ind [d]iagnostics' })
+vim.keymap.set('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>', { desc = '[f]ind [o]ld files' })
+vim.keymap.set('n', '<leader>fa', '<cmd>FzfLua autocmds<cr>', { desc = '[f]ind [a]utocommands' })
+vim.keymap.set('n', '<leader>gsa', '<cmd>FzfLua git_status<cr>', { desc = 'find [g]it [s]tatus' })
+vim.keymap.set('n', '<leader>gd', '<cmd>FzfLua git_diff<cr>', { desc = 'find [g]it [s]tatus' })
+vim.keymap.set('n', '<leader>gc', '<cmd>FzfLua git_commits<cr>', { desc = 'find [g]it [c]ommits' })
+vim.keymap.set('n', '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', { desc = 'find [g]it [c]ommits in current file' })
+vim.keymap.set('n', '<leader>gbl', '<cmd>FzfLua git_blame<cr>', { desc = 'find [g]it [bl]ame' })
+vim.keymap.set('n', '<leader>gbr', '<cmd>FzfLua git_branches<cr>', { desc = 'find [g]it [br]anches' })
+vim.keymap.set('n', '<leader>fO', '<cmd>FzfLua nvim_options<cr>', { desc = '[f]ind [o]ld files' })
+vim.keymap.set('n', '<leader>vh', '<cmd>FzfLua helptags<cr>', { desc = '[v]iew/search Neovim [h]elp' })
+-- vim.keymap.set('n', '<leader>fid', function()
+--     require('fzf-lua').files({ cwd = vim.fn.expand('~/projects/dotfiles') })
+-- end, { desc = '[f]ind [i]n neovim [d]otfiles' })
+vim.keymap.set('i', '<C-x><C-f>', function()
+    require('fzf-lua').complete_path({
+        winopts = {
+            height = 0.4,
+            width = 0.5,
+            relative = 'cursor',
+        },
+    })
+end, { desc = 'fuzzy complete path' })
+vim.keymap.set('n', '<leader>ft', '<cmd>FzfLua undotree<cr>', { desc = 'Undotree' })
+vim.keymap.set('n', '<leader>fz', '<cmd>FzfLua spell_suggest<cr>', { desc = 'Spelling suggestions' })

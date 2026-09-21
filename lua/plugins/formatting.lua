@@ -20,51 +20,44 @@ local function format_on_save(bufnr)
     }
 end
 
-return {
-    'stevearc/conform.nvim',
-    lazy = true,
-    cmd = 'ConformInfo',
-    init = function()
-        -- register format-on-save without loading conform.nvim during startup
-        -- the first save loads Conform only if the file is small enough to format
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            group = vim.api.nvim_create_augroup('cg/conform_format_on_save', { clear = true }),
-            callback = function(args)
-                local format_opts = format_on_save(args.buf)
-                if not format_opts then
-                    return
-                end
-
-                format_opts.bufnr = args.buf
-                require('conform').format(format_opts)
-            end,
-        })
-    end,
-    opts = {
-        formatters_by_ft = {
-            c = { 'clang-format' },
-            cpp = { 'clang-format' },
-            css = prettier,
-            html = prettier,
-            json = prettier,
-            jsonc = prettier,
-            javascript = prettier,
-            javascriptreact = prettier,
-            less = prettier,
-            lua = { 'stylua' },
-            -- markdown = prettier,
-            -- see intelephense config for php formatting
-            python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-            scss = prettier,
-            sh = { 'shfmt' },
-            typescript = prettier,
-            typescriptreact = prettier,
-            yaml = prettier,
-        },
-        formatters = {
-            ['clang-format'] = {
-                prepend_args = { '-style=file', '-fallback-style=LLVM' },
-            },
+require('conform').setup({
+    formatters_by_ft = {
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
+        css = prettier,
+        html = prettier,
+        json = prettier,
+        jsonc = prettier,
+        javascript = prettier,
+        javascriptreact = prettier,
+        less = prettier,
+        lua = { 'stylua' },
+        -- markdown = prettier,
+        -- see intelephense config for php formatting
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+        scss = prettier,
+        sh = { 'shfmt' },
+        typescript = prettier,
+        typescriptreact = prettier,
+        yaml = prettier,
+    },
+    formatters = {
+        ['clang-format'] = {
+            prepend_args = { '-style=file', '-fallback-style=LLVM' },
         },
     },
-}
+})
+
+-- format small files before writing
+vim.api.nvim_create_autocmd('BufWritePre', {
+    group = vim.api.nvim_create_augroup('cg/conform_format_on_save', { clear = true }),
+    callback = function(args)
+        local format_opts = format_on_save(args.buf)
+        if not format_opts then
+            return
+        end
+
+        format_opts.bufnr = args.buf
+        require('conform').format(format_opts)
+    end,
+})

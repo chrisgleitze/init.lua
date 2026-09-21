@@ -6,36 +6,25 @@ local function zk(command, options)
     end
 end
 
-return {
-    'zk-org/zk-nvim',
-    name = 'zk',
-    ft = 'markdown',
-    cmd = { 'ZkNew', 'ZkNotes', 'ZkBacklinks', 'ZkLinks', 'ZkInsertLink', 'ZkTags' },
-    init = function()
-        vim.env.ZK_NOTEBOOK_DIR = notebook
-    end,
-    opts = {
-        picker = 'fzf_lua',
-        lsp = {
-            config = {
-                name = 'zk',
-                cmd = { 'zk', 'lsp' },
-                filetypes = { 'markdown' },
-            },
-            auto_attach = { enabled = true },
+vim.env.ZK_NOTEBOOK_DIR = notebook
+
+require('zk').setup({
+    picker = 'fzf_lua',
+    lsp = {
+        config = {
+            name = 'zk',
+            cmd = { 'zk', 'lsp' },
+            filetypes = { 'markdown' },
         },
+        auto_attach = { enabled = true },
     },
-    keys = {
-        {
-            '<leader>zn',
-            function()
-                require('zk.commands').get('ZkNew')({ notebook_path = notebook, title = vim.fn.input('Title: ') })
-            end,
-        },
-        { '<leader>zf', zk('ZkNotes') },
-        { '<leader>zb', zk('ZkBacklinks') },
-        { '<leader>zl', zk('ZkLinks') },
-        { '<leader>zi', zk('ZkInsertLink') },
-        { '<leader>zt', zk('ZkTags') },
-    },
-}
+})
+
+vim.keymap.set('n', '<leader>zn', function()
+    require('zk.commands').get('ZkNew')({ notebook_path = notebook, title = vim.fn.input('Title: ') })
+end)
+vim.keymap.set('n', '<leader>zf', zk('ZkNotes'))
+vim.keymap.set('n', '<leader>zb', zk('ZkBacklinks'))
+vim.keymap.set('n', '<leader>zl', zk('ZkLinks'))
+vim.keymap.set('n', '<leader>zi', zk('ZkInsertLink'))
+vim.keymap.set('n', '<leader>zt', zk('ZkTags'))
