@@ -1,3 +1,4 @@
+-- run a blocking shell command, error with its output on failure
 local function run(cmd, cwd)
     local result = vim.system(cmd, { cwd = cwd, text = true }):wait()
     if result.code ~= 0 then
@@ -6,19 +7,23 @@ local function run(cmd, cwd)
     end
 end
 
+-- run build steps for plugins with native code/assets after install/update
 vim.api.nvim_create_autocmd('PackChanged', {
     group = vim.api.nvim_create_augroup('cg/plugin_builds', { clear = true }),
     callback = function(event)
         local name = event.data.spec.name
         local kind = event.data.kind
+        -- only react to fresh installs/updates, not removals
         if kind ~= 'install' and kind ~= 'update' then
             return
         end
 
         local ok, err = pcall(function()
             if name == 'LuaSnip' then
+                -- build the optional jsregexp C dependency for variable transforms
                 run({ 'make', 'install_jsregexp' }, event.data.path)
             elseif name == 'fff.nvim' then
+                -- fetch/build its Rust binary, falling back to a local cargo build
                 if not event.data.active then
                     vim.cmd.packadd(name)
                 end
@@ -28,8 +33,10 @@ vim.api.nvim_create_autocmd('PackChanged', {
                     run({ 'cargo', 'build', '--release', '-p', 'fff-nvim', '--lib' }, event.data.path)
                 end
             elseif name == 'markdown-preview.nvim' then
+                -- install its bundled Node app, discarding any resulting git diff
                 run({ 'sh', '-c', 'cd app && npm install && git restore .' }, event.data.path)
             elseif name == 'nvim-treesitter' then
+                -- pull/rebuild all treesitter parsers
                 if not event.data.active then
                     vim.cmd.packadd(name)
                 end
@@ -42,6 +49,17 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end,
 })
 
+-- plugin_loader defers these groups until their trigger fires (see each module)
+local loader = require('plugin_loader')
+loader.register('diffview', { 'https://github.com/dlyongemallo/diffview.nvim' })
+loader.register('dap', {
+    'https://github.com/mfussenegger/nvim-dap',
+    'https://github.com/igorlfs/nvim-dap-view',
+    'https://github.com/jbyuki/one-small-step-for-vimkind',
+})
+
+-- everything else: install/clone only (load = false), each gets set up by
+-- its own module below or by the deferred block at the end
 vim.pack.add({
     'https://github.com/nvim-tree/nvim-web-devicons',
     'https://github.com/nvim-lua/plenary.nvim',
@@ -61,12 +79,8 @@ vim.pack.add({
     'https://github.com/dmtrKovalenko/fff.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
     { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
-    'https://github.com/dlyongemallo/diffview.nvim',
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/junegunn/gv.vim',
-    'https://github.com/mfussenegger/nvim-dap',
-    'https://github.com/igorlfs/nvim-dap-view',
-    'https://github.com/jbyuki/one-small-step-for-vimkind',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/iamcco/markdown-preview.nvim',
     { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' },
@@ -75,24 +89,52 @@ vim.pack.add({
     { src = 'https://github.com/zk-org/zk-nvim', name = 'zk' },
 }, { load = false })
 
+-- needs to load first
 require('plugins.colorscheme')
-require('plugins.completion')
-require('plugins.autopairs')
-require('plugins.treesitter')
-require('plugins.gitsigns')
-require('plugins.formatting')
-require('plugins.mason')
-require('plugins.fzf-lua')
-require('plugins.fff')
-require('plugins.harpoon')
-require('plugins.neo-tree')
-require('plugins.splitjoin')
-require('plugins.surround')
-require('plugins.fugitive')
-require('plugins.diffview')
-require('plugins.octo')
-require('plugins.dap')
-require('plugins.markdown')
-require('plugins.zettelkasten')
-require('plugins.philosophy')
-require('plugins.schemastore')
+
+local mason = require('plugins.mason')
+-- Modules that need to load later (after VimEnter),
+-- excluded from the eager auto-require loop below
+local later = {
+    ['fff.lua'] = true,
+    ['fzf-lua.lua'] = true,
+    ['mason.lua'] = true,
+}
+-- auto-discover and require every remaining lua/plugins/*.lua file
+local configs = {}
+for name, type in vim.fs.dir(vim.fn.stdpath('config') .. '/lua/plugins') do
+    if
+        type == 'file'
+        and name:match('%.lua$')
+        and name ~= 'init.lua'
+        and name ~= 'colorscheme.lua'
+        and not later[name]
+    then
+        configs[#configs + 1] = name:sub(1, -5)
+    end
+end
+
+-- sort for a deterministic load order (dir iteration order is unspecified)
+table.sort(configs)
+for _, config in ipairs(configs) do
+    require('plugins.' .. config)
+end
+
+-- defer the heavier/startup-sensitive setups until after VimEnter so they
+-- don't block editor startup: fzf-lua, fff (native binary), and mason
+vim.api.nvim_create_autocmd('VimEnter', {
+    group = vim.api.nvim_create_augroup('cg/deferred_plugin_setup', { clear = true }),
+    once = true,
+    callback = function()
+        vim.schedule(function()
+            local ok, err = pcall(function()
+                require('plugins.fzf-lua')
+                require('plugins.fff')
+                mason.setup()
+            end)
+            if not ok then
+                vim.notify(('Deferred plugin setup failed:\n%s'):format(err), vim.log.levels.ERROR)
+            end
+        end)
+    end,
+})

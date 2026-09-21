@@ -42,39 +42,43 @@ end
 
 prefer_wsl_node()
 
--- import mason
-local mason = require('mason')
+local M = {}
 
--- import mason-lspconfig
-local mason_lspconfig = require('mason-lspconfig')
+-- deferred until VimEnter by lua/plugins/init.lua; not startup-critical
+function M.setup()
+    local mason = require('mason')
+    local mason_lspconfig = require('mason-lspconfig')
 
--- enable mason and configure icons
-mason.setup({
-    ui = {
-        icons = {
-            package_installed = '✓',
-            package_pending = '➜',
-            package_uninstalled = '✗',
+    -- enable mason and configure icons
+    mason.setup({
+        ui = {
+            icons = {
+                package_installed = '✓',
+                package_pending = '➜',
+                package_uninstalled = '✗',
+            },
         },
-    },
-})
+    })
 
-mason_lspconfig.setup({
-    -- list of servers for mason to install
-    ensure_installed = {
-        'basedpyright',
-        'bashls',
-        'clangd',
-        'cssls',
-        'html',
-        'intelephense',
-        'lua_ls',
-        -- 'prettier',
-        'ruff',
-        'stylua',
-        'tsc',
-        'tailwindcss',
-    },
-    -- LSP servers are configured and enabled from lsp/*.lua.
-    automatic_enable = false,
-})
+    mason_lspconfig.setup({
+        -- list of servers for mason to install
+        ensure_installed = {
+            'basedpyright',
+            'bashls',
+            'clangd',
+            'cssls',
+            'html',
+            'intelephense',
+            'lua_ls',
+            -- 'prettier',
+            'ruff',
+            'stylua',
+            'tsc',
+            'tailwindcss',
+        },
+        -- LSP servers are configured and enabled from lsp/*.lua.
+        automatic_enable = false,
+    })
+end
+
+return M
