@@ -1,1 +1,0 @@
--- schemastore.nvim only needs to be available on the runtimepath.
