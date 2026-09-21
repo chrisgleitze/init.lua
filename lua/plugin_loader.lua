@@ -91,4 +91,21 @@ function M.on_command(name, commands, configure)
     })
 end
 
+-- load a group the first time a buffer of one of these filetypes is opened;
+-- fires once per group even if several matching buffers open in a row
+function M.on_filetype(name, filetypes, configure)
+    local id
+    id = vim.api.nvim_create_autocmd('FileType', {
+        pattern = filetypes,
+        callback = function()
+            local ok, err = pcall(M.load, name, configure)
+            if not ok then
+                vim.notify(('Failed to load %s:\n%s'):format(name, err), vim.log.levels.ERROR)
+                return
+            end
+            vim.api.nvim_del_autocmd(id)
+        end,
+    })
+end
+
 return M

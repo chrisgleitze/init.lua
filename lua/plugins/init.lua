@@ -52,6 +52,12 @@ vim.api.nvim_create_autocmd('PackChanged', {
 -- plugin_loader defers these groups until their trigger fires (see each module)
 local loader = require('plugin_loader')
 loader.register('diffview', { 'https://github.com/dlyongemallo/diffview.nvim' })
+loader.register('harpoon', { { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' } })
+loader.register('markdown', {
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+    'https://github.com/iamcco/markdown-preview.nvim',
+})
+loader.register('neo-tree', { { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' } })
 
 -- everything else: install/clone only (load = false), each gets set up by
 -- its own module below or by the deferred block at the end
@@ -72,12 +78,8 @@ vim.pack.add({
     'https://github.com/williamboman/mason-lspconfig.nvim',
     'https://github.com/dmtrKovalenko/fff.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
-    { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/junegunn/gv.vim',
-    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
-    'https://github.com/iamcco/markdown-preview.nvim',
-    { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' },
     'https://github.com/echasnovski/mini.surround',
     { src = 'https://github.com/zk-org/zk-nvim', name = 'zk' },
 }, { load = false })

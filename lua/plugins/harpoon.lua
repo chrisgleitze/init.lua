@@ -1,9 +1,18 @@
-local harpoon = require('harpoon')
-harpoon:setup()
+local loader = require('plugin_loader')
+
+local function configure()
+    require('harpoon'):setup()
+end
+
+-- load the plugin group on first use, then return the harpoon module
+local function harpoon()
+    loader.load('harpoon', configure)
+    return require('harpoon')
+end
 
 local function harpoon_list(action)
     return function()
-        local list = require('harpoon'):list()
+        local list = harpoon():list()
         list[action](list)
     end
 end
@@ -11,13 +20,13 @@ end
 vim.keymap.set('n', '<leader>A', harpoon_list('prepend'))
 vim.keymap.set('n', '<leader>a', harpoon_list('add'))
 vim.keymap.set('n', '<C-e>', function()
-    local current_harpoon = require('harpoon')
+    local current_harpoon = harpoon()
     current_harpoon.ui:toggle_quick_menu(current_harpoon:list())
 end)
 
 local function select(index)
     return function()
-        require('harpoon'):list():select(index)
+        harpoon():list():select(index)
     end
 end
 
@@ -33,7 +42,7 @@ vim.keymap.set('n', '<leader>p', select(8))
 
 local function replace(index)
     return function()
-        require('harpoon'):list():replace_at(index)
+        harpoon():list():replace_at(index)
     end
 end
 
