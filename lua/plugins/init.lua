@@ -80,6 +80,7 @@ vim.pack.add({
     'https://github.com/lewis6991/gitsigns.nvim',
     'https://github.com/tpope/vim-fugitive',
     'https://github.com/junegunn/gv.vim',
+    'https://github.com/nvim-mini/mini.splitjoin',
     'https://github.com/echasnovski/mini.surround',
     { src = 'https://github.com/zk-org/zk-nvim', name = 'zk' },
 }, { load = false })
