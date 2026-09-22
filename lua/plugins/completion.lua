@@ -1,18 +1,9 @@
--- snippet engine
-local luasnip = require('luasnip')
-luasnip.setup({
-    history = true,
-    delete_check_events = 'TextChanged',
-    region_check_events = 'CursorMoved',
-})
--- loads friendly-snippets
-require('luasnip.loaders.from_vscode').lazy_load()
--- my custom snippets
-require('luasnip.loaders.from_vscode').lazy_load({
-    paths = { vim.fn.stdpath('config') .. '/snippets' },
-})
+local blink = require('blink.cmp')
 
-require('blink.cmp').setup({
+-- set capabilities before any lsp client can start
+vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities(nil, true) })
+
+blink.setup({
     snippets = { preset = 'luasnip' },
     completion = {
         ghost_text = { enabled = true },
@@ -20,7 +11,6 @@ require('blink.cmp').setup({
             border = 'none',
             scrollbar = true,
             draw = {
-                -- Avoid extra parser work while rendering completion items.
                 treesitter = {},
                 gap = 2,
                 columns = {
@@ -31,11 +21,7 @@ require('blink.cmp').setup({
         },
         documentation = {
             auto_show = true,
-            -- Delay docs slightly so quick typing does not constantly
-            -- open and redraw the documentation window.
             auto_show_delay_ms = 250,
-            -- The docs window can still show useful text without
-            -- spending Treesitter work on every popup.
             treesitter_highlighting = false,
         },
     },
@@ -58,5 +44,24 @@ require('blink.cmp').setup({
     },
 })
 
--- extend Neovim's client capabilities with the completion ones
-vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities(nil, true) })
+vim.api.nvim_create_autocmd('InsertEnter', {
+    group = vim.api.nvim_create_augroup('cg/deferred_luasnip_setup', { clear = true }),
+    once = true,
+    callback = function()
+        -- initialize snippet support when entering insert mode
+        local luasnip = require('luasnip')
+        luasnip.setup({
+            history = true,
+            delete_check_events = 'TextChanged',
+            region_check_events = 'CursorMoved',
+        })
+
+        -- load friendly-snippets on demand
+        require('luasnip.loaders.from_vscode').lazy_load()
+
+        -- load custom snippets on demand
+        require('luasnip.loaders.from_vscode').lazy_load({
+            paths = { vim.fn.stdpath('config') .. '/snippets' },
+        })
+    end,
+})
