@@ -202,6 +202,9 @@ map('v', '<A-k>', ":m '<-2<cr>gv=gv")
 -- change all occurrences of the word the cursor is on in buffer
 map('n', '<leader>ss', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- change all occurrences of the visual selection in buffer
+map('v', '<leader>ss', [[y:%s/\V<C-r>=escape(@", '\/')<CR>/<C-r>=escape(@", '\/&')<CR>/gI<Left><Left><Left>]])
+
 -- run cmd in directory of current file
 local function run_command_in_file_dir()
     -- buffers without a real path (terminal, neo-tree, ...) fall back to the cwd
