@@ -28,7 +28,7 @@ blink.setup({
     sources = {
         per_filetype = {
             text = {}, -- disabled
-            markdown = { 'lsp', 'path', 'snippets' },
+            markdown = {}, -- disabled
         },
         default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
