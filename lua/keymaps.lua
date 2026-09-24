@@ -131,13 +131,30 @@ map('n', '<leader>c', function()
 end)
 
 -- open new buffer
-map('n', '<leader>n', '<cmd>enew<cr>')
-
--- delete buffer
-map('n', '<leader>DB', '<cmd>bdelete<cr>')
+map('n', '<leader>bn', '<cmd>enew<cr>')
 
 -- open buffer via buffer list
 map('n', '<C-b>', '<cmd>ls<cr>:b<space>')
+
+-- delete buffer
+map('n', '<leader>bd', '<cmd>bdelete<cr>')
+
+-- close all buffers except the current one
+-- modified and running terminal buffers fail to delete without force and are skipped
+map('n', '<leader>bo', function()
+    local current = vim.api.nvim_get_current_buf()
+    local closed, skipped = 0, 0
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+            if pcall(vim.api.nvim_buf_delete, buf, {}) then
+                closed = closed + 1
+            else
+                skipped = skipped + 1
+            end
+        end
+    end
+    vim.notify(('Closed %d buffers, skipped %d'):format(closed, skipped))
+end)
 
 -- change directory
 -- change to the current file's directory
