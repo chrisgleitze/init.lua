@@ -31,7 +31,7 @@ map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
     return '<Esc>'
 end, { expr = true })
 
--- open plugin update view
+-- nvim-pack update plugins
 map('n', '<leader>L', function()
     vim.pack.update()
 end)
@@ -102,6 +102,30 @@ map('n', '<C-s>', function()
 end)
 -- and in insert mode
 map({ 'i', 'x' }, '<C-s>', '<esc>:write ++p<cr>')
+
+-- leave terminal mode with Escape, useful on keyboards where Ctrl-\\ is awkward
+map('t', '<Esc>', '<C-\\><C-N>')
+
+-- one keymap to stage, commit, push changes in repo
+map('n', '<leader>GG', function()
+    vim.cmd('wall')
+
+    local root = vim.fn.systemlist({ 'git', 'rev-parse', '--show-toplevel' })[1]
+    if not root or root == '' then
+        vim.notify('No Git repository found', vim.log.levels.ERROR)
+        return
+    end
+
+    vim.ui.input({ prompt = 'Commit message: ', default = 'automated dev commit' }, function(message)
+        if not message or message == '' then
+            return
+        end
+
+        vim.cmd('botright new')
+        vim.fn.jobstart({ vim.fn.expand('~/.local/scripts/git-push-fast.sh'), message }, { term = true, cwd = root })
+        vim.cmd.startinsert()
+    end)
+end)
 
 -- write current buffer and restart nvim
 map('n', '<leader>R', '<cmd>write ++p | restart<cr>')
