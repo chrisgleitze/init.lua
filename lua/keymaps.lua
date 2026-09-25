@@ -200,8 +200,8 @@ map('n', '<leader>gg', function()
     vim.fn.jobstart({ 'tmux', 'new-window', '-c', vim.fn.getcwd(), '--', 'lazygit' }, { detach = true })
 end)
 
--- join lines, cursor doesn't move
-map('n', 'J', 'mzJ`z')
+-- disable Shift-j/k in normal mode
+map('n', { 'J', 'K' }, '<Nop>')
 
 -- jump up and down a page and center cursor
 map('n', '<C-d>', '<C-d>zz')
