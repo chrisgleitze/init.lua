@@ -7,11 +7,6 @@ local clear = function()
     -- clear active multicursors
     pcall(vim.api.nvim_buf_clear_namespace, 0, vim.api.nvim_create_namespace('nvim.multicursor'), 0, -1)
 
-    -- hide diagnostic virtual lines
-    if vim.diagnostic.config().virtual_lines then
-        vim.diagnostic.config({ virtual_lines = false })
-    end
-
     -- clear LSP reference highlights if present
     pcall(vim.lsp.buf.clear_references)
 
