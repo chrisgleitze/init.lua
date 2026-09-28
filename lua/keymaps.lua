@@ -26,15 +26,6 @@ map({ 'i', 's', 'x', 'o', 'c' }, '<Esc>', function()
     return '<Esc>'
 end, { expr = true })
 
--- move by display lines when no count is given
--- preserve physical-line motion with a count
-map('n', 'j', function()
-    return vim.v.count == 0 and 'gj' or 'j'
-end, { expr = true, silent = true })
-map('n', 'k', function()
-    return vim.v.count == 0 and 'gk' or 'k'
-end, { expr = true, silent = true })
-
 -- nvim-pack update plugins
 map('n', '<leader>L', function()
     vim.pack.update()
