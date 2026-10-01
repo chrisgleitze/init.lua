@@ -26,9 +26,15 @@ blink.setup({
         },
     },
     sources = {
+        providers = {
+            bibtex = {
+                name = 'BibTeX',
+                module = 'bibtex_source',
+            },
+        },
         per_filetype = {
             text = {}, -- disabled
-            markdown = {}, -- disabled
+            markdown = { 'bibtex', inherit_defaults = true },
         },
         default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
