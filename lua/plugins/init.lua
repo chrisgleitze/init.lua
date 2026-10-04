@@ -57,7 +57,6 @@ loader.register('markdown', {
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
     'https://github.com/iamcco/markdown-preview.nvim',
 })
-loader.register('neo-tree', { { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' } })
 
 -- everything else: install/clone only (load = false), each gets set up by
 -- its own module below or by the deferred block at the end

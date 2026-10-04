@@ -17,7 +17,6 @@ g.loaded_matchit = 1
 g.loaded_matchparen = 1
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
-g.loaded_nvim_dir_plugin = 1
 g.loaded_nvim_zip_plugin = 1
 g.loaded_remote_plugins = 1
 g.loaded_rrhelper = 1
@@ -31,6 +30,7 @@ g.loaded_zipPlugin = 1
 
 -- install and configure plugins
 require('plugins')
+require('file-explorer')
 
 -- load general settings and more
 require('settings')

@@ -243,7 +243,7 @@ map('v', '<leader>ss', [[y:%s/\V<C-r>=escape(@", '\/')<CR>/<C-r>=escape(@", '\/&
 
 -- run cmd in directory of current file
 local function run_command_in_file_dir()
-    -- buffers without a real path (terminal, neo-tree, ...) fall back to the cwd
+    -- buffers without a real path (terminal, file explorer, ...) fall back to the cwd
     local dir = vim.fn.expand('%:p:h')
     if vim.fn.isdirectory(dir) == 0 then
         dir = vim.fn.getcwd()
