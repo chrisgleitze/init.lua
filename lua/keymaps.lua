@@ -54,6 +54,7 @@ map('n', '<leader>p', '"+p')
 -- copy/select entire buffer
 map('n', 'yag', '<cmd>%y+<cr>')
 map('n', 'vag', 'ggVG')
+map('n', 'dag', 'ggVGd')
 
 -- copy current file path/context to clipboard
 local function copy_path(abs, with_line, with_text)
