@@ -15,11 +15,11 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "diffview.nvim": {
-      "rev": "5152bada7d81cd602373e77534aabc631419e8e0",
+      "rev": "875d16dd8c8aa86f1a5c3b5cef49e1133980ae94",
       "src": "https://github.com/dlyongemallo/diffview.nvim"
     },
     "fff.nvim": {
-      "rev": "e3f694a2e4f82bb755418e8d305dcff779c59c27",
+      "rev": "c188e7a8f90e4ee4aabe18f93d5869dfb4289f12",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "friendly-snippets": {
@@ -27,7 +27,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "13bb178a299f7493dd64427a58e61904c4b58ecb",
+      "rev": "bba13a0d260ca5e049683344ba70791c9ad8ece6",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
@@ -48,7 +48,7 @@
       "src": "https://github.com/iamcco/markdown-preview.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "137bd0feba2c1885545b6934d36f5e5aa6adb486",
+      "rev": "b3298993d55fa194279b5eb9dbfb3a43da65cadf",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -60,7 +60,7 @@
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
     "mini.surround": {
-      "rev": "33a2ebe5df8eb4751828fcba133e18ed0fbbdfab",
+      "rev": "72feeaa0f984646efde875cc775a97b6f8a8be9b",
       "src": "https://github.com/echasnovski/mini.surround"
     },
     "neo-tree.nvim": {
@@ -77,7 +77,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-treesitter": {
-      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
+      "rev": "e289100ff98969e118c702199d88b764ce9e7fdf",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
@@ -106,7 +106,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "zk": {
-      "rev": "4c68bb86ec8eb7792add310288beaddcb85cd492",
+      "rev": "2093138f4fabce994cf19403fca89d629f312ac9",
       "src": "https://github.com/zk-org/zk-nvim"
     }
   }
