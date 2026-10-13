@@ -33,8 +33,11 @@ vim.api.nvim_create_autocmd('PackChanged', {
                     run({ 'cargo', 'build', '--release', '-p', 'fff-nvim', '--lib' }, event.data.path)
                 end
             elseif name == 'markdown-preview.nvim' then
-                -- install its bundled Node app, discarding any resulting git diff
-                run({ 'sh', '-c', 'cd app && npm install && git restore .' }, event.data.path)
+                -- download the fork's matching pre-built preview server
+                local command = vim.fn.has('win32') == 1
+                    and { 'cmd.exe', '/c', 'install.cmd' }
+                    or { './install.sh' }
+                run(command, event.data.path .. '/app')
             elseif name == 'nvim-treesitter' then
                 -- pull/rebuild all treesitter parsers
                 if not event.data.active then
@@ -55,7 +58,7 @@ loader.register('diffview', { 'https://github.com/dlyongemallo/diffview.nvim' })
 loader.register('harpoon', { { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' } })
 loader.register('markdown', {
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
-    'https://github.com/iamcco/markdown-preview.nvim',
+    'https://github.com/sammaji/markdown-preview.nvim',
 })
 loader.register('neo-tree', { { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' } })
 

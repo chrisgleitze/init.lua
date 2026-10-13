@@ -44,8 +44,8 @@
       "version": "'harpoon2'"
     },
     "markdown-preview.nvim": {
-      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
-      "src": "https://github.com/iamcco/markdown-preview.nvim"
+      "rev": "ab85014cff9baadd49d4d9f495720658af64a158",
+      "src": "https://github.com/sammaji/markdown-preview.nvim"
     },
     "mason-lspconfig.nvim": {
       "rev": "e17625cdc8c2650787467398e02c5d63a2cde966",
