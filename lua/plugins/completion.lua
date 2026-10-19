@@ -4,6 +4,20 @@ local blink = require('blink.cmp')
 vim.lsp.config('*', { capabilities = blink.get_lsp_capabilities(nil, true) })
 
 blink.setup({
+    cmdline = {
+        enabled = true,
+        keymap = {
+            preset = 'inherit',
+            ['<Tab>'] = { 'show', 'accept', 'fallback' },
+        },
+        completion = {
+            menu = {
+                auto_show = true,
+                draw = { columns = { { 'label' } } },
+            },
+            ghost_text = { enabled = false },
+        },
+    },
     snippets = { preset = 'luasnip' },
     completion = {
         ghost_text = { enabled = true },
