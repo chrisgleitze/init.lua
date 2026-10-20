@@ -8,7 +8,9 @@ blink.setup({
         enabled = true,
         keymap = {
             preset = 'inherit',
-            ['<Tab>'] = { 'show', 'accept', 'fallback' },
+            ['<CR>'] = { 'fallback' },
+            ['<C-Space>'] = { 'select_and_accept', 'fallback' },
+            ['<Esc>'] = { 'cancel', 'fallback' },
         },
         completion = {
             menu = {
