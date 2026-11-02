@@ -15,23 +15,23 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "diffview.nvim": {
-      "rev": "2a2d89a07f5d5d3cef7f542b99c3e28050ca205c",
+      "rev": "3aba39f4d1704cc7aa26af487ab5579b5c614437",
       "src": "https://github.com/dlyongemallo/diffview.nvim"
     },
     "fff.nvim": {
-      "rev": "51649e10e1ee5502f5c110679ef3102748c18c77",
+      "rev": "d1c7dd47130ca670ab71e7466a1a3b4a57d5348d",
       "src": "https://github.com/dmtrKovalenko/fff.nvim"
     },
     "friendly-snippets": {
-      "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
+      "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "c67fadd9a24230417267e4f9068227e093c0be2b",
+      "rev": "07fce8ac8dffba4e11f1cbe5490d730a2cc5ec7a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
+      "rev": "1e9d0fbfe7ff848bc402d2c2e2854fb4eff2dce7",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gv.vim": {
@@ -48,7 +48,7 @@
       "src": "https://github.com/sammaji/markdown-preview.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "00b5473cca4db5b410ff4bae724e3b6e21f2687f",
+      "rev": "3a5cd6d562a01f6829a35ae761dc383264ea452b",
       "src": "https://github.com/williamboman/mason-lspconfig.nvim"
     },
     "mason.nvim": {
@@ -56,11 +56,11 @@
       "src": "https://github.com/williamboman/mason.nvim"
     },
     "mini.splitjoin": {
-      "rev": "be4536a1b8608a482dfac7aec5ce91b1c2f9bdab",
+      "rev": "de43d1ace70185b2d1da97781586ffba9fbb0338",
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
     "mini.surround": {
-      "rev": "59ce0acf79e1d930756ef3a7cb4c2369560cf548",
+      "rev": "5357f00aca51a3b43e7775901b1ad9699f8c2678",
       "src": "https://github.com/echasnovski/mini.surround"
     },
     "neo-tree.nvim": {
@@ -77,7 +77,7 @@
       "src": "https://github.com/windwp/nvim-autopairs"
     },
     "nvim-treesitter": {
-      "rev": "d3e4a28b63961ba972b0945d66c73b6eec969953",
+      "rev": "0195cd62fa89950f34c0e0d648ea7897ab85d4d3",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
