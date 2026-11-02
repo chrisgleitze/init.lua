@@ -37,7 +37,9 @@ o.ignorecase = true
 -- UI
 o.cursorline = false
 o.guicursor = ''
+o.wrap = true
 o.linebreak = true
+o.conceallevel = 2
 o.mouse = 'a'
 o.number = true
 o.relativenumber = true
