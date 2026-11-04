@@ -34,9 +34,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
                 end
             elseif name == 'markdown-preview.nvim' then
                 -- download the fork's matching pre-built preview server
-                local command = vim.fn.has('win32') == 1
-                    and { 'cmd.exe', '/c', 'install.cmd' }
-                    or { './install.sh' }
+                local command = vim.fn.has('win32') == 1 and { 'cmd.exe', '/c', 'install.cmd' } or { './install.sh' }
                 run(command, event.data.path .. '/app')
             elseif name == 'nvim-treesitter' then
                 -- pull/rebuild all treesitter parsers
@@ -54,7 +52,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 -- plugin_loader defers these groups until their trigger fires (see each module)
 local loader = require('plugin_loader')
-loader.register('diffview', { 'https://github.com/dlyongemallo/diffview.nvim' })
+loader.register('diffview', { 'https://github.com/dlyongemallo/diffview-plus.nvim' })
 loader.register('harpoon', { { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' } })
 loader.register('markdown', {
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
