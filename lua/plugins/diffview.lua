@@ -46,14 +46,50 @@ local function setup()
             },
         },
         keymaps = {
+            disable_defaults = true,
             view = {
                 { 'n', '<esc>', actions.close },
-            },
-            file_history_panel = {
-                { 'n', '<esc>', '<cmd>DiffviewClose<cr>' },
+                { 'n', '<tab>', actions.select_next_entry },
+                { 'n', '<s-tab>', actions.select_prev_entry },
+                { 'n', 'gf', actions.goto_file_tab },
+                { 'n', '<leader>gf', actions.focus_files },
+                { 'n', '<leader>gr', actions.refresh_files },
+                { 'n', 'g<C-x>', actions.cycle_layout },
+                { 'n', '[x', actions.prev_conflict },
+                { 'n', ']x', actions.next_conflict },
+                { 'n', '<leader>co', actions.conflict_choose('ours') },
+                { 'n', '<leader>ct', actions.conflict_choose('theirs') },
+                { 'n', '<leader>cb', actions.conflict_choose('base') },
+                { 'n', '<leader>ca', actions.conflict_choose('all') },
+                { 'n', '<leader>cd', actions.conflict_choose('none') },
+                { 'n', '<leader>cO', actions.conflict_choose_all('ours') },
+                { 'n', '<leader>cT', actions.conflict_choose_all('theirs') },
+                { 'n', '<leader>cB', actions.conflict_choose_all('base') },
             },
             file_panel = {
-                { 'n', '<esc>', '<cmd>DiffviewClose<cr>' },
+                { 'n', '<esc>', actions.close },
+                { 'n', 'j', actions.next_entry },
+                { 'n', 'k', actions.prev_entry },
+                { 'n', '<cr>', actions.select_entry },
+                { 'n', '<tab>', actions.select_next_entry },
+                { 'n', '<s-tab>', actions.select_prev_entry },
+                { 'n', 's', actions.toggle_stage_entry },
+                { 'n', 'S', actions.stage_all },
+                { 'n', 'U', actions.unstage_all },
+                { 'n', 'X', actions.restore_entry },
+                { 'n', 'i', actions.listing_style },
+                { 'n', 'R', actions.refresh_files },
+                { 'n', 'g?', actions.help('file_panel') },
+                { 'n', '<leader>cO', actions.conflict_choose_all('ours') },
+                { 'n', '<leader>cT', actions.conflict_choose_all('theirs') },
+                { 'n', '<leader>cB', actions.conflict_choose_all('base') },
+            },
+            file_history_panel = {
+                { 'n', '<esc>', actions.close },
+                { 'n', 'j', actions.next_entry },
+                { 'n', 'k', actions.prev_entry },
+                { 'n', '<cr>', actions.select_entry },
+                { 'n', 'g?', actions.help('file_history_panel') },
             },
         },
     })
@@ -67,8 +103,8 @@ end
 
 require('plugin_loader').on_command('diffview', 'Diffview*', setup)
 
--- open diff[V]iew
-vim.keymap.set('n', '<leader>V', '<cmd>DiffviewOpen<cr>')
+vim.keymap.set('n', '<leader>Gm', '<cmd>DiffviewOpen<cr>')
+vim.keymap.set('n', '<leader>Gx', '<cmd>DiffviewClose<cr>')
 -- [g]it [H]istory of the whole repo
 vim.keymap.set('n', '<leader>gH', '<cmd>DiffviewFileHistory<cr>')
 -- [g]it [h]istory of current file
