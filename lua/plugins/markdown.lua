@@ -46,5 +46,19 @@ vim.api.nvim_create_autocmd('FileType', {
             require('render-markdown').buf_toggle()
         end, { buffer = args.buf })
         vim.keymap.set('n', '<leader>Mp', '<cmd>MarkdownPreviewToggle<cr>', { buffer = args.buf })
+        -- jump to Markdown heading
+        vim.keymap.set('n', '<leader>Mj', function()
+            local title = vim.api.nvim_get_current_line():match('%[([^%]]+)%]%(%#[^%)]+%)')
+            if title then
+                -- shortcut: link text must match the heading, use anchor resolution if labels differ
+                for i, line in ipairs(vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)) do
+                    if line:match('^#+%s+(.+)%s*$') == title then
+                        vim.cmd('normal! ' .. i .. 'G0')
+                        return
+                    end
+                end
+            end
+            vim.notify('No matching Markdown heading found', vim.log.levels.WARN)
+        end, { buffer = args.buf })
     end,
 })
