@@ -196,8 +196,8 @@ map('n', '<leader>gg', function()
     vim.fn.jobstart({ 'tmux', 'new-window', '-c', vim.fn.getcwd(), '--', 'lazygit' }, { detach = true })
 end)
 
--- disable Shift-j/k in normal mode
-map('n', { 'J', 'K' }, '<Nop>')
+-- disable Shift-j in normal mode
+map('n', 'J', '<Nop>')
 
 -- jump up and down a page and center cursor
 map('n', '<C-d>', '<C-d>zz')
