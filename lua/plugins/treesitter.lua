@@ -57,12 +57,6 @@ vim.api.nvim_create_autocmd('FileType', {
             return
         end
 
-        -- Some bundled ftplugins start Treesitter before this autocmd.
-        if require('bigfile').is_big(args.buf) then
-            vim.treesitter.stop(args.buf)
-            return
-        end
-
         pcall(vim.treesitter.start, args.buf)
     end,
 })
