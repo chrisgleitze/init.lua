@@ -30,7 +30,7 @@ local function select(index)
     end
 end
 
--- switch to harpooned file 1-8
+-- switch to harpooned file 1-4
 vim.keymap.set('n', '<leader>q', select(1))
 vim.keymap.set('n', '<leader>w', select(2))
 vim.keymap.set('n', '<leader>e', select(3))
@@ -42,7 +42,7 @@ local function replace(index)
     end
 end
 
--- substitute harpooned file 1-8 with new files
+-- substitute harpooned file 1-4 with new files
 vim.keymap.set('n', '<leader><C-q>', replace(1))
 vim.keymap.set('n', '<leader><C-w>', replace(2))
 vim.keymap.set('n', '<leader><C-e>', replace(3))
