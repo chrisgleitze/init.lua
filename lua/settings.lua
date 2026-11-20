@@ -73,3 +73,13 @@ vim.g.clipboard = {
     },
     cache_enabled = 0,
 }
+
+-- open web URLs in Windows Chrome instead of WSL's xdg-open
+local chrome = '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
+local ui_open = vim.ui.open
+vim.ui.open = function(path, opts)
+    if path:lower():match('^https?://') and not (opts and opts.cmd) then
+        opts = vim.tbl_extend('force', opts or {}, { cmd = { chrome } })
+    end
+    return ui_open(path, opts)
+end
