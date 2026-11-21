@@ -17,7 +17,11 @@ autocmd('BufWritePre', {
     group = vim.api.nvim_create_augroup('cg/whitespace', {}),
     pattern = '*',
     callback = function(args)
-        if not vim.bo[args.buf].modifiable or vim.bo[args.buf].buftype ~= '' then
+        if
+            not vim.bo[args.buf].modifiable
+            or vim.bo[args.buf].buftype ~= ''
+            or vim.bo[args.buf].filetype == 'markdown'
+        then
             return
         end
 
