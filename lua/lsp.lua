@@ -29,9 +29,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- grx     | run codelens
         -- gO      | document symbols
         -- gx      | document link öffnen
-        -- C-s     | signature help in  Insert mode
         -- an/in   | selection ranges
         lsp_map('<leader>vws', vim.lsp.buf.workspace_symbol)
+        -- signature help uses <leader>vs because Ctrl-s saves
+        lsp_map('<leader>vs', vim.lsp.buf.signature_help)
     end,
 })
 
