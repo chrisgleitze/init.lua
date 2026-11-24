@@ -11,5 +11,14 @@ end
 
 require('plugin_loader').on_command('neo-tree', 'Neotree', configure)
 
-vim.keymap.set('n', '<leader>t', '<cmd>Neotree toggle<cr>')
-vim.keymap.set('n', '<leader>T', '<cmd>Neotree position=current toggle<cr>')
+local function toggle(position)
+    require('plugin_loader').load('neo-tree', configure)
+    require('neo-tree.command').execute({ position = position, toggle = true }, { force_open_folders = {} })
+end
+
+vim.keymap.set('n', '<leader>t', function()
+    toggle('left')
+end)
+vim.keymap.set('n', '<leader>T', function()
+    toggle('current')
+end)
